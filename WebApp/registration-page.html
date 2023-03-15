@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Sign Up</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
     <style>
@@ -81,13 +81,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" href="./index.html">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Privacy Policy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./registration-page.html">Sign Up</a>
+                            <a class="nav-link" aria-current="page" href="#">Sign Up</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Dashboard</a>
@@ -191,55 +191,70 @@
 
 
         <!-- Hero Section -->
-        <div class="container">
+        <div class="container" style="padding-top: 100px">
             <div class="row flex-lg-row-reverse align-items-center">
                 <div class="col-12 col-md-7">
-                    <img src="./images/homepage-hero-image.png" class="img-fluid" alt="Test">
+                    <img src="./images/registration-hero-image.png" class="img-fluid" alt="Test">
                 </div>
                 <div class="col-12 col-md-5">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">Large Title - Probably name of app</h1>
-                    <p class="lead">Description of our app and main CTA go here. Using lorem ipsum text to simulate length of section. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                        <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#F53664!important; border-color: #F53664;">Log In</button>
-                        <a href="./registration-page.html" class="btn btn-outline-secondary btn-lg px-4" role="button">Sign Up</a>
-                    </div>
+                    <h1 class="display-5 fw-bold lh-1 mb-3">Sign up to use our app!</h1>
+                    <p class="lead">We don't need any of your information to sign up. Once you click Sign Up, we'll give you a 16 digit code that you can use to log in. Keep it safe!</p>
+                    <p class="lead">You can also provide us with an email in case you forget your code and we'll send you a new one by email.</p>
+                    <p class="lead">If you’d like more personalized statistics like approximations for when your next period will be, or analysis of your moods and symptoms, then you’ll have to share your data with us. </p>
+                    <p class="lead">If you aren’t interested in that, no problem! You can still use our app to track everything, but there won’t be any smart analysis.</p>
+                    <p class="lead">Read our stance on your data below.</p>
+                    <form>
+                        <button type="submit" class="btn btn-primary" style="background-color:#F53664!important; border-color: #F53664;">Sign Up</button>
+                        <br>
+                        <div class="mb-3" style="padding-top:3%">
+                            <label for="signUpEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="signUpEmail" aria-describedby="emailHelp">
+                            <div id="emailHelp" class="form-text">An email is not required for sign up, but it would allow us to send you a new code should you forget the one we gave you.</div>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">I consent to send my data to you for more in-depth statistics and analysis.
+                                I am aware I can rescind my consent at any time by going to the settings page.</label>
+                          </div>
+                    </form>
                 </div>
             </div>
         </div>
 
 
+        <!-- Our Stance Section -->
 
-        <div class="container col-xxl-8 px-4 py-5">
-            <div class="row flex-lg align-items-center g-5 py-5">
-            <div class="col-12 col-sm-12 col-lg-6">
-                <img src="./images/image-1.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
-            </div>
-            <div class="col-lg-6">
-                <h1 class="display-5 fw-bold lh-1 mb-3">Responsive left-aligned hero with image</h1>
-                <p class="lead">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Primary</button>
-                <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
+        <div class="container align-items-center" style="padding-top: 100px">
+            <div class="row align-items-center">
+                <div class="col text-center">
+                    <h2 class="display-4 fw-bold lh-2 mb-3">Our Stance on Your Data</h2>
                 </div>
             </div>
+            <div class="row g-4 py-5">
+                <div class="col-6 col-md-3 text-center">
+                    <img src="./images/your-data-is-yours.png" class="img-fluid" alt="Test">
+                    <h3 class="fs-2">Your Data Is Yours</h3>
+                    <p>We don’t collect anything you don’t directly allow us to.</p>
+                </div>
+                <div class="col-6 col-md-3 text-center">
+                    <img src="./images/your-data-is-protected.png" class="img-fluid" alt="Test">
+                    <h3 class="fs-2">Your Data is Protected</h3>
+                    <p>Everything is encrypted!</p>
+                </div>
+                <div class="col-6 col-md-3 text-center">
+                    <img src="./images/the-choice-is-yours.png" class="img-fluid" alt="Test">
+                    <h3 class="fs-2">You can Opt In/Out Anytime!</h3>
+                    <p>We don’t collect anything you don’t directly allow us to.</p>
+                </div>
+                <div class="col-6 col-md-3 text-center">
+                    <img src="./images/data-is-anonymous.png" class="img-fluid" alt="Test">
+                    <h3 class="fs-2">All Data is Anonymized</h3>
+                    <p>Even if your data is stolen, no one can know who you are.</p>
+                </div>
             </div>
         </div>
 
-        <div class="container col-xxl-8 px-4 py-5">
-            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-            <div class="col-12 col-sm-12 col-lg-6">
-                <img src="./images/image-2.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
-            </div>
-            <div class="col-lg-6">
-                <h1 class="display-5 fw-bold lh-1 mb-3">Responsive left-aligned hero with image</h1>
-                <p class="lead">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Primary</button>
-                <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
-                </div>
-            </div>
-            </div>
-        </div>
+        
 
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
