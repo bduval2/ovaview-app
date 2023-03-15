@@ -57,6 +57,10 @@
           white-space: nowrap;
           -webkit-overflow-scrolling: touch;
         }
+
+        .bg-body-tertiary {
+            background: white !important;
+        }
       </style>
   
       
@@ -65,10 +69,10 @@
     </head>
     <body>
 
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                    <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Bootstrap" width="30" height="24">
+                    <img src="./images/branding-icon.png" alt="Blood Droplet Icon" width="30" height="30">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -79,52 +83,38 @@
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
-                            </a>
-                            <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
+                            <a class="nav-link" href="#">Privacy Policy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled">Disabled</a>
+                            <a class="nav-link" href="#">Dashboard</a>
                         </li>
                     </ul>
-                    <form class="d-flex">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+                    <button type="button" class="btn btn-primary" style="background-color:#F53664!important; border-color: #F53664;">Log In</button>
                 </div>
             </div>
         </nav>
 
-        <div class="container col-xxl-8 px-4 py-5">
-        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-            <div class="col-10 col-sm-12 col-m-6 col-lg-8">
-            <img src="./images/hero-image.png" class="img-fluid" alt="Test">
+        <div class="container">
+            <div class="row flex-lg-row-reverse align-items-center">
+                <div class="col-12 col-md-7">
+                    <img src="./images/hero-image.png" class="img-fluid" alt="Test">
+                </div>
+                <div class="col-12 col-md-5">
+                    <h1 class="display-5 fw-bold lh-1 mb-3">Large Title - Probably name of app</h1>
+                    <p class="lead">Description of our app and main CTA go here. Using lorem ipsum text to simulate length of section. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                        <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Primary</button>
+                        <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
+                    </div>
+                </div>
             </div>
-            <div class="col-m-6 col-lg-4">
-            <h1 class="display-5 fw-bold lh-1 mb-3">Large Title - Probably name of app</h1>
-            <h2 class="display-5 fw-bold lh-1 mb-3">Intro sentence (subheadline)</h2>
-            <p class="lead">Description of our app and main CTA go here. Using lorem ipsum text to simulate length of section. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Primary</button>
-                <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
-            </div>
-            </div>
-        </div>
         </div>
 
 
 
         <div class="container col-xxl-8 px-4 py-5">
             <div class="row flex-lg align-items-center g-5 py-5">
-            <div class="col-10 col-sm-12 col-lg-6">
+            <div class="col-12 col-sm-12 col-lg-6">
                 <img src="./images/image-1.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
             </div>
             <div class="col-lg-6">
@@ -140,7 +130,7 @@
 
         <div class="container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-            <div class="col-10 col-sm-12 col-lg-6">
+            <div class="col-12 col-sm-12 col-lg-6">
                 <img src="./images/image-2.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
             </div>
             <div class="col-lg-6">
