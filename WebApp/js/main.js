@@ -126,9 +126,9 @@ function new_event(event) {
         $(this).removeClass("error-input");
     })
     // empty inputs and hide events
-    $("#dialog input[type=checkbox]").val('');
-    $("#dialog input[type=radio]").val('');
-    $("#dialog input[type=text]").val('');
+    $("#dialog input[type=checkbox]").prop('checked',false);
+    $("#dialog input[type=radio]").prop('checked',false);
+    document.getElementById("note").value = "";
     $(".events-container").hide();
     $("#dialog").show();
     // Event handler for cancel button
@@ -226,7 +226,7 @@ function show_events(events, month, day) {
     else {
         // Go through and add each event as a card to the events container
         for(var i=0; i<events.length; i++) {
-            var event_card = $("<div class='event-card row flex-lg g-5 py-5' style='display:flex; padding: 20px!important;'></div>");
+            var event_card = $("<div class='event-card row flex-lg g-5 py-5' style='display:flex; padding: 20px!important; margin:0px!important;'></div>");
             var first_col = $("<div class='col-12 col-sm-12 col-lg-6' style='margin-top:0px!important;'></div>");
             var mood_entry = $("<div class='vstack gap-2'> <h4>Mood</h4> </div>");
 
