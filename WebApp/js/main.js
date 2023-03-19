@@ -126,35 +126,73 @@ function new_event(event) {
         $(this).removeClass("error-input");
     })
     // empty inputs and hide events
+    $("#dialog input[type=checkbox]").val('');
+    $("#dialog input[type=radio]").val('');
     $("#dialog input[type=text]").val('');
-    $("#dialog input[type=number]").val('');
-    $(".events-container").hide(250);
-    $("#dialog").show(250);
+    $(".events-container").hide();
+    $("#dialog").show();
     // Event handler for cancel button
     $("#cancel-button").click(function() {
         $("#mood").removeClass("error-input");
         $("#count").removeClass("error-input");
-        $("#dialog").hide(250);
-        $(".events-container").show(250);
+        $("#dialog").hide();
+        $(".events-container").show();
     });
     // Event handler for ok button
     $("#ok-button").unbind().click({date: event.data.date}, function() {
         var date = event.data.date;
-        var mood = $("#mood").val().trim();
-        var symptoms = $("#symptoms").val().trim();
-        var note = $("#note").val().trim();
-        var day = parseInt($(".active-date").html());
-        // Basic form validation
-        if(mood.length === 0) {
-            $("#mood").addClass("error-input");
+
+        var mood = "";
+        if (document.getElementById('Happy').checked) {
+            mood = "Happy"
+        }
+        else if (document.getElementById('Sad').checked) {
+            mood = "Sad"
+        }
+        else if (document.getElementById('Angry').checked) {
+            mood = "Angry"
         }
         else {
-            $("#dialog").hide(250);
-            console.log("new event");
-            new_event_json(mood, symptoms, note, date, day);
-            date.setDate(day);
-            init_calendar(date);
+            mood = "Anxious"
         }
+
+
+        var symptoms = "";
+        if (document.getElementById('Spotting').checked) {
+            symptoms += "Spotting "
+        }
+        if (document.getElementById('Hunger').checked) {
+            symptoms += "Hunger "
+        }
+        if (document.getElementById('Ovulation-pain').checked) {
+            symptoms += "Ovulation-pain "
+        }
+        if (document.getElementById('Diarrhea').checked) {
+            symptoms += "Diarrhea "
+        }
+        if (document.getElementById('Acne').checked) {
+            symptoms += "Acne "
+        }
+        if (document.getElementById('Irritability').checked) {
+            symptoms += "Irritability "
+        }
+        if (document.getElementById('Bloated').checked) {
+            symptoms += "Bloated "
+        }
+        if (document.getElementById('Gas').checked) {
+            symptoms += "Gas "
+        }
+ 
+
+        var note = $("#note").val();
+        var day = parseInt($(".active-date").html());
+        // Basic form validation
+        $("#dialog").hide();
+        console.log("new event");
+        new_event_json(mood, symptoms, note, date, day);
+        date.setDate(day);
+        init_calendar(date);
+        
     });
 }
 
@@ -180,7 +218,7 @@ function show_events(events, month, day) {
     // If there are no events for this date, notify the user
     if(events.length===0) {
         var event_card = $("<div class='event-card'></div>");
-        var event_name = $("<div class='event-name'>There are no events planned for "+month+" "+day+".</div>");
+        var event_name = $("<div class='event-name'>There are no entries for "+month+" "+day+".</div>");
         $(event_card).css({ "border-left": "10px solid #FF1744" });
         $(event_card).append(event_name);
         $(".events-container").append(event_card);
@@ -188,17 +226,59 @@ function show_events(events, month, day) {
     else {
         // Go through and add each event as a card to the events container
         for(var i=0; i<events.length; i++) {
-            var event_card = $("<div class='event-card'></div>");
-            var event_mood = $("<div class='event-name'>"+events[i]["mood"]+"</div>");
-            var event_symptoms = $("<div class='event-name'>"+events[i]["symptoms"]+"</div>");
-            var event_note = $("<div class='event-name'>"+events[i]["note"]+"</div>");
+            var event_card = $("<div class='event-card row flex-lg g-5 py-5' style='display:flex; padding: 20px!important;'></div>");
+            var first_col = $("<div class='col-12 col-sm-12 col-lg-6' style='margin-top:0px!important;'></div>");
+            var mood_entry = $("<div class='vstack gap-2'> <h4>Mood</h4> </div>");
+
+            // If we decide to go back to having text under image, fix this:
+
+            // var event_mood = $("<div class='vstack gap-2' align-items-center><img src='./images/moods/"+events[i]["mood"]+".png' class='img-fluid' alt='test' style='width: 90px;'></img><p>"+events[i]["mood"]+"</p></div></div>");
+            
+            var event_mood = $("<img src='./images/moods/"+events[i]["mood"]+".png' class='img-fluid' alt='test' style='width: 90px;'></img>");
+            var symptoms_entry_container = $("<div class='vstack gap-2'> <h4>Symptoms</h4> </div>");
+            var symptoms_entry = $("<div class='hstack gap-2'></div>");
+            var second_col = $("<div class='col-12 col-sm-12 col-lg-6' style='margin-top:0px!important;'> <h4> Notes</h4> </div>");
+            var note_entry = $("<div style='background-color: #FFF6FE; border-radius: 15px; padding: 3%;'></div>");
+            var event_note = $("<div class='event-name'><p>"+events[i]["note"]+"</p></div>");
             if(events[i]["cancelled"]===true) {
                 $(event_card).css({
                     "border-left": "10px solid #FF1744"
                 });
                 event_count = $("<div class='event-cancelled'>Cancelled</div>");
             }
-            $(event_card).append(event_mood).append(event_symptoms).append(event_note);
+
+            const symptoms = events[i]["symptoms"].split(" ");
+
+            // If we decide to go back to having text under image, fix this:
+
+            // for(var j = 0, length = symptoms.length; j < length; j++){
+            //     if(symptoms[j]!= ""){
+            //         if(symptoms[j] == "Ovulation-pain"){
+            //             $(symptoms_entry).append($("<div class='vstack gap-2 align-items-center'><img src='./images/symptoms/"+symptoms[j]+".png' class='img-fluid' alt='test' style='height: 50px;'><p>Ovu Pain</p></div></img>"));
+            //         }
+            //         else{
+            //             $(symptoms_entry).append($("<div class='vstack gap-2 align-items-center'><img src='./images/symptoms/"+symptoms[j]+".png' class='img-fluid' alt='test' style='height: 50px;'><p>"+symptoms[j]+"</p></div></img>"));
+            //         }
+            //     }
+            // }
+
+            for(var j = 0, length = symptoms.length; j < length; j++){
+                if(symptoms[j]!= ""){
+                    $(symptoms_entry).append($("<img src='./images/symptoms/"+symptoms[j]+".png' class='img-fluid' alt='test' style='height: 50px;'></img>"));
+                }
+            }
+
+            $(symptoms_entry_container).append(symptoms_entry);
+
+            $(mood_entry).append(event_mood);
+            $(first_col).append(mood_entry).append(symptoms_entry_container);
+
+            // Creating the second col
+            $(note_entry).append(event_note);
+            $(second_col).append(note_entry);
+
+            // Putting it all together in the card!
+            $(event_card).append(first_col).append(second_col);
             $(".events-container").append(event_card);
         }
     }

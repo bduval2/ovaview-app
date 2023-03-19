@@ -8449,12 +8449,11 @@ h1, h2, h3, h4, h5,
 /* input dialog */
 .dialog {
   z-index: 5;
-  background: green;
-  position: absolute;
   width: 100%;
   height: 100%;
   bottom: 0;
   left: 0;
+  border-radius: 15px;
   display: none; }
   @media (max-width: 767.98px) {
     .dialog {
@@ -8463,7 +8462,7 @@ h1, h2, h3, h4, h5,
 .dialog-header {
   margin: 20px;
   margin-top: 30px;
-  color: #fff;
+  color: black;
   text-align: center;
   font-size: 28px; }
 
