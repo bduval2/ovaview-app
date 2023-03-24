@@ -8162,7 +8162,8 @@ h1, h2, h3, h4, h5,
   background: #fc7fb2 !important; }
 
 .ftco-section {
-  padding-top: 50px; }
+  padding-top: 50px; 
+  padding-bottom: 100px;}
 
 .ftco-no-pt {
   padding-top: 0; }
