@@ -1,7 +1,7 @@
 <?php
 
-    include('class.database.php');
-    include('crypt.php');
+    include_once('class.database.php');
+    include_once('crypt.php');
 
     function getDashboard($user_id) {
         $events = array();
@@ -45,9 +45,20 @@
     }
 
     // Test
-    $user_id = 8201102724502253;
-    addLog(8201102724502253, "Happy", "Hunger", "I won TWO contests today.", 2023, 5, 20);
-    echo getDashboard($user_id)
+    function testDashboard()
+    {
+        $user_id = 8201102724502253;
+        addLog(8201102724502253, "Happy", "Hunger Acne Bloated", "I won TWO contests today.", 2023, 3, 20);
+        addLog(8201102724502253, "Sad", "Gas Diarrhea", "Hi hello what is up loser.", 2023, 3, 14);
+        addLog(8201102724502253, "Angry", "Bloated Spotting", "Bim Bap.", 2023, 3, 27);
+        addLog(8201102724502253, "Anxious", "Ovu Pain Gas Irritability", "he maximum value depends on the system. 
+                                    //32 bit systems have a maximum signed integer range of -2147483648 to 2147483647. 
+                                    //So for example on such a system, intval('1000000000000') will return 2147483647. 
+                                    //The maximum signed integer value for 64 bit systems is 9223372036854775807.", 2023, 3, 6);                          
+
+        echo getDashboard($user_id);
+    }
+    
 
 ?>
 

@@ -1,6 +1,6 @@
 <?php
 
-    include('class.database.php');
+    include_once('class.database.php');
     function exists($user_id) {
         // Get connection to database
         $db = Database::getInstance();
@@ -44,9 +44,13 @@
     }
 
     // Test
-    $user_id = register();
-    echo $user_id;
-    echo "<br>";
-    echo auth($user_id);
+    function testRegisterAuth()
+    {
+        $user_id = register();
+        echo $user_id;
+        echo "<br>";
+        echo auth($user_id);
+    }
+   
 
 ?>
