@@ -104,9 +104,6 @@
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="#">Sign Up</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./dashboard.html">Dashboard</a>
-                        </li>
                     </ul>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#F53664!important; border-color: #F53664;">

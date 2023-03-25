@@ -5,10 +5,10 @@
         $success = auth($userID );
         if ($success)
         {
-            echo "<script>alert('Success!');</script>";
+            echo "<script>alert('Success!'); window.location.href = 'index-logged-in.php'; </script>";
         }
         else {
-            echo "<script>alert($userID);</script>";
+            echo "<script>alert('Wrong login code, try again!');</script>";
         }
     }
 ?>
@@ -103,9 +103,6 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="./registration-page.php">Sign Up</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./dashboard.html">Dashboard</a>
                         </li>
                     </ul>
                     <!-- Button trigger modal -->

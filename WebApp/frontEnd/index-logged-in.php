@@ -88,10 +88,10 @@
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./privacy-policy.html">Privacy Policy</a>
+                            <a class="nav-link" href="./privacy-policy.php">Privacy Policy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./dashboard.html">Dashboard</a>
+                            <a class="nav-link" href="./dashboard.php">Dashboard</a>
                         </li>
                     </ul>
                     <!-- Button trigger modal -->
