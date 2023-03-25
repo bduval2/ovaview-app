@@ -1,11 +1,11 @@
 <?php
     if (isset($_POST["submit_signup"])) {
-        include_once('entry.php');
+        include_once('../backEnd/entry.php');
         $userID = register();
 
         $test = "Here is your login. MAKE SURE YOU DO NOT LOSE IT: " ;
         $test .= $userID;
-        echo "<script>alert($userID); window.location.href = 'index.html'; </script> ";
+        echo "<script>alert($userID); window.location.href = 'index.php'; </script> ";
         
     }
 

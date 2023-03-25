@@ -1,6 +1,15 @@
 <?php
     if (isset($_POST["submit_login"])) {
-
+        include_once('../backEnd/entry.php');
+        $userID = $_POST["loginCode"];
+        $success = auth($userID );
+        if ($success)
+        {
+            echo "<script>alert('Success!');</script>";
+        }
+        else {
+            echo "<script>alert($userID);</script>";
+        }
     }
 ?>
 
@@ -125,7 +134,7 @@
                     <form method="post" action="">
                         <div class="mb-3">
                         <label for="loginCode" class="form-label">Login Code</label>
-                        <input type="text" class="form-control" id="loginCode" aria-describedby="codeHelp">
+                        <input type="text" class="form-control" id="loginCode" name="loginCode" aria-describedby="codeHelp">
                         <div id="codelHelp" class="form-text">This should be a 16 digit code.</div>
                         </div>
                         <button type="submit" name="submit_login" class="btn btn-primary" style="background-color:#F53664!important; border-color: #F53664;">Log In</button>

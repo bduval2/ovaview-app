@@ -18,7 +18,7 @@ class Database {
 	// Constructor
 	private function __construct() {
 		
-        $this-> _connection = new PDO('sqlite:database/periodTracking.db');
+        $this-> _connection = new PDO('sqlite:../database/periodTracking.db');
         if ($this-> _connection != null) {
             echo 'Successfully connected to the SQLite database.';
             echo "<br>";
