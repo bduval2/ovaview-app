@@ -1,9 +1,14 @@
 <?php
-    include_once('../backend/entry.php');
+    if (isset($_POST["submit_signup"])) {
+        include_once('entry.php');
+        $userID = register();
 
-    $userID = register();
+        $test = "Here is your login. MAKE SURE YOU DO NOT LOSE IT: " ;
+        $test .= $userID;
+        echo "<script>alert($userID); window.location.href = 'index.html'; </script> ";
+        
+    }
 
-    echo $userID;
 ?>
 
 
@@ -213,8 +218,8 @@
                     <p class="lead">If you’d like more personalized statistics like approximations for when your next period will be, or analysis of your moods and symptoms, then you’ll have to share your data with us. </p>
                     <p class="lead">If you aren’t interested in that, no problem! You can still use our app to track everything, but there won’t be any smart analysis.</p>
                     <p class="lead">Read our stance on your data below.</p>
-                    <form>
-                        <button type="submit" class="btn btn-primary" style="background-color:#F53664!important; border-color: #F53664;">Sign Up</button>
+                    <form method="post" action="">
+                        <button type="submit" name="submit_signup" class="btn btn-primary" data-bs-target="#post-reg-modal" data-bs-toggle="modal" style="background-color:#F53664!important; border-color: #F53664;">Sign Up</button>
                         <br>
                         <div class="mb-3" style="padding-top:3%">
                             <label for="signUpEmail" class="form-label">Email</label>

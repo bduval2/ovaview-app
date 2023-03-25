@@ -44,8 +44,16 @@
         $conn->query("insert into logs (id_crypt, mood, symptoms, note, year, month, day) values ('$user_crypt', '$mood_crypt', '$symptoms_crypt', '$note_crypt', '$year_crypt', '$month_crypt', '$date_crypt');");
     }
 
+    function updateLog($user_id, $mood, $symptoms, $note, $year, $month, $date) {
+        
+    }
+
+    function removeLog($user_id, $mood, $symptoms, $note, $year, $month, $date) {
+
+    }
+
     // Test
-    function testDashboard()
+    function testGetDashboard()
     {
         $user_id = 8201102724502253;
         addLog(8201102724502253, "Happy", "Hunger Acne Bloated", "I won TWO contests today.", 2023, 3, 20);
@@ -58,7 +66,11 @@
 
         echo getDashboard($user_id);
     }
-    
+
+    function testUpdateLog() {
+
+    }
+    testGetDashboard();
 
 ?>
 
