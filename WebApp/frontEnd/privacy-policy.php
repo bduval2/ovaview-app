@@ -130,13 +130,13 @@
             
                     <br>
                     
-                    <form>
+                    <form method="post" action="">
                         <div class="mb-3">
                         <label for="loginCode" class="form-label">Login Code</label>
-                        <input type="text" class="form-control" id="loginCode" aria-describedby="codeHelp">
+                        <input type="text" class="form-control" id="loginCode" name="loginCode" aria-describedby="codeHelp">
                         <div id="codelHelp" class="form-text">This should be a 16 digit code.</div>
                         </div>
-                        <button type="submit" class="btn btn-primary" style="background-color:#F53664!important; border-color: #F53664;">Log In</button>
+                        <button type="submit" name="submit_login" class="btn btn-primary" style="background-color:#F53664!important; border-color: #F53664;">Log In</button>
                     </form>
 
                     <br>
