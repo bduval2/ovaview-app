@@ -1,11 +1,15 @@
 <?php
+    session_start();
+
     if (isset($_POST["submit_login"])) {
         include_once('../backEnd/entry.php');
         $userID = $_POST["loginCode"];
         $success = auth($userID );
+        $stringid = strval($userID)
         if ($success)
         {
-            echo "<script>alert('Success!'); window.location.href = 'index-logged-in.php'; </script>";
+            $_SESSION["userid"] = $stringid;
+            echo "<script>alert($_SESSION['userid']); window.location.href = 'index-logged-in.php'; </script>";
         }
         else {
             echo "<script>alert('Wrong login code, try again!');</script>";
