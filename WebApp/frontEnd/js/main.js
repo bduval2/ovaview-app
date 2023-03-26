@@ -4,19 +4,42 @@
 
 	// Setup the calendar with the current date
 $(document).ready(function(){
-    var date = new Date();
-    var today = date.getDate();
-    // Set click handlers for DOM elements
-    $(".right-button").click({date: date}, next_year);
-    $(".left-button").click({date: date}, prev_year);
-    $(".month").click({date: date}, month_click);
-    $("#add-button").click({date: date}, new_event);
-    // Set current month as active
-    $(".months-row").children().eq(date.getMonth()).addClass("active-month");
-    init_calendar(date);
-    var events = check_events(today, date.getMonth()+1, date.getFullYear());
-    show_events(events, months[date.getMonth()], today);
+
+    
+
+    setTimeout(function() {
+        var date = new Date();
+        var today = date.getDate();
+        // Set click handlers for DOM elements
+        $(".right-button").click({date: date}, next_year);
+        $(".left-button").click({date: date}, prev_year);
+        $(".month").click({date: date}, month_click);
+        $("#add-button").click({date: date}, new_event);
+        // Set current month as active
+        $(".months-row").children().eq(date.getMonth()).addClass("active-month");
+        init_calendar(date);
+        var events = check_events(today, date.getMonth()+1, date.getFullYear());
+        show_events(events, months[date.getMonth()], today);
+   }, 1000);
+    
 });
+
+// function startCalendar(){
+//     var date = new Date();
+//     var today = date.getDate();
+//     // Set click handlers for DOM elements
+//     $(".right-button").click({date: date}, next_year);
+//     $(".left-button").click({date: date}, prev_year);
+//     $(".month").click({date: date}, month_click);
+//     $("#add-button").click({date: date}, new_event);
+//     // Set current month as active
+//     $(".months-row").children().eq(date.getMonth()).addClass("active-month");
+//     init_calendar(date);
+//     var events = check_events(today, date.getMonth()+1, date.getFullYear());
+//     show_events(events, months[date.getMonth()], today);
+// };
+
+
 
 // Initialize the calendar by appending the HTML dates
 function init_calendar(date) {
@@ -137,9 +160,13 @@ function new_event(event) {
         $("#count").removeClass("error-input");
         $("#dialog").hide();
         $(".events-container").show();
-    });
+    }); 
+
+
     // Event handler for ok button
     $("#ok-button").unbind().click({date: event.data.date}, function() {
+
+        console.log("OK BUTTON PRESSED LOLLLL");
         var date = event.data.date;
 
         var mood = "";
@@ -155,7 +182,6 @@ function new_event(event) {
         else {
             mood = "Anxious"
         }
-
 
         var symptoms = "";
         if (document.getElementById('Spotting').checked) {
@@ -192,6 +218,7 @@ function new_event(event) {
         new_event_json(mood, symptoms, note, date, day);
         date.setDate(day);
         init_calendar(date);
+
         
     });
 }
@@ -207,6 +234,25 @@ function new_event_json(mood, symptoms, note, date, day) {
         "day": day
     };
     event_data["events"].push(event);
+
+    var dataString = JSON.stringify(event);
+
+    // Sending the data to the php file to store in the back end
+    $.ajax({
+        url: "dashboard.php",
+        method: "POST",
+        data: {myData:dataString},
+        success: function(response) {
+          // handle server response here
+
+
+        },
+        error: function(error) {
+          // handle error here
+
+
+        }
+    });
 }
 
 // Display all events of the selected date in card views
@@ -214,7 +260,6 @@ function show_events(events, month, day) {
     // Clear the dates container
     $(".events-container").empty();
     $(".events-container").show(250);
-    console.log(event_data["events"]);
     // If there are no events for this date, notify the user
     if(events.length===0) {
         var event_card = $("<div class='event-card'></div>");
@@ -297,95 +342,6 @@ function check_events(day, month, year) {
     }
     return events;
 }
-
-// Given data for events in JSON format
-var event_data = {
-    "events": [
-    {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2020,
-        "month": 5,
-        "day": 10,
-        "cancelled": true
-    },
-    {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2020,
-        "month": 5,
-        "day": 10,
-        "cancelled": true
-    },
-        {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2020,
-        "month": 5,
-        "day": 10,
-        "cancelled": true
-    },
-    {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2020,
-        "month": 5,
-        "day": 10
-    },
-        {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2020,
-        "month": 5,
-        "day": 10,
-        "cancelled": true
-    },
-    {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2020,
-        "month": 5,
-        "day": 10
-    },
-        {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2020,
-        "month": 5,
-        "day": 10,
-        "cancelled": true
-    },
-    {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2020,
-        "month": 5,
-        "day": 10
-    },
-        {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2020,
-        "month": 5,
-        "day": 10,
-        "cancelled": true
-    },
-    {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2020,
-        "month": 5,
-        "day": 10
-    },
-    {
-        "occasion": " Test Event",
-        "invited_count": 120,
-        "year": 2020,
-        "month": 5,
-        "day": 11
-    }
-    ]
-};
 
 const months = [ 
     "January", 

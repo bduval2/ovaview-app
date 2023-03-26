@@ -1,6 +1,38 @@
 <?php
 
+    session_start();
+        
+    $user_id = $_SESSION['userid'];
+    // echo "<script>alert($session);</script>";
+
+    include_once('../backEnd/dashboard.php');
+
+    $dashboardEntries = '{"events": ' . getDashboard($user_id) . '}';
+
+    echo "<script>var event_data = $dashboardEntries;</script>";
+
+    if(!empty($_POST) && $_SERVER['REQUEST_METHOD'] == 'POST'){
+
+
+        $data = $_POST["myData"];
+
+        $obj = json_decode($_POST["myData"]);
+
+        $mood = $obj->mood;
+        $symptoms = $obj->symptoms;
+        $note = $obj->note;
+        $year = $obj->year;
+        $month = $obj->month;
+        $date = $obj->day;
+
+            
+        addLog($user_id, $mood, $symptoms, $note, $year, $month, $date);
+
+
+        unset($data);
+    }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -360,6 +392,8 @@
     </head>
     <body style="background: #f8f9fd;">
 
+    
+
         <!-- Nav Bar -->
         <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
             <div class="container-fluid">
@@ -533,7 +567,9 @@
                 <div class="events-container container col-xxl-8 px-4 py-5">
                 </div>
                 <div class="dialog" id="dialog">
-                    <form id="form">
+                    <!-- <form id="mood-form"  method="post" action="" onsubmit="myFunction()"> -->
+                    <form id="mood-form"  method="post" action="">
+
                         <div class="event-card row flex-lg g-5 py-5" style="display:flex; padding: 20px!important; margin:0px!important;">
                             <div class="col-12 col-sm-12 col-lg-6" style="margin-top:0px!important; padding:0px!important; padding-bottom: 20px!important;">
                                 <div class="vstack gap-5">
@@ -574,7 +610,7 @@
                                                     <div><img src="./images/moods/Anxious.png" class="img-fluid" alt="Test" style="width: 60px;"></div>
                                                     <div><p>Anxious</p></div>
                                                     <div>
-                                                        <input class="form-check-input" type="radio" name="anxious" id="Anxious" value="anxious" aria-label="Anxious Mood Button">
+                                                        <input class="form-check-input" type="radio" name="mood" id="Anxious" value="anxious" aria-label="Anxious Mood Button">
                                                     </div>
                                                 </div>
                                             </div>
@@ -675,12 +711,13 @@
                             </div>
                             <div class="col-lg-6" style="margin-top:0px!important; padding:0px!important;">
                                 <h4> Notes</h4>
-                                <textarea class="form-control" style="background-color: #FFF6FE; height: 300px;"" placeholder="Write down your thoughts and feelings..." id="note"></textarea>
+                                <textarea class="form-control" name="note" style="background-color: #FFF6FE; height: 300px;"" placeholder="Write down your thoughts and feelings..." id="note"></textarea>
                                 <div style="padding-top:30px;">
                                     <input type="button" value="Cancel" class="button" id="cancel-button">
+                                    <!-- <input type="submit" name="submit_entry" value="OK" class="button button-white" id="ok-button"> -->
                                     <input type="button" value="OK" class="button button-white" id="ok-button">
                                 </div>
-                                
+
                             </div>
                         </div>
                     </form>

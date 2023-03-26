@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     if (isset($_POST["submit_login"])) {
         include_once('../backEnd/entry.php');
         $userID = $_POST["loginCode"];

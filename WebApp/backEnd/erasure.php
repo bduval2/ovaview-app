@@ -36,6 +36,7 @@
     function testErrasure()
     {
         $user_id = register() ;
+        $user_id = 1345;
         addLog($user_id, "Happy", "Hunger Acne Bloated", "I won TWO contests today.", 2023, 3, 20);
         addLog($user_id, "Sad", "Gas Diarrhea", "Hi hello what is up loser.", 2023, 3, 14);
         addLog($user_id, "Angry", "Bloated Spotting", "Bim Bap.", 2023, 3, 27);

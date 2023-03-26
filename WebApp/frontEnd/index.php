@@ -5,11 +5,12 @@
         include_once('../backEnd/entry.php');
         $userID = $_POST["loginCode"];
         $success = auth($userID );
-        $stringid = strval($userID)
+        $stringid = strval($userID);
         if ($success)
         {
             $_SESSION["userid"] = $stringid;
-            echo "<script>alert($_SESSION['userid']); window.location.href = 'index-logged-in.php'; </script>";
+            $session = $_SESSION['userid'];
+            echo "<script>alert($session); window.location.href = 'index-logged-in.php'; </script>";
         }
         else {
             echo "<script>alert('Wrong login code, try again!');</script>";
@@ -218,7 +219,7 @@
                     <p class="lead">Menstrual health is an under-discussed secret many are embarrassed by, and often overlook because of the stigma - we want to change that. We understand the sensitivity and how personal this subject can be - that is why we want to offer a platform that makes organizing and tracking your menstrual health as convenient as possible, and as secret as possible. Understand how your body treats you, and how you should treat your body using our app - without the worry anyone else snooping around and peeping in on your life.</p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                         <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#F53664!important; border-color: #F53664;">Log In</button>
-                        <a href="./registration-page.html" class="btn btn-outline-secondary btn-lg px-4" role="button">Sign Up</a>
+                        <a href="./registration-page.php" class="btn btn-outline-secondary btn-lg px-4" role="button">Sign Up</a>
                     </div>
                 </div>
             </div>
