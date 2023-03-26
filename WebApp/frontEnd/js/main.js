@@ -262,6 +262,9 @@ function show_events(events, month, day) {
     $(".events-container").show(250);
     // If there are no events for this date, notify the user
     if(events.length===0) {
+        document.querySelector('#ok-button').innerHTML = 'Modify Entry';
+        document.querySelector('#ok-button').innerText = 'Modify Entry';
+        document.querySelector('#ok-button').textContent = 'Modify Entry';
         var event_card = $("<div class='event-card'></div>");
         var event_name = $("<div class='event-name'>There are no entries for "+month+" "+day+".</div>");
         $(event_card).css({ "border-left": "10px solid #FF1744" });
@@ -269,6 +272,9 @@ function show_events(events, month, day) {
         $(".events-container").append(event_card);
     }
     else {
+        document.querySelector('#ok-button').innerHTML = 'Add Entry';
+        document.querySelector('#ok-button').innerText = 'Add Entry';
+        document.querySelector('#ok-button').textContent = 'Add Entry';
         // Go through and add each event as a card to the events container
         for(var i=0; i<events.length; i++) {
             var event_card = $("<div class='event-card row flex-lg g-5 py-5' style='display:flex; padding: 20px!important; margin:0px!important;'></div>");
