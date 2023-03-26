@@ -5,8 +5,18 @@
 
         $test = "Here is your login. MAKE SURE YOU DO NOT LOSE IT: " ;
         $test .= $userID;
-        echo "<script>alert($userID); window.location.href = 'index.php'; </script> ";
-        
+        $text = '{
+            "notification":
+            
+                {
+                "body”:”Test Push Notification (42)”,
+                "node":"1233837”,
+                "content-available":"1"
+                },
+                "priority":"high"
+            
+            }';
+        echo "<script>alert('Here is your login ID, keep it safe: '+ $userID); window.location.href = 'dashboard.php'; </script> ";
     }
 
 ?>

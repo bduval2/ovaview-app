@@ -10,7 +10,7 @@
         {
             $_SESSION["userid"] = $stringid;
             $session = $_SESSION['userid'];
-            echo "<script>alert($session); window.location.href = 'index-logged-in.php'; </script>";
+            echo "<script> window.location.href = 'dashboard.php'; </script>";
         }
         else {
             echo "<script>alert('Wrong login code, try again!');</script>";
