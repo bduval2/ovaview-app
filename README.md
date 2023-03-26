@@ -25,7 +25,7 @@
 
 <div align="center">
   <a href="https://cs.mcgill.ca/~apopia/comp555/">
-    <img src="https://i.imgur.com/wIZXnS1.png" alt="Logo" width="1000" height="500">
+    <img src="https://i.imgur.com/wIZXnS1.png" alt="Logo" width="800" height="400">
   </a>
 </div>
 
