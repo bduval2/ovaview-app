@@ -93,10 +93,10 @@
                             <a class="nav-link" href="./dashboard.html">Dashboard</a>
                         </li>
                     </ul>
-                    <!-- Button trigger modal -->
-                    <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-                        Link with href
-                      </a>
+                    <!-- Button trigger offcanvas menu -->
+                    <a class="btn btn-dark" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                        Settings
+                    </a>
                 </div>
             </div>
         </nav>
@@ -110,19 +110,43 @@
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-              <div>
-               Here you can manage all your data 
+              <div style="padding: 3%">
+               Here you can manage your consent, delete your data, or delete your account. Note that any delete actions you undertake are irreversible. Once you delete somehting
               </div>
-              <div class="dropdown mt-3">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                  Dropdown button
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
+
+              <div style="padding: 3%">
+                <h3>Manage Consent</h3>
+                The switch below displays your consent to sending your data to you for more in-depth statistics and analysis.
+                If you'd like to rescind your consent just turn off the switch.
+                <div class="form-check form-switch" style="padding-top: 3%">
+                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" style="background-color: #F53664; width: 45px !important; height: 21px !important;">
+                  <label class="form-check-label" for="flexSwitchCheckDefault" style="padding-left: 3%">I consent</label>
+                </div>
+
+                <form>
+                    <div class="mb-3" style="padding-top:3%">
+                        <label for="signUpEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="signUpEmail" aria-describedby="emailHelp">
+                        <div id="emailHelp" class="form-text">This allows us to send you a new code should you forget the one we gave you.</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="background-color:#F53664!important; border-color: #F53664;">Add Email</button>
+                </form>
               </div>
+
+              <br>
+
+              <div style="padding: 3%">
+                <h3>Delete All Your Data</h3>
+                <button type="button" class="btn btn-warning">Delete All Data</button>
+              </div>
+
+              <div style="padding: 3%">
+                <h3>Delete Your Account</h3>
+                <button type="button" class="btn btn-warning">Delete Your Account</button>
+              </div>
+              
+
+              
             </div>
         </div>
 

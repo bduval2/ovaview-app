@@ -100,110 +100,71 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" href="./index.php">Home</a>
+                            <a class="nav-link active" href="./index-logged-in.php">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link"aria-current="page" href="#">Privacy Policy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./registration-page.php">Sign Up</a>
+                            <a class="nav-link" href="./dashboard.php">Dashboard</a>
                         </li>
                     </ul>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#F53664!important; border-color: #F53664;">
-                        Log In
-                    </button>
+                    <!-- Button trigger offcanvas menu -->
+                    <a class="btn btn-dark" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                        Settings
+                    </a>
                 </div>
             </div>
         </nav>
 
         
         
-        <!-- Log in Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Enter Your Login Code</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Please enter the code we gave you when you signed up to our service.
-            
-                    <br>
-                    
-                    <form method="post" action="">
-                        <div class="mb-3">
-                        <label for="loginCode" class="form-label">Login Code</label>
-                        <input type="text" class="form-control" id="loginCode" name="loginCode" aria-describedby="codeHelp">
-                        <div id="codelHelp" class="form-text">This should be a 16 digit code.</div>
-                        </div>
-                        <button type="submit" name="submit_login" class="btn btn-primary" style="background-color:#F53664!important; border-color: #F53664;">Log In</button>
-                    </form>
-
-                    <br>
-
-                    <button type="button" class="btn btn-link" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">I forgot my code</button>
-                </div>
-                
+        <!-- Settings Menu -->
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasExampleLabel">Settings</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
+            <div class="offcanvas-body">
+              <div style="padding: 3%">
+               Here you can manage your consent, delete your data, or delete your account. Note that any delete actions you undertake are irreversible. Once you delete somehting
+              </div>
+
+              <div style="padding: 3%">
+                <h3>Manage Consent</h3>
+                The switch below displays your consent to sending your data to you for more in-depth statistics and analysis.
+                If you'd like to rescind your consent just turn off the switch.
+                <div class="form-check form-switch" style="padding-top: 3%">
+                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" style="background-color: #F53664; width: 45px !important; height: 21px !important;">
+                  <label class="form-check-label" for="flexSwitchCheckDefault" style="padding-left: 3%">I consent</label>
+                </div>
+
+                <form>
+                    <div class="mb-3" style="padding-top:3%">
+                        <label for="signUpEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="signUpEmail" aria-describedby="emailHelp">
+                        <div id="emailHelp" class="form-text">This allows us to send you a new code should you forget the one we gave you.</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="background-color:#F53664!important; border-color: #F53664;">Add Email</button>
+                </form>
+              </div>
+
+              <br>
+
+              <div style="padding: 3%">
+                <h3>Delete All Your Data</h3>
+                <button type="button" class="btn btn-warning">Delete All Data</button>
+              </div>
+
+              <div style="padding: 3%">
+                <h3>Delete Your Account</h3>
+                <button type="button" class="btn btn-warning">Delete Your Account</button>
+              </div>
+              
+
+              
             </div>
         </div>
-
-
-        <!-- Forgot Code Modal -->
-        <div class="modal fade" id="exampleModalToggle2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Enter Your email</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        Please enter your email. We’ll email you your one time password so you can sign in.
-                
-                        <br>
-                        
-                        <form>
-                            <div class="mb-3">
-                            <label for="loginEmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="loginEmail">
-                            </div>
-                            <button type="submit" class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="background-color:#F53664!important; border-color: #F53664;">Send me a one time password</button>
-                        </form>
-    
-                    </div>
-                    
-                </div>
-                </div>
-            </div>
-
-
-        <!-- One Time Password Modal -->
-        <div class="modal fade" id="exampleModalToggle3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Enter Your One-Time Password</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        Please enter the password we sent by email.                
-                        <br>
-                        
-                        <form>
-                            <div class="mb-3">
-                            <label for="loginPassword" class="form-label">One Time Password</label>
-                            <input type="password" class="form-control" id="loginPassword">
-                            </div>
-                            <button type="submit" class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="background-color:#F53664!important; border-color: #F53664;">Log in</button>
-                        </form>
-    
-                    </div>
-                    
-                </div>
-                </div>
-            </div>
 
         
         <!-- Privacy Policy -->
