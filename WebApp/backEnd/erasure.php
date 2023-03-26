@@ -6,11 +6,18 @@
     include_once('entry.php');
 
     function eraseAll($user_id) {
+       
+        eraseAllLogs($user_id);
+        eraseAccount($user_id);
+       
+    }
+
+    function eraseAllLogs($user_id) {
         // Get connection to database
         $db = Database::getInstance();
         $conn = $db->getConnection(); 
         $id_crypts = array();
-
+ 
         $user_logs = $conn->query("SELECT * FROM logs;");
         foreach ($user_logs as $log) {
             $id_crypt = $log['id_crypt'];
@@ -18,9 +25,16 @@
                 $id_crypts[] = $id_crypt;   
             }
         }
-
+ 
         $id_crypts = "('" . implode("','", $id_crypts) . "')";
         $conn->query("DELETE FROM logs where id_crypt IN " . $id_crypts . ";");  
+    }
+
+    function eraseAccount($user_id) {
+        // Get connection to database
+        $db = Database::getInstance();
+        $conn = $db->getConnection(); 
+        $id_crypts = array();
 
         $users = $conn->query("SELECT * FROM users;");
         foreach ($users as $user) {
