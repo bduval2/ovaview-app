@@ -19,7 +19,25 @@
         echo "<script>alert('Here is your login ID, keep it safe: '+ $userID); window.location.href = 'dashboard.php'; </script> ";
     }
 
+    session_start();
+
+    if (isset($_POST["submit_login"])) {
+        include_once('../backEnd/entry.php');
+        $userID = $_POST["loginCode"];
+        $success = auth($userID );
+        $stringid = strval($userID);
+        if ($success)
+        {
+            $_SESSION["userid"] = $stringid;
+            $session = $_SESSION['userid']; 
+            echo "<script> window.location.href = 'dashboard.php'; </script>";
+        }
+        else {
+            echo "<script>alert('Wrong login code, try again!');</script>";
+        }
+    }
 ?>
+
 
 
 
