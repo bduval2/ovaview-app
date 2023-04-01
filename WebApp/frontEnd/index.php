@@ -12,6 +12,7 @@
             $_SESSION["userid"] = $stringid;
             $session = $_SESSION['userid'];
             echo "<script> window.location.href = 'dashboard.php'; </script>";
+            
         }
         else {
             echo "<script>alert('Wrong login code, try again!');</script>";

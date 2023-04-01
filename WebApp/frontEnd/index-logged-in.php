@@ -9,6 +9,8 @@
         include_once('../backEnd/erasure.php');
   
         eraseAllLogs($user_id);
+
+        echo "<script> window.location.href = 'index-logged-in.php'; </script>";
     }
 
     // PHP code for deleting user account
@@ -16,6 +18,8 @@
         include_once('../backEnd/erasure.php');
 
         eraseAccount($user_id);
+
+        echo "<script> window.location.href = 'index.php'; </script>";
     }
 
 ?>
