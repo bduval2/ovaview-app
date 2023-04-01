@@ -3,7 +3,6 @@
     session_start();
         
     $user_id = $_SESSION['userid'];
-    // echo "<script>alert($session);</script>";
 
     include_once('../backEnd/dashboard.php');
 
@@ -30,6 +29,21 @@
 
 
         unset($data);
+    }
+
+
+    // PHP code for deleting all logs
+    if(isset($_POST['eraseData'])) {
+        include_once('../backEnd/erasure.php');
+  
+        eraseAllLogs($user_id);
+    }
+
+    // PHP code for deleting user account
+    if(isset($_POST['eraseAccount'])) {
+        include_once('../backEnd/erasure.php');
+
+        eraseAccount($user_id);
     }
 ?>
 
@@ -457,15 +471,18 @@
 
               <br>
 
-              <div style="padding: 3%">
-                <h3>Delete All Your Data</h3>
-                <button type="button" class="btn btn-warning">Delete All Data</button>
-              </div>
+                <form method="post">
+                    <div style="padding: 3%">
+                        <h3>Delete All Your Data</h3>
+                        <input type="submit" name="eraseData" class="btn btn-warning" value="Delete All Data" />
+                    </div>
 
-              <div style="padding: 3%">
-                <h3>Delete Your Account</h3>
-                <button type="button" class="btn btn-warning">Delete Your Account</button>
-              </div>
+                    <div style="padding: 3%">
+                        <h3>Delete Your Account</h3>
+                        <input type="submit" name="eraseAccount" class="btn btn-warning" value="Delete Your Account" />
+                    </div>
+                    
+                </form>
               
 
               

@@ -16,7 +16,7 @@
                 "priority":"high"
             
             }';
-        echo "<script>alert('Here is your login ID, keep it safe: '+ $userID); window.location.href = 'dashboard.php'; </script> ";
+        echo "<script>alert('Here is your login ID, keep it safe: '+ $userID); window.location.href = 'index.php'; </script> ";
     }
 
     session_start();

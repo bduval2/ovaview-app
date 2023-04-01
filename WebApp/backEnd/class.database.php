@@ -20,11 +20,11 @@ class Database {
 		
         $this-> _connection = new PDO('sqlite:../database/periodTracking.db');
         if ($this-> _connection != null) {
-            echo 'Successfully connected to the SQLite database.';
-            echo "<br>";
+            // echo 'Successfully connected to the SQLite database.';
+            // echo "<br>";
         }
         else {
-            echo 'Could not connect to the SQLite database.';
+            // echo 'Could not connect to the SQLite database.';
         }
 	}
 

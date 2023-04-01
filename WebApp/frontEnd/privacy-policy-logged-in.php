@@ -1,17 +1,21 @@
 <?php
     session_start();
 
-    if (isset($_POST["submit_login"])) {
-        include_once('../backEnd/entry.php');
-        $userID = $_POST["loginCode"];
-        $success = auth($userID );
-        if ($success)
-        {
-            echo "<script>alert('Success!'); window.location.href = 'index-logged-in.php'; </script>";
-        }
-        else {
-            echo "<script>alert('Wrong login code, try again!');</script>";
-        }
+    $userID = $_SESSION['userid'];
+
+
+    // PHP code for deleting all logs
+    if(isset($_POST['eraseData'])) {
+        include_once('../backEnd/erasure.php');
+  
+        eraseAllLogs($user_id);
+    }
+
+    // PHP code for deleting user account
+    if(isset($_POST['eraseAccount'])) {
+        include_once('../backEnd/erasure.php');
+
+        eraseAccount($user_id);
     }
 ?>
 
@@ -151,15 +155,18 @@
 
               <br>
 
-              <div style="padding: 3%">
-                <h3>Delete All Your Data</h3>
-                <button type="button" class="btn btn-warning">Delete All Data</button>
-              </div>
+                <form method="post">
+                    <div style="padding: 3%">
+                        <h3>Delete All Your Data</h3>
+                        <input type="submit" name="eraseData" class="btn btn-warning" value="Delete All Data" />
+                    </div>
 
-              <div style="padding: 3%">
-                <h3>Delete Your Account</h3>
-                <button type="button" class="btn btn-warning">Delete Your Account</button>
-              </div>
+                    <div style="padding: 3%">
+                        <h3>Delete Your Account</h3>
+                        <input type="submit" name="eraseAccount" class="btn btn-warning" value="Delete Your Account" />
+                    </div>
+                    
+                </form>
               
 
               
