@@ -39,9 +39,9 @@ Overall, our decision to apply this architectural design was for the following r
 
 ### E2EE Based on Unique Identifier
 
-<mark>Would like @bduval2 to offer some guidance as I am less fluent in the encryption method. </mark>
+<mark>Would like @bduval2 to offer some guidance as I am less fluent in the encryption method.</mark>
 
-End-to-end encryption (E2EE) is a security protocol designed to protect communications by encrypting messages in a way that only the intended recipients can access the information. This means that the data is encrypted on the sender's device, and can only be decrypted by the intended recipient's device. In an end-to-end encryption system, the encryption keys used to encrypt and decrypt the messages are only known by the sender and the recipient. Our encryption system takes a different route and has it so the encryption key is only held by the user, in the form of their 16-digit identifier. 
+End-to-end encryption (E2EE) is a security protocol designed to protect communications by encrypting messages in a way that only the intended recipients can access the information. This means that the data is encrypted on the sender's device, and can only be decrypted by the intended recipient's device. In an end-to-end encryption system, the encryption keys used to encrypt and decrypt the messages are only known by the sender and the recipient. Our encryption system takes a different route and has it so the encryption key is only held by the user, in the form of their 16-digit identifier.
 
 We use traditional E2EE on a separate database for users who opt-in to providing an email for future account recovery purposes, ensuring that we will be able to decrypt their identifier on our separate database and provide it for our users who have lost it.
 
@@ -55,9 +55,13 @@ We exclude the usage of third party cookies in our webapp. This means that there
 
 This architectural design policy offers no tradeoffs with respect to user privacy. One could argue this implementation has one negative.
 
-* User's will not have the option of receiving advertisements outside our domain specifically enhanced from the data they submitted to our system.
+* Users will not have the option of receiving advertisements outside our domain specifically enhanced from the data they submitted to our system.
 
-This architectural decision provides the following benefits to users on our app.
+An alternative decision we could have made would have been to make use of third-party cookies to communicate information with other domains. To put bluntly, we rejected this option swiftly for the following disadvantage.
+
+* As a privacy-minded company, the mere existence of third-party cookies poses a threat to the integrity of our system's fulfillment to prioritize user data protection; one that is not worth risking at the cost of potential quality of life for a portion of our userbase.
+
+This architectural decision provides the following benefits to user privacy protection on our app.
 
 * No disclosure of user data to third parties.
 * No tracking of user activity and user data on our service.
