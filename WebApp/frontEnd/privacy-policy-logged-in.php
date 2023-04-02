@@ -10,7 +10,7 @@
   
         eraseAllLogs($user_id);
 
-        echo "<script> window.location.href = 'privacy-policy-logged-in.php'; </script>";
+        //echo "<script> window.location.href = 'privacy-policy-logged-in.php'; </script>";
     }
 
     // PHP code for deleting user account

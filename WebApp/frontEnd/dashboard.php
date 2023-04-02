@@ -10,23 +10,24 @@
 
     echo "<script>var event_data = $dashboardEntries;</script>";
 
-    if(!empty($_POST) && $_SERVER['REQUEST_METHOD'] == 'POST'){
+    if(!empty($_POST) && $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['myData'])){
 
 
         $data = $_POST["myData"];
 
         $obj = json_decode($_POST["myData"]);
 
-        $mood = $obj->mood;
-        $symptoms = $obj->symptoms;
-        $note = $obj->note;
-        $year = $obj->year;
-        $month = $obj->month;
-        $date = $obj->day;
+        if ($obj != null) {
+            $mood = $obj->mood;
+            $symptoms = $obj->symptoms;
+            $note = $obj->note;
+            $year = $obj->year;
+            $month = $obj->month;
+            $date = $obj->day;
 
-            
-        addLog($user_id, $mood, $symptoms, $note, $year, $month, $date);
-
+                
+            addLog($user_id, $mood, $symptoms, $note, $year, $month, $date);
+        }
 
         unset($data);
     }

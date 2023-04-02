@@ -44,6 +44,8 @@
                 break;
             }
         }
+
+        eraseAllLogs($user_id);
     }
 
     // Test
