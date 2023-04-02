@@ -21,6 +21,13 @@
 
         echo "<script> window.location.href = 'index.php'; </script>";
     }
+
+    // PHP code for logging out
+    if(isset($_POST['logout'])) {
+        unset($_SESSION['userid']);
+
+        echo "<script> window.location.href = 'index.php'; </script>";
+    }
 ?>
 
 
@@ -117,10 +124,15 @@
                             <a class="nav-link" href="./dashboard.php">Dashboard</a>
                         </li>
                     </ul>
-                    <!-- Button trigger offcanvas menu -->
-                    <a class="btn btn-dark" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-                        Settings
-                    </a>
+                    
+                    <form class="" method="post">
+                        <!-- Button trigger offcanvas menu -->
+                        <a class="btn btn-dark" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                            Settings
+                        </a>
+                        <!-- Button for logging out-->
+                        <input type="submit" name="logout" class="btn btn-primary" style="background-color:#F53664!important; border-color: #F53664;" value="Log Out" />                    
+                    </form>
                 </div>
             </div>
         </nav>

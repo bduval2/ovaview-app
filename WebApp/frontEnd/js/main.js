@@ -308,9 +308,9 @@ function show_events(events, month, day) {
             document.getElementById("delete-button").onclick = function() {  
 
                 var date = {
-                    "year": year,
-                    "month": month,
-                    "day": day
+                    "year": events[0].year,
+                    "month": events[0].month,
+                    "day": events[0].day
                 };
 
                 var dataString = JSON.stringify(date);
