@@ -235,6 +235,8 @@ function new_event_json(mood, symptoms, note, date, day) {
     };
     event_data["events"].push(event);
 
+    console.log(event)
+
     var dataString = JSON.stringify(event);
 
     // Sending the data to the php file to store in the back end
@@ -262,10 +264,9 @@ function show_events(events, month, day) {
     $(".events-container").show(250);
     // If there are no events for this date, notify the user
     if(events.length===0) {
-        document.querySelector('#add-button').innerHTML = 'Add Entry';
-        document.querySelector('#add-button').innerText = 'Add Entry';
-        document.querySelector('#add-button').textContent = 'Add Entry';
-        document.querySelector('#add-button').removeAttribute("disabled", "False");
+        document.getElementById("add-button").style.visibility = 'visible';
+        document.getElementById("edit-button").style.visibility = 'hidden';
+        document.getElementById("delete-button").style.visibility = 'hidden';
         
         var event_card = $("<div class='event-card'></div>");
         var event_name = $("<div class='event-name'>There are no entries for "+month+" "+day+".</div>");
@@ -274,19 +275,15 @@ function show_events(events, month, day) {
         $(".events-container").append(event_card);
     }
     else {
-        document.querySelector('#add-button').innerHTML = 'Modify Entry';
-        document.querySelector('#add-button').innerText = 'Modify Entry';
-        document.querySelector('#add-button').textContent = 'Modify Entry';
-        document.querySelector('#add-button').setAttribute("disabled", "True");
-        // Go through and add each event as a card to the events container
+        document.getElementById("add-button").style.visibility = 'hidden';
+        document.getElementById("edit-button").style.visibility = 'visible';
+        document.getElementById("delete-button").style.visibility = 'visible';
+
         for(var i=0; i<events.length; i++) {
             var event_card = $("<div class='event-card row flex-lg g-5 py-5' style='display:flex; padding: 20px!important; margin:0px!important;'></div>");
             var first_col = $("<div class='col-12 col-sm-12 col-lg-6' style='margin-top:0px!important;'></div>");
             var mood_entry = $("<div class='vstack gap-2'> <h4>Mood</h4> </div>");
 
-            // If we decide to go back to having text under image, fix this:
-
-            // var event_mood = $("<div class='vstack gap-2' align-items-center><img src='./images/moods/"+events[i]["mood"]+".png' class='img-fluid' alt='test' style='width: 90px;'></img><p>"+events[i]["mood"]+"</p></div></div>");
             
             var event_mood = $("<img src='./images/moods/"+events[i]["mood"]+".png' class='img-fluid' alt='test' style='width: 90px;'></img>");
             var symptoms_entry_container = $("<div class='vstack gap-2'> <h4>Symptoms</h4> </div>");
@@ -302,19 +299,6 @@ function show_events(events, month, day) {
             }
 
             const symptoms = events[i]["symptoms"].split(" ");
-
-            // If we decide to go back to having text under image, fix this:
-
-            // for(var j = 0, length = symptoms.length; j < length; j++){
-            //     if(symptoms[j]!= ""){
-            //         if(symptoms[j] == "Ovulation-pain"){
-            //             $(symptoms_entry).append($("<div class='vstack gap-2 align-items-center'><img src='./images/symptoms/"+symptoms[j]+".png' class='img-fluid' alt='test' style='height: 50px;'><p>Ovu Pain</p></div></img>"));
-            //         }
-            //         else{
-            //             $(symptoms_entry).append($("<div class='vstack gap-2 align-items-center'><img src='./images/symptoms/"+symptoms[j]+".png' class='img-fluid' alt='test' style='height: 50px;'><p>"+symptoms[j]+"</p></div></img>"));
-            //         }
-            //     }
-            // }
 
             for(var j = 0, length = symptoms.length; j < length; j++){
                 if(symptoms[j]!= ""){
@@ -334,8 +318,68 @@ function show_events(events, month, day) {
             // Putting it all together in the card!
             $(event_card).append(first_col).append(second_col);
             $(".events-container").append(event_card);
+
+
+            // Event handler for delete button
+            document.getElementById("delete-button").onclick = function() {  
+
+                delete_event_json(events[0].year, events[0].month, events[0].day);
+
+            }
+
+
+            // Event handler for edit button
+            document.getElementById("edit-button").onclick = function() {  
+
+                delete_event_json(events[0].year, events[0].month, events[0].day);
+
+            }
+
         }
     }
+}
+
+
+// Adds a json event to event_data
+function delete_event_json(year, month, day) {
+    // Get the index of the event that matches the date we gave
+    var index = event_data["events"].findIndex(
+        element => element.year == year && element.month === month && element.day === day
+    );
+
+    console.log(index);
+
+    // Remove that event from the list.
+    var removed = event_data["events"].splice(index, 1);
+
+    console.log(removed);
+
+    var date = {
+        "year": year,
+        "month": month,
+        "day": day
+    };
+
+
+
+    var dataString = JSON.stringify(date);
+
+    // Sending the date to the php file to update the back end
+    $.ajax({
+        url: "dashboard.php",
+        method: "POST",
+        data: {deleteData:dataString},
+        success: function(response) {
+          // handle server response here
+          // Need to reload to make the entry dissapear
+          location.reload();
+
+
+        },
+        error: function(error) {
+          // handle error here
+        }
+    });
 }
 
 // Checks if a specific date has any events

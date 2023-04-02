@@ -10,6 +10,7 @@
 
     echo "<script>var event_data = $dashboardEntries;</script>";
 
+    // PHP code for adding entry to back end
     if(!empty($_POST) && $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['myData'])){
 
 
@@ -27,6 +28,26 @@
 
                 
             addLog($user_id, $mood, $symptoms, $note, $year, $month, $date);
+        }
+
+        unset($data);
+    }
+
+
+    // PHP code for deleting a specific entry from back end
+    if(!empty($_POST) && $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['deleteData'])){
+
+
+        $data = $_POST["deleteData"];
+
+        $obj = json_decode($_POST["deleteData"]);
+
+        if ($obj != null) {
+            $year = $obj->year;
+            $month = $obj->month;
+            $date = $obj->day;
+
+            deleteLog($user_id, $year, $month, $date);
         }
 
         unset($data);
@@ -252,6 +273,41 @@
         -webkit-transform: translateY(3px) scale(0.97);
         -ms-transform: translateY(3px) scale(0.97);
         transform: translateY(3px) scale(0.97); }
+
+        #edit-button {
+        display: block;
+        position: absolute;
+        right: 20px;
+        bottom: 20px; }
+
+        #edit-button:hover, #ok-button:hover, #cancel-button:hover {
+        -webkit-transform: scale(1.03);
+        -ms-transform: scale(1.03);
+        transform: scale(1.03); }
+
+        #edit-button:active, #ok-button:active, #cancel-button:active {
+        -webkit-transform: translateY(3px) scale(0.97);
+        -ms-transform: translateY(3px) scale(0.97);
+        transform: translateY(3px) scale(0.97); }
+
+
+        #delete-button {
+        display: block;
+        position: absolute;
+        right: 130px;
+        bottom: 20px; }
+
+        #delete-button:hover, #ok-button:hover, #cancel-button:hover {
+        -webkit-transform: scale(1.03);
+        -ms-transform: scale(1.03);
+        transform: scale(1.03); }
+
+        #delete-button:active, #ok-button:active, #cancel-button:active {
+        -webkit-transform: translateY(3px) scale(0.97);
+        -ms-transform: translateY(3px) scale(0.97);
+        transform: translateY(3px) scale(0.97); }
+
+
 
         /* Days/months tables */
         .days-table, .dates-table, .months-table {
@@ -542,6 +598,8 @@
                                     </tbody> 
                                     </table>
                                 </div> 
+                                <button class="btn btn-warning" id="delete-button" style="visibility:hidden" >Delete Entry</button>
+                                <button class="btn btn-primary" id="edit-button" style="visibility:hidden">Edit Entry</button>
                                 <button class="btn btn-primary" id="add-button" style="background-color:#F53664!important; border-color: #F53664;">Add Entry</button>
                                 </div>
                             </div>
