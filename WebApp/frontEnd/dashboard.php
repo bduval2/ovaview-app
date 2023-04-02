@@ -54,6 +54,29 @@
     }
 
 
+    // PHP code for updating a specific entry from back end
+    if(!empty($_POST) && $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['updateData'])){
+
+
+        $data = $_POST["updateData"];
+
+        $obj = json_decode($_POST["updateData"]);
+
+        if ($obj != null) {
+            $mood = $obj->mood;
+            $symptoms = $obj->symptoms;
+            $note = $obj->note;
+            $year = $obj->year;
+            $month = $obj->month;
+            $date = $obj->day;
+
+            updateLog($user_id, $mood, $symptoms, $note, $year, $month, $date);
+        }
+
+        unset($data);
+    }
+
+
     // PHP code for deleting all logs
     if(isset($_POST['eraseData'])) {
         include_once('../backEnd/erasure.php');

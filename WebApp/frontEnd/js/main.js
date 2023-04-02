@@ -24,21 +24,6 @@ $(document).ready(function(){
     
 });
 
-// function startCalendar(){
-//     var date = new Date();
-//     var today = date.getDate();
-//     // Set click handlers for DOM elements
-//     $(".right-button").click({date: date}, next_year);
-//     $(".left-button").click({date: date}, prev_year);
-//     $(".month").click({date: date}, month_click);
-//     $("#add-button").click({date: date}, new_event);
-//     // Set current month as active
-//     $(".months-row").children().eq(date.getMonth()).addClass("active-month");
-//     init_calendar(date);
-//     var events = check_events(today, date.getMonth()+1, date.getFullYear());
-//     show_events(events, months[date.getMonth()], today);
-// };
-
 
 
 // Initialize the calendar by appending the HTML dates
@@ -152,6 +137,7 @@ function new_event(event) {
     $("#dialog input[type=checkbox]").prop('checked',false);
     $("#dialog input[type=radio]").prop('checked',false);
     document.getElementById("note").value = "";
+
     $(".events-container").hide();
     $("#dialog").show();
     // Event handler for cancel button
@@ -234,8 +220,6 @@ function new_event_json(mood, symptoms, note, date, day) {
         "day": day
     };
     event_data["events"].push(event);
-
-    console.log(event)
 
     var dataString = JSON.stringify(event);
 
@@ -323,7 +307,30 @@ function show_events(events, month, day) {
             // Event handler for delete button
             document.getElementById("delete-button").onclick = function() {  
 
-                delete_event_json(events[0].year, events[0].month, events[0].day);
+                var date = {
+                    "year": year,
+                    "month": month,
+                    "day": day
+                };
+
+                var dataString = JSON.stringify(date);
+
+                // Sending the date to the php file to update the back end
+                $.ajax({
+                    url: "dashboard.php",
+                    method: "POST",
+                    data: {deleteData:dataString},
+                    success: function(response) {
+                    // handle server response here
+                    // Need to reload to make the entry dissapear
+                    location.reload();
+
+
+                    },
+                    error: function(error) {
+                    // handle error here
+                    }
+                });
 
             }
 
@@ -331,55 +338,128 @@ function show_events(events, month, day) {
             // Event handler for edit button
             document.getElementById("edit-button").onclick = function() {  
 
-                delete_event_json(events[0].year, events[0].month, events[0].day);
+                // First clear the form before re-filling it:
+                $("#dialog input[type=checkbox]").prop('checked',false);
+                $("#dialog input[type=radio]").prop('checked',false);
+                document.getElementById("note").value = "";
+
+                // fill in the form to hold what the current event has
+                $("#dialog input[value='" + events[0].mood.toLowerCase() + "']").prop('checked',true);
+
+                console.log("value='" + events[0].mood + "'")
+
+                const symptoms = events[0]["symptoms"].split(" ");
+
+                for(var j = 0, length = symptoms.length; j < length; j++){
+                    if(symptoms[j]!= ""){
+                        console.log(symptoms[j]);
+                        $("#dialog input[value='" + symptoms[j].toLowerCase() + "']").prop('checked',true);
+                    }
+                }
+                
+                document.getElementById("note").value = events[0].note;
+                $(".events-container").hide();
+                $("#dialog").show();
+                // Event handler for cancel button
+                $("#cancel-button").click(function() {
+                    $("#mood").removeClass("error-input");
+                    $("#count").removeClass("error-input");
+                    $("#dialog").hide();
+                    $(".events-container").show();
+                }); 
+
+
+                // Event handler for ok button
+                document.getElementById("ok-button").onclick = function() {
+
+                    var event = events[0];
+
+                    var mood = "";
+                    if (document.getElementById('Happy').checked) {
+                        mood = "Happy"
+                    }
+                    else if (document.getElementById('Sad').checked) {
+                        mood = "Sad"
+                    }
+                    else if (document.getElementById('Angry').checked) {
+                        mood = "Angry"
+                    }
+                    else {
+                        mood = "Anxious"
+                    }
+
+                    var symptoms = "";
+                    if (document.getElementById('Spotting').checked) {
+                        symptoms += "Spotting "
+                    }
+                    if (document.getElementById('Hunger').checked) {
+                        symptoms += "Hunger "
+                    }
+                    if (document.getElementById('Ovulation-pain').checked) {
+                        symptoms += "Ovulation-pain "
+                    }
+                    if (document.getElementById('Diarrhea').checked) {
+                        symptoms += "Diarrhea "
+                    }
+                    if (document.getElementById('Acne').checked) {
+                        symptoms += "Acne "
+                    }
+                    if (document.getElementById('Irritability').checked) {
+                        symptoms += "Irritability "
+                    }
+                    if (document.getElementById('Bloated').checked) {
+                        symptoms += "Bloated "
+                    }
+                    if (document.getElementById('Gas').checked) {
+                        symptoms += "Gas "
+                    }
+            
+
+                    var note = $("#note").val();
+
+                    console.log(event);
+
+                    var updatedEvent = {
+                        "mood": mood,
+                        "symptoms": symptoms,
+                        "note": note,
+                        "year": event.year,
+                        "month": event.month,
+                        "day": event.day
+                    };
+
+                    console.log(updatedEvent);
+
+
+                    var dataString = JSON.stringify(updatedEvent);
+
+                    // Sending the date to the php file to update the back end
+                    $.ajax({
+                        url: "dashboard.php",
+                        method: "POST",
+                        data: {updateData:dataString},
+                        success: function(response) {
+                        // handle server response here
+                        // Need to reload to make the entry update
+                        location.reload();
+
+
+                        },
+                        error: function(error) {
+                        // handle error here
+                        }
+                    });
+ 
+                    $("#dialog").hide();
+                    console.log("updated event");
+
+                    
+                }
 
             }
 
         }
     }
-}
-
-
-// Adds a json event to event_data
-function delete_event_json(year, month, day) {
-    // Get the index of the event that matches the date we gave
-    var index = event_data["events"].findIndex(
-        element => element.year == year && element.month === month && element.day === day
-    );
-
-    console.log(index);
-
-    // Remove that event from the list.
-    var removed = event_data["events"].splice(index, 1);
-
-    console.log(removed);
-
-    var date = {
-        "year": year,
-        "month": month,
-        "day": day
-    };
-
-
-
-    var dataString = JSON.stringify(date);
-
-    // Sending the date to the php file to update the back end
-    $.ajax({
-        url: "dashboard.php",
-        method: "POST",
-        data: {deleteData:dataString},
-        success: function(response) {
-          // handle server response here
-          // Need to reload to make the entry dissapear
-          location.reload();
-
-
-        },
-        error: function(error) {
-          // handle error here
-        }
-    });
 }
 
 // Checks if a specific date has any events
