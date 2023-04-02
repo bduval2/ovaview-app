@@ -73,16 +73,31 @@ UML BABY
 
 ## 4. Important Scenarios
 
-For each important scenario, record the initial system state and environment, the external stimulus, and the required and actual system behavior. Again, it may be appropriate to provide an overview here and refer readers to an appendix for more details.
+For each **important scenario**, _record the initial system state and environment, the external stimulus, and the required and actual system behavior_. Again, it may be appropriate to provide an overview here and refer readers to an appendix for more details.
 
-An architectural scenario is a well-defined description of an interaction between an external entity and the system. It defines the event that triggers the scenario, the interaction initiated by the external entity, and the response required of the system.
+An **architectural scenario** is a well-defined description of an _interaction between an external entity and the system_. It defines the event that triggers the scenario, the interaction initiated by the external entity, and the response required of the system.
 
-Scenarios:
+Scenarios:\
+<mark>_Please note that although currently in plain-text, all of this as UML would be optimal. This entire section is WIP until this highlight message is not here._</mark>
 
-* User login / sign up
-* User data input
+* User registration
+  * This event would split into different path sequences:
+    1. User registers with no data input
+    2. User registers with email
+    3. User registers with consent for period prediction
+  * Please note that sequence 2 and 3 are additional steps required by our architecture and sequence 1 always occurs. This is due to how we handle account recovery and our algorithm (being updated in separate tables).
+* User login
+  * Hesitant to call this important scenario. . . clarify with Martin
+* User data input/rectification into log
+  * This event boils down to communication with server via E2EE and database updating.
+* Request for data deletion
+  * This event describes clearing of log table associated with user
+* Request for account deletion
+  * This event describes deletion of user from system and all linked logs
+  * Not sure if this should be grouped with "Request for data deletion"
+* Request for data view
+  * Clarify with team how this scenario is handled, whether we give out users a complete database viewing of their information or not.
 * Opt-in/out changes
-
-Use UML for this probably. . .
-
-CHAPTER 10 IN BOOK
+  * Clarify with team how this scenario is handled, whether it is simply just Boolean flags on user and such.
+* User logout
+  * Hesitant to call this important scenario. . . clarify with Martin

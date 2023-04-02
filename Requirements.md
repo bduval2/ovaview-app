@@ -1,9 +1,5 @@
 # **Requirements Document**
 
-Please note, this draft was written at the time when no confirmation was made of the exact purpose of the app. The following outline has been created with the notion that we are moving forward with a period tracker app with menstrual cycle prediction.
-
-The subject to track may alter in the future, however the essence of our system will remain the same.
-
 ## System Purpose and Scope
 
 Our app is a period tracker with the objective of facilitating the observation and analysis of users' menstrual cycles and related factors, as well as offer a standardized prediction of future menstrual cycles based off input data. Our system intends to allow users to enter their daily menstrual activity on a calendar template, along with optional related factors such as indicators of mood, symptoms, and thoughts.
