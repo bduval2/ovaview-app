@@ -1,7 +1,18 @@
 <?php
     if (isset($_POST["submit_signup"])) {
         include_once('../backEnd/entry.php');
-        $userID = register();
+        if (isset($_POST["consent"])){
+            $consent = $_POST["consent"];
+            $userID = register("true");
+        }
+        else {
+            $userID = register();
+        }
+
+       
+        
+
+        
 
         $test = "Here is your login. MAKE SURE YOU DO NOT LOSE IT: " ;
         $test .= $userID;
@@ -252,8 +263,8 @@
                             <div id="emailHelp" class="form-text">An email is not required for sign up, but it would allow us to send you a new code should you forget the one we gave you.</div>
                         </div>
                         <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">I consent to send my data to you for more in-depth statistics and analysis.
+                            <input type="checkbox" class="form-check-input" id="consent" name="consent">
+                            <label class="form-check-label" for="consent">I consent to send my data to you for more in-depth statistics and analysis.
                                 I am aware I can rescind my consent at any time by going to the settings page.</label>
                           </div>
                     </form>

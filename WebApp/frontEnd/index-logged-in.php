@@ -29,6 +29,12 @@
         echo "<script> window.location.href = 'index.php'; </script>";
     }
 
+    include_once('../backEnd/settings.php');
+
+    if(getConsent($user_id)){
+        echo '<script>$("#dialog input[value="consentSwitch"]").prop("checked",true);</script>';
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -155,8 +161,8 @@
                 The switch below displays your consent to sending your data to you for more in-depth statistics and analysis.
                 If you'd like to rescind your consent just turn off the switch.
                 <div class="form-check form-switch" style="padding-top: 3%">
-                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" style="background-color: #F53664; width: 45px !important; height: 21px !important;">
-                  <label class="form-check-label" for="flexSwitchCheckDefault" style="padding-left: 3%">I consent</label>
+                  <input class="form-check-input" type="checkbox" role="switch" id="consentSwitch" style="background-color: #F53664; width: 45px !important; height: 21px !important;">
+                  <label class="form-check-label" for="consentSwitch" style="padding-left: 3%">I consent</label>
                 </div>
 
                 <form>
