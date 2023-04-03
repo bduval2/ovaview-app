@@ -1,6 +1,8 @@
 (function($) {
 
 	"use strict";
+    var isEdit = false;
+
 
 	// Setup the calendar with the current date
 $(document).ready(function(){
@@ -152,58 +154,62 @@ function new_event(event) {
     // Event handler for ok button
     $("#ok-button").unbind().click({date: event.data.date}, function() {
 
-        console.log("OK BUTTON PRESSED LOLLLL");
-        var date = event.data.date;
+        if (!isEdit) {
+            console.log("OK BUTTON PRESSED BUT NOT AN EDIT");
+            var date = event.data.date;
 
-        var mood = "";
-        if (document.getElementById('Happy').checked) {
-            mood = "Happy"
-        }
-        else if (document.getElementById('Sad').checked) {
-            mood = "Sad"
-        }
-        else if (document.getElementById('Angry').checked) {
-            mood = "Angry"
-        }
-        else {
-            mood = "Anxious"
+            var mood = "";
+            if (document.getElementById('Happy').checked) {
+                mood = "Happy"
+            }
+            else if (document.getElementById('Sad').checked) {
+                mood = "Sad"
+            }
+            else if (document.getElementById('Angry').checked) {
+                mood = "Angry"
+            }
+            else {
+                mood = "Anxious"
+            }
+
+            var symptoms = "";
+            if (document.getElementById('Spotting').checked) {
+                symptoms += "Spotting "
+            }
+            if (document.getElementById('Hunger').checked) {
+                symptoms += "Hunger "
+            }
+            if (document.getElementById('Ovulation-pain').checked) {
+                symptoms += "Ovulation-pain "
+            }
+            if (document.getElementById('Diarrhea').checked) {
+                symptoms += "Diarrhea "
+            }
+            if (document.getElementById('Acne').checked) {
+                symptoms += "Acne "
+            }
+            if (document.getElementById('Irritability').checked) {
+                symptoms += "Irritability "
+            }
+            if (document.getElementById('Bloated').checked) {
+                symptoms += "Bloated "
+            }
+            if (document.getElementById('Gas').checked) {
+                symptoms += "Gas "
+            }
+    
+
+            var note = $("#note").val();
+            var day = parseInt($(".active-date").html());
+            // Basic form validation
+            $("#dialog").hide();
+            console.log("new event");
+            new_event_json(mood, symptoms, note, date, day);
+            date.setDate(day);
+            init_calendar(date);
         }
 
-        var symptoms = "";
-        if (document.getElementById('Spotting').checked) {
-            symptoms += "Spotting "
-        }
-        if (document.getElementById('Hunger').checked) {
-            symptoms += "Hunger "
-        }
-        if (document.getElementById('Ovulation-pain').checked) {
-            symptoms += "Ovulation-pain "
-        }
-        if (document.getElementById('Diarrhea').checked) {
-            symptoms += "Diarrhea "
-        }
-        if (document.getElementById('Acne').checked) {
-            symptoms += "Acne "
-        }
-        if (document.getElementById('Irritability').checked) {
-            symptoms += "Irritability "
-        }
-        if (document.getElementById('Bloated').checked) {
-            symptoms += "Bloated "
-        }
-        if (document.getElementById('Gas').checked) {
-            symptoms += "Gas "
-        }
- 
-
-        var note = $("#note").val();
-        var day = parseInt($(".active-date").html());
-        // Basic form validation
-        $("#dialog").hide();
-        console.log("new event");
-        new_event_json(mood, symptoms, note, date, day);
-        date.setDate(day);
-        init_calendar(date);
+        
 
         
     });
@@ -336,7 +342,8 @@ function show_events(events, month, day) {
 
 
             // Event handler for edit button
-            document.getElementById("edit-button").onclick = function() {  
+            document.getElementById("edit-button").onclick = function() {
+                isEdit = true;
 
                 // First clear the form before re-filling it:
                 $("#dialog input[type=checkbox]").prop('checked',false);
@@ -371,6 +378,8 @@ function show_events(events, month, day) {
 
                 // Event handler for ok button
                 document.getElementById("ok-button").onclick = function() {
+
+                    console.log("OK BUTTON PRESSED BUT IS FOR AN EDIT!!!");
 
                     var event = events[0];
 
@@ -452,6 +461,7 @@ function show_events(events, month, day) {
  
                     $("#dialog").hide();
                     console.log("updated event");
+                    isEdit = false;
 
                     
                 }
@@ -505,7 +515,6 @@ document.getElementById("consentSwitch").onchange = function() {
 
     
 }
-
 
 const months = [ 
     "January", 
