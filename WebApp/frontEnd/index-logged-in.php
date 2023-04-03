@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    $userID = $_SESSION['userid'];
+    $user_id = $_SESSION['userid'];
 
 
     // PHP code for deleting all logs
@@ -32,7 +32,10 @@
     include_once('../backEnd/settings.php');
 
     if(getConsent($user_id)){
-        echo '<script>$("#dialog input[value="consentSwitch"]").prop("checked",true);</script>';
+        echo "<script>var consent = true;</script>";
+    }
+    else{
+        echo "<script>var consent = false;</script>";
     }
 
 ?>
@@ -132,9 +135,8 @@
                     
                     <form class="" method="post">
                         <!-- Button trigger offcanvas menu -->
-                        <a class="btn btn-dark" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-                            Settings
-                        </a>
+                        <input type="button" class="btn btn-dark" onclick="myFunction()" value="Settings" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"/>                    
+
                         <!-- Button for logging out-->
                         <input type="submit" name="logout" class="btn btn-primary" style="background-color:#F53664!important; border-color: #F53664;" value="Log Out" />                    
                     </form>
@@ -160,10 +162,13 @@
                 <h3>Manage Consent</h3>
                 The switch below displays your consent to sending your data to you for more in-depth statistics and analysis.
                 If you'd like to rescind your consent just turn off the switch.
-                <div class="form-check form-switch" style="padding-top: 3%">
-                  <input class="form-check-input" type="checkbox" role="switch" id="consentSwitch" style="background-color: #F53664; width: 45px !important; height: 21px !important;">
-                  <label class="form-check-label" for="consentSwitch" style="padding-left: 3%">I consent</label>
-                </div>
+                
+                <form method="post">
+                    <div class="form-check form-switch" style="padding-top: 3%">
+                        <input class="form-check-input" type="checkbox" role="switch" id="consentSwitch" style="background-color: #F53664; width: 45px !important; height: 21px !important;" onChange="this.form.submit()">
+                        <label class="form-check-label" for="consentSwitch" style="padding-left: 3%">I consent</label>
+                    </div>
+                </form>
 
                 <form>
                     <div class="mb-3" style="padding-top:3%">
@@ -290,5 +295,8 @@
 
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/main.js"></script>
+
     </body>
 </html>

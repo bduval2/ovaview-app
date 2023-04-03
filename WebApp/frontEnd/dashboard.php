@@ -101,6 +101,33 @@
 
         echo "<script> window.location.href = 'index.php'; </script>";
     }
+
+    include_once('../backEnd/settings.php');
+
+    // PHP code for updating consent
+    if(!empty($_POST) && $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['updateConsent'])){
+
+
+        $data = $_POST["updateConsent"];
+
+        $obj = json_decode($_POST["updateConsent"]);
+
+        if ($obj != null) {
+            $updatedConsent = $obj->consent;
+            
+
+            updateConsent($user_id, $updatedConsent);
+        }
+
+        unset($data);
+    }
+
+    if(getConsent($user_id)){
+        echo "<script>var consent = true;</script>";
+    }
+    else{
+        echo "<script>var consent = false;</script>";
+    }
 ?>
 
 
@@ -523,9 +550,8 @@
                     
                     <form class="" method="post">
                         <!-- Button trigger offcanvas menu -->
-                        <a class="btn btn-dark" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-                            Settings
-                        </a>
+                        <input type="button" class="btn btn-dark" onclick="myFunction()" value="Settings" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"/>                    
+
                         <!-- Button for logging out-->
                         <input type="submit" name="logout" class="btn btn-primary" style="background-color:#F53664!important; border-color: #F53664;" value="Log Out" />                    
                     </form>
@@ -550,10 +576,14 @@
                 <h3>Manage Consent</h3>
                 The switch below displays your consent to sending your data to you for more in-depth statistics and analysis.
                 If you'd like to rescind your consent just turn off the switch.
-                <div class="form-check form-switch" style="padding-top: 3%">
-                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" style="background-color: #F53664; width: 45px !important; height: 21px !important;">
-                  <label class="form-check-label" for="flexSwitchCheckDefault" style="padding-left: 3%">I consent</label>
-                </div>
+                
+
+                <form method="post">
+                    <div class="form-check form-switch" style="padding-top: 3%">
+                        <input class="form-check-input" type="checkbox" role="switch" id="consentSwitch" style="background-color: #F53664; width: 45px !important; height: 21px !important;" onChange="this.form.submit()">
+                        <label class="form-check-label" for="consentSwitch" style="padding-left: 3%">I consent</label>
+                    </div>
+                </form>
 
                 <form>
                     <div class="mb-3" style="padding-top:3%">
@@ -643,7 +673,6 @@
                 <div class="events-container container col-xxl-8 px-4 py-5">
                 </div>
                 <div class="dialog" id="dialog">
-                    <!-- <form id="mood-form"  method="post" action="" onsubmit="myFunction()"> -->
                     <form id="mood-form"  method="post" action="">
 
                         <div class="event-card row flex-lg g-5 py-5" style="display:flex; padding: 20px!important; margin:0px!important;">

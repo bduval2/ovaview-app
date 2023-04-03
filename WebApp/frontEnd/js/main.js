@@ -476,6 +476,37 @@ function check_events(day, month, year) {
     return events;
 }
 
+// Event handler for change in consent button
+document.getElementById("consentSwitch").onchange = function() {
+
+    var updatedConsent = {
+        "consent": !consent
+    };
+
+
+    var dataString = JSON.stringify(updatedConsent);
+
+    // Sending the date to the php file to update the back end
+    $.ajax({
+        url: "dashboard.php",
+        method: "POST",
+        data: {updateConsent:dataString},
+        success: function(response) {
+        // handle server response here
+        // Need to reload to make the entry update
+        location.reload();
+
+
+        },
+        error: function(error) {
+        // handle error here
+        }
+    });
+
+    
+}
+
+
 const months = [ 
     "January", 
     "February", 
@@ -492,3 +523,15 @@ const months = [
 ];
 
 })(jQuery);
+
+function myFunction() {
+    if(consent){
+        document.getElementById("consentSwitch").setAttribute("checked", "");
+    }
+    else {
+        document.getElementById("consentSwitch").removeAttribute("checked", "");
+    }
+    
+}
+
+
