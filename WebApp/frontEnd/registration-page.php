@@ -176,69 +176,11 @@
                         <button type="submit" name="submit_login" class="btn btn-primary" style="background-color:#F53664!important; border-color: #F53664;">Log In</button>
                     </form>
 
-                    <br>
-
-                    <button type="button" class="btn btn-link" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">I forgot my code</button>
                 </div>
                 
             </div>
             </div>
         </div>
-
-
-        <!-- Forgot Code Modal -->
-        <div class="modal fade" id="exampleModalToggle2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Enter Your email</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        Please enter your email. We’ll email you your one time password so you can sign in.
-                
-                        <br>
-                        
-                        <form>
-                            <div class="mb-3">
-                            <label for="loginEmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="loginEmail">
-                            </div>
-                            <button type="submit" class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="background-color:#F53664!important; border-color: #F53664;">Send me a one time password</button>
-                        </form>
-    
-                    </div>
-                    
-                </div>
-                </div>
-            </div>
-
-
-        <!-- One Time Password Modal -->
-        <div class="modal fade" id="exampleModalToggle3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Enter Your One-Time Password</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        Please enter the password we sent by email.                
-                        <br>
-                        
-                        <form>
-                            <div class="mb-3">
-                            <label for="loginPassword" class="form-label">One Time Password</label>
-                            <input type="password" class="form-control" id="loginPassword">
-                            </div>
-                            <button type="submit" class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="background-color:#F53664!important; border-color: #F53664;">Log in</button>
-                        </form>
-    
-                    </div>
-                    
-                </div>
-                </div>
-            </div>
 
 
         <!-- Hero Section -->
@@ -250,18 +192,13 @@
                 <div class="col-12 col-md-5">
                     <h1 class="display-5 fw-bold lh-1 mb-3">Sign up to use our app!</h1>
                     <p class="lead">We don't need any of your information to sign up. Once you click Sign Up, we'll give you a 16 digit code that you can use to log in. Keep it safe!</p>
-                    <p class="lead">You can also provide us with an email in case you forget your code and we'll send you a new one by email.</p>
                     <p class="lead">If you’d like more personalized statistics like approximations for when your next period will be, or analysis of your moods and symptoms, then you’ll have to share your data with us. </p>
                     <p class="lead">If you aren’t interested in that, no problem! You can still use our app to track everything, but there won’t be any smart analysis.</p>
                     <p class="lead">Read our stance on your data below.</p>
                     <form method="post" action="">
                         <button type="submit" name="submit_signup" class="btn btn-primary" data-bs-target="#post-reg-modal" data-bs-toggle="modal" style="background-color:#F53664!important; border-color: #F53664;">Sign Up</button>
                         <br>
-                        <div class="mb-3" style="padding-top:3%">
-                            <label for="signUpEmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="signUpEmail" aria-describedby="emailHelp">
-                            <div id="emailHelp" class="form-text">An email is not required for sign up, but it would allow us to send you a new code should you forget the one we gave you.</div>
-                        </div>
+                        <br>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="consent" name="consent">
                             <label class="form-check-label" for="consent">I consent to send my data to you for more in-depth statistics and analysis.
