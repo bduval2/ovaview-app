@@ -456,12 +456,21 @@
             background: #ffc107;
             border: 1px solid white; }
 
+        .period-date {
+        border-color: #F53664;
+        background: #F53664;
+        color: #fff; }
+        
         .active-date {
         color: #fff; }
         .active-date:before {
             background: #fc7fb2; }
 
         .event-date.active-date {
+        background: transparent;
+        border: none; }
+        
+        .period-date.active-date {
         background: transparent;
         border: none; }
 
