@@ -8438,12 +8438,31 @@ h1, h2, h3, h4, h5,
     background: #ffc107;
     border: 1px solid white; }
 
+.period-date {
+  border-color: #fc7fb2;
+  background: #fc7fb2;
+  color: #fff; }
+  .period-date:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    content: '';
+    background: #ffc107;
+    border: 1px solid white; }
+
 .active-date {
   color: #fff; }
   .active-date:before {
     background: #fc7fb2; }
 
 .event-date.active-date {
+  background: transparent;
+  border: none; }
+  
+.period-date.active-date {
   background: transparent;
   border: none; }
 
