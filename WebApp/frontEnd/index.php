@@ -143,69 +143,12 @@
                         <button type="submit" name="submit_login" class="btn btn-primary" style="background-color:#F53664!important; border-color: #F53664;">Log In</button>
                     </form>
 
-                    <br>
-
-                    <button type="button" class="btn btn-link" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">I forgot my code</button>
                 </div>
                 
             </div>
             </div>
         </div>
 
-
-        <!-- Forgot Code Modal -->
-        <div class="modal fade" id="exampleModalToggle2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Enter Your email</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        Please enter your email. We’ll email you your one time password so you can sign in.
-                
-                        <br>
-                        
-                        <form>
-                            <div class="mb-3">
-                            <label for="loginEmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="loginEmail">
-                            </div>
-                            <button type="submit" class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="background-color:#F53664!important; border-color: #F53664;">Send me a one time password</button>
-                        </form>
-    
-                    </div>
-                    
-                </div>
-                </div>
-            </div>
-
-
-        <!-- One Time Password Modal -->
-        <div class="modal fade" id="exampleModalToggle3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Enter Your One-Time Password</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        Please enter the password we sent by email.                
-                        <br>
-                        
-                        <form>
-                            <div class="mb-3">
-                            <label for="loginPassword" class="form-label">One Time Password</label>
-                            <input type="password" class="form-control" id="loginPassword">
-                            </div>
-                            <button type="submit" class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="background-color:#F53664!important; border-color: #F53664;">Log in</button>
-                        </form>
-    
-                    </div>
-                    
-                </div>
-                </div>
-            </div>
 
 
         <!-- Hero Section -->

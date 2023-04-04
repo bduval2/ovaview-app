@@ -569,7 +569,7 @@
             </div>
             <div class="offcanvas-body">
               <div style="padding: 3%">
-               Here you can manage your consent, delete your data, or delete your account. Note that any delete actions you undertake are irreversible. Once you delete somehting
+                Here you can manage your consent, delete your data, or delete your account. Note that any delete actions you undertake are irreversible. Once you delete something, IT IS GONE!
               </div>
 
               <div style="padding: 3%">
@@ -577,21 +577,11 @@
                 The switch below displays your consent to sending your data to you for more in-depth statistics and analysis.
                 If you'd like to rescind your consent just turn off the switch.
                 
-
                 <form method="post">
                     <div class="form-check form-switch" style="padding-top: 3%">
                         <input class="form-check-input" type="checkbox" role="switch" id="consentSwitch" style="background-color: #F53664; width: 45px !important; height: 21px !important;" onChange="this.form.submit()">
                         <label class="form-check-label" for="consentSwitch" style="padding-left: 3%">I consent</label>
                     </div>
-                </form>
-
-                <form>
-                    <div class="mb-3" style="padding-top:3%">
-                        <label for="signUpEmail" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="signUpEmail" aria-describedby="emailHelp">
-                        <div id="emailHelp" class="form-text">This allows us to send you a new code should you forget the one we gave you.</div>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="background-color:#F53664!important; border-color: #F53664;">Add Email</button>
                 </form>
               </div>
 
