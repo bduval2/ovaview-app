@@ -1,5 +1,4 @@
 # **Requirements Document**
-
 ## System Purpose and Scope
 
 Our app is a period tracker with the objective of facilitating the observation and analysis of users' menstrual cycles and related factors, as well as offer a standardized prediction of future menstrual cycles based off input data. Our system intends to allow users to enter their daily menstrual activity on a calendar template, along with optional related factors such as indicators of mood, symptoms, and thoughts.
@@ -78,9 +77,9 @@ Our system's privacy requirements can be partitioned into various fields:
     * Man-in-the-middle attacks are more common from users who often use unsecured connections, which encryption will ensure any malicious party intercepting data between our servers and the user will be useless to them.
     * Database breaches either by social engineering, session extraction attacks, or any new breaching technology developed will be futile as intruders would access fully encrypted datasets without a key.
 * Cookies
-  * We strictly use **first-party cookies** exclusively, avoiding the use of any third-party cookies.
-    * First-party cookies are used exclusively in our domain and is not shared or seen by anyone else; this is imperative to both make sure no third parties see any of our users' data, as well as respecting consumer boundaries.
-    * The first-party cookies we use do not track the user in any way, nor do they collect any data outside of storing a session token that keeps users logged in for a set period of time.
+  * We strictly exclude cookies, more notably avoiding the use of any third-party cookies.
+    * Third party cookies create irreparable distrust in the consumer/producer symbiotic relationship, essentially leaving the door open for the producer to freely share data about the consumer, as well as actively tracking users on the platform 
+    * First-party cookies are acknowledged to be safer, but our system wishes to be completely devoid of any privacy intrusion. Although all information in first-party cookies would be bound to our domain, we want to ensure and give confidence to our users that absolutely no tracking is done when interacting with our website.
 * Employee Internet Privacy Education
   * Many companies with the most bolstered security architecture are done in by breachers by either employees being social engineered or operating company connected devices carelessly and allowing for example, session hijacking attacks. With how good security technology has gotten, our company wants to have every potential vulnerability taken care of, down to the human aspect of things.
   * Education can consist of basic internet protocols and safety measures, looks into many prolific companies breached by employees carelessly downloading files from emails or exposing too much data on public platforms, and general good practices when they are working on company devices and off company devices.
@@ -103,7 +102,6 @@ Following the 7 Foundational Principles published by privacybydesign [^4].
    * Every step before and during a user's commitment to our product will be clear on what exactly our system intends to do with user data, how exactly we obtain said data, the details of how we process, and most importantly, what the user rights are and what users are consenting to with each request for permission. We aim to make every statement from us clear, concise, and unambiguous to show users everything that goes on behind the scenes in the user's data flow in and out of our system.
 7. **Respect** for User Privacy — Keep it **User-Centric**
    * A different approach from our competitors is our doctrine regarding user autonomy. We want our users to feel in control of what the app sees and does with the information they present to our product. We want them to pick and choose what kinds of data they value to keep secret, how much they want secret, and who the players are when dealing with their data. We understand it can get overwhelming to configure a balance between extra features and privacy, so we plan to default users to the bare minimum data exposure while maintaining a standard of app functionality we can be proud of, so timid users will not miss out on the key aspects of our product while the privacy-minded can have full autonomy while using our app.
-
 
 ## Links
 
