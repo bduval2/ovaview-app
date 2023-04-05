@@ -57,13 +57,14 @@ Our decision to create a dichotomy where the server is unable to decrypt data cr
 * Peace of mind for user knowing any entity not holding the unique identifier is unable to read data.
 * Increased simplicity to secure all possible vulnerabilities.
 
-### Exclusion of Third Party Cookies
+### Exclusion of Cookies
 
-We exclude the usage of third party cookies in our webapp. This means that there our system does not create any cookies on the user's device that communicates with any domain outside of ours. We exclusively use one first party cookie to remember a user's login session for up to 30 days.
+We exclude the usage of third party cookies in our webapp. This means that there our system does not create any cookies on the user's device that communicates with any domain outside of ours. Moreover, we also ensure the lack of cookies mean that even we are not collecting any data on the user while they use our service.
 
-This architectural design policy offers no tradeoffs with respect to user privacy. One could argue this implementation has one negative.
+This architectural design policy offers no tradeoffs with respect to user privacy. One could argue this implementation negatively impacts user convenience.
 
 * Users will not have the option of receiving advertisements outside our domain specifically enhanced from the data they submitted to our system.
+* Users will be required to log in every time they start a new session.
 
 An alternative decision we could have made would have been to make use of third-party cookies to communicate information with other domains. To put bluntly, we rejected this option swiftly for the following disadvantage.
 
@@ -73,6 +74,7 @@ This architectural decision provides the following benefits to user privacy prot
 
 * No disclosure of user data to third parties.
 * No tracking of user activity and user data on our service.
+* Ensure no tracking from OvaView of the user.
 * Clear transparency for the user of the service/consumer dichotomy.
 
 ## 3. Architectural Models
@@ -105,7 +107,7 @@ Prior to login, the front-end does not have a dashboard page, as there is no use
 
 Upon failure, the user will be prompted to retry with another UID. Success will successfully log in the user, and store their verified status in the browser session.
 
-Upon success, the user's 16-digit identifier is stored on the local device's back-end code in a browser session array object. Moreover, logged in status will create two new options in the website header the user will be able to see and interact with. 
+Upon success, the user's 16-digit identifier is stored on the local device's back-end code in a browser session array object. Moreover, logged in status will create two new options in the website header the user will be able to see and interact with.
 
 * Access to personal dashboard
 * Access to personal account settings
@@ -126,7 +128,7 @@ Entry viewing is done by simply clicking on dates with an existing entry; all da
 Entry submission is initiated by the following protocol:
 
 * Clicking the "add entry" button will create a form object in which the user's selected parameters and input is stored.
-* Clicking the "ok" button will 
+* Clicking the "ok" button will
   * encrypt all the data in the form object,
   * create a JSON object holding all the encrypted data,
   * and finally transfer the data to the server.
@@ -154,7 +156,7 @@ One of the features the user can initiate in the settings tab is data deletion: 
 
 Request for the deletion of all date entries will, following the its name, delete all logs tied to the UID of the user logged in all at once. This will be done by the following protocol:
 
-* Retrieve table of all entries from the server 
+* Retrieve table of all entries from the server
 * Scan entries by hashing UID stored in session
 * Call SQL delete row on every hit
 
@@ -164,7 +166,7 @@ Request for the deletion of user account will first do the same protocol as abov
 * Scan users by hashing UID stored in session
 * Call SQL delete row on user row
 
-After this is done, the user will be logged out of their (now non-existent account) and be sent to the landing page of our website. 
+After this is done, the user will be logged out of their (now non-existent account) and be sent to the landing page of our website.
 
 ### Opt-in / Opt-out
 
@@ -176,7 +178,7 @@ The other feature available to users in the settings tab is to opt-in or opt-out
 
 Due to complications with encryption, the database does not hold Booleans, but rather integers corresponding to on or off statuses.
 
-Once a user is opted in to this feature, the user will receive more accurate predictions on their calendar UI. 
+Once a user is opted in to this feature, the user will receive more accurate predictions on their calendar UI.
 
 On the server, a few more changes occur. Firstly, there is a separate table in our database that is functionally the same as the initial table holding all user entries; this table differs in the way rows are encrypted, where now the server also holds the encryption key. This allows us to read the rows of this table for further R&D and processing for the stated reasons the user has consented to.
 
