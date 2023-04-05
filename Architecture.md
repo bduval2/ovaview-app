@@ -35,11 +35,8 @@ Overall, our decision to apply this architectural design was for the following r
 
 * Minimize any links of user inputted data to corresponding user's identity, either directly or by proxy.
 * Circumvent user-created vulnerabilities to their accounts, such as simple passwords or repeated use of breached username and password combination.
-* <mark>Please ask @bduval2 if any technological advantages exist. Is encryption based on ID better here on a section of its own?</mark>
 
 ### E2EE Based on Unique Identifier
-
-<mark>Would like @bduval2 to offer some guidance as I am less fluent in the encryption method.</mark>
 
 End-to-end encryption (E2EE) is a security protocol designed to protect communications by encrypting messages in a way that only the intended recipients can access the information. This means that the data is encrypted on the sender's device, and can only be decrypted by the intended recipient's device. In an end-to-end encryption system, the encryption keys used to encrypt and decrypt the messages are only known by the sender and the recipient. Our encryption system takes a different route and has it so the encryption key is only held by the user, in the form of their 16-digit identifier.
 
@@ -48,6 +45,17 @@ We use traditional E2EE on a separate database for users who opt-in to providing
 The tradeoffs for this architectural design decision affects user convenience.
 
 * No possibility of data retrieval in the case of a user losing their identification code and have not opted in for account recovery.
+* No username to identify users in database means that everything is encrypted using AES, leading to less efficient data pulls.
+
+One alternative to this encryption method is the traditional end-to-end encryption where both the sender (data subject) and receiver (OvaView) both hold the encryption key. This alternative was rejected because of one main disadvantage.
+
+* No fail-safe preventing server from decrypting data subjects' information.
+* More vulnerabilities revealed by one more entity holding the encryption key.
+
+Our decision to create a dichotomy where the server is unable to decrypt data creates less flexibility, but increased security. The privacy benefits include the following aspects.
+
+* Peace of mind for user knowing any entity not holding the unique identifier is unable to read data.
+* Increased simplicity to secure all possible vulnerabilities.
 
 ### Exclusion of Third Party Cookies
 
@@ -73,31 +81,111 @@ UML BABY
 
 ## 4. Important Scenarios
 
-For each **important scenario**, _record the initial system state and environment, the external stimulus, and the required and actual system behavior_. Again, it may be appropriate to provide an overview here and refer readers to an appendix for more details.
+### User registration
 
-An **architectural scenario** is a well-defined description of an _interaction between an external entity and the system_. It defines the event that triggers the scenario, the interaction initiated by the external entity, and the response required of the system.
+This scenario is occurred when the user interacts with the onboarding page. Upon initiation, the back-end of our app on the local device will do the following:
 
-Scenarios:\
-<mark>_Please note that although currently in plain-text, all of this as UML would be optimal. This entire section is WIP until this highlight message is not here._</mark>
+* Generate a random 16-digit identifier.
+* Verify uniqueness of identifier.
+  * Retrieve hashed existing UID table from server
+  * Compare with hashed table to detect existence of new UID
+  * If randomly generated identifier already exists, generate a new one and retry
+* Encrypt unique identifier and transfer to server for instantiation in our system.
 
-* User registration
-  * This event would split into different path sequences:
-    1. User registers with no data input
-    2. User registers with email
-    3. User registers with consent for period prediction
-  * Please note that sequence 2 and 3 are additional steps required by our architecture and sequence 1 always occurs. This is due to how we handle account recovery and our algorithm (being updated in separate tables).
-* User login
-  * Hesitant to call this important scenario. . . clarify with Martin
-* User data input/rectification into log
-  * This event boils down to communication with server via E2EE and database updating.
-* Request for data deletion
-  * This event describes clearing of log table associated with user
-* Request for account deletion
-  * This event describes deletion of user from system and all linked logs
-  * Not sure if this should be grouped with "Request for data deletion"
-* Request for data view
-  * Clarify with team how this scenario is handled, whether we give out users a complete database viewing of their information or not.
-* Opt-in/out changes
-  * Clarify with team how this scenario is handled, whether it is simply just Boolean flags on user and such.
-* User logout
-  * Hesitant to call this important scenario. . . clarify with Martin
+After the new account is legitimized on our app, the user is displayed their UID to take note and keep safe. Then, the front-end is redirected to our landing page so the user can log in to their new account (which in parallel, ensures the user took note of their UID).
+
+### User login
+
+Prior to login, the front-end does not have a dashboard page, as there is no user stored in the browser session. User's are required to input their only their UID to log in to our system. Our back-end verifies every user log in attempt with the following protocol:
+
+* Retrieve hashed existing UID table from server
+* Verify existence of inputted UID via hashing for efficiency
+* If existence of inputted UID is verified, return success
+* If inputted UID does not exist, return failure
+
+Upon failure, the user will be prompted to retry with another UID. Success will successfully log in the user, and store their verified status in the browser session.
+
+Upon success, the user's 16-digit identifier is stored on the local device's back-end code in a browser session array object. Moreover, logged in status will create two new options in the website header the user will be able to see and interact with. 
+
+* Access to personal dashboard
+* Access to personal account settings
+
+No information about user logins is stored in our database.
+
+### Dashboard Data Viewing and Submission/Rectification/Deletion
+
+Upon entering the personal dashboard, users will be able to interact with the calendar user-interface, allowing for 4 different actions per calendar-date.
+
+* Entry viewing
+* Entry submission
+* Entry modification/rectification
+* Entry deletion
+
+Entry viewing is done by simply clicking on dates with an existing entry; all data on the user is retrieved by the front-end from the back-end by filtering through the table of logs using the user's 16-digit identifier they submitted to log in (which is stored in the browser session). All user data retrieved is decrypted using the same 16-digit identifier stored in the session.
+
+Entry submission is initiated by the following protocol:
+
+* Clicking the "add entry" button will create a form object in which the user's selected parameters and input is stored.
+* Clicking the "ok" button will 
+  * encrypt all the data in the form object,
+  * create a JSON object holding all the encrypted data,
+  * and finally transfer the data to the server.
+
+Entry modification/rectification is achievable only on calendar-dates that hold an existing entry; empty dates will not have this option for users.
+
+* Clicking the "edit entry" button will create a form object pre-loaded with the respective existing data, in which the user can modify the displayed information.
+* Clicking the "ok" button will
+  * encrypt all the data in the form object,
+  * create a JSON object holding all the encrypted data,
+  * and pull the calendar-date from this data object.
+* Using the calendar-date and UID (submitted by user on login), we can filter through our table of entries to find our target entry of modification, using a 1-way hashing method. Once found, we will transfer the data to the server using an SQL update method.
+
+Entry deletion, like modification, is only available when an entry on a date exists.
+
+* Clicking the "delete entry" button will parse the date of the target entry.
+* Find entry using the date and UID (submitted by user on login) in database and call an SQL delete command on row.
+
+### Request for Data Deletion
+
+One of the features the user can initiate in the settings tab is data deletion: the user can choose to request
+
+* deletion of all date entries linked to their account
+* deletion of account
+
+Request for the deletion of all date entries will, following the its name, delete all logs tied to the UID of the user logged in all at once. This will be done by the following protocol:
+
+* Retrieve table of all entries from the server 
+* Scan entries by hashing UID stored in session
+* Call SQL delete row on every hit
+
+Request for the deletion of user account will first do the same protocol as above for deletion of all entries. Then, it will do the following:
+
+* Retrieve table of all users from the server
+* Scan users by hashing UID stored in session
+* Call SQL delete row on user row
+
+After this is done, the user will be logged out of their (now non-existent account) and be sent to the landing page of our website. 
+
+### Opt-in / Opt-out
+
+The other feature available to users in the settings tab is to opt-in or opt-out (depending on the current user state) of our advanced period prediction algorithm. Switching consent (because this option is essentially a Boolean flip) will enact the following protocol:
+
+* Retrieve current consent status in the form of a Boolean from table of users in database using UID (submitted by user on login)
+* Flip status of consent and encrypt parameter
+* Update consent parameter of corresponding user to flipped status using SQL update command
+
+Due to complications with encryption, the database does not hold Booleans, but rather integers corresponding to on or off statuses.
+
+Once a user is opted in to this feature, the user will receive more accurate predictions on their calendar UI. 
+
+On the server, a few more changes occur. Firstly, there is a separate table in our database that is functionally the same as the initial table holding all user entries; this table differs in the way rows are encrypted, where now the server also holds the encryption key. This allows us to read the rows of this table for further R&D and processing for the stated reasons the user has consented to.
+
+Opted in users have their entry submission/deletion/modification mirrored to this table; instead of just one protocol for data manipulation by the user, there are two running in parallel. The new protocol looks similar to the initial one with one major change, where the data is encrypted using a shared key, that the user and server have possession of.
+
+Opted out users are exempt from this extra data flow.
+
+### User Logout
+
+Logged in users have the option to log out of their account. Clicking the logout button will reset the local session variable, meaning their UID they used to log in is gone from any storage on the local device. Users are redirected back to the landing page of our website, with the access to all logged in features gone due to the lack of UID stored in the session variable.
+
+No information about user logouts is stored in our database.
