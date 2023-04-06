@@ -1,8 +1,7 @@
 <?php
-    session_start();
-
-    $private_key = $_SESSION['private_key'];
-    $index_key = $_SESSION['index_key'];
+    // generate values using ./generate_key.php script
+    $private_key = "q2wLpF1k+UMNmSzrbGUuAQ=="; // INSERT PRIVATE KEY HERE
+    $index_key = "u885cb0FBSy1Im/LooSMMg=="; // INSERT BLIND INDEX KEY HERE
     
     include_once('class.database.php');
     include_once('crypt.php');
