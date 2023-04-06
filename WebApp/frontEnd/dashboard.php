@@ -6,6 +6,7 @@
 
     include_once('../backEnd/dashboard.php');
     include_once('../backEnd/master_logs.php');
+    include_once('../backEnd/settings.php');
 
     $dashboardEntries = '{"events": ' . getDashboard($user_id) . '}';
 
@@ -33,6 +34,7 @@
 
 
             if(getConsent($user_id)){
+
                 addMasterLog($user_id, $mood, $symptoms, $note, $year, $month, $date);
             }
 
@@ -106,6 +108,7 @@
     if(isset($_POST['eraseAccount'])) {
         include_once('../backEnd/erasure.php');
 
+        deleteAllMasterLogs($user_id);
         eraseAccount($user_id);
 
         echo "<script> window.location.href = 'index.php'; </script>";
@@ -118,7 +121,6 @@
         echo "<script> window.location.href = 'index.php'; </script>";
     }
 
-    include_once('../backEnd/settings.php');
 
     // PHP code for updating consent
     if(!empty($_POST) && $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['updateConsent'])){

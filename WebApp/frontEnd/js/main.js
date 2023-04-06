@@ -522,8 +522,8 @@ function predict_period() {
     // check if consent is turned on
     if(consent){
         console.log("Consent check worked");
-
-        // get the events for that month.
+        if (event_data["events"].length > 0){
+            // get the events for that month.
         var filtered = event_data["events"].filter(obj => {
             return (obj.month === month && obj.year == year)
         })
@@ -553,6 +553,9 @@ function predict_period() {
         nextPredictedPeriod = updatedPeriod;
 
         console.log(nextPredictedPeriod);
+        }
+
+        
     }
 }
 
