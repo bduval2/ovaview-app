@@ -136,7 +136,7 @@ Entry submission is initiated by the following protocol:
 * Clicking the "ok" button will
   * encrypt all the data in the form object,
   * create a JSON object holding all the encrypted data,
-  * and finally transfer the data to the server.
+  * and finally transfer the data to the server. [+ adding to the database +]
 
 Entry modification/rectification is achievable only on calendar-dates that hold an existing entry; empty dates will not have this option for users.
 
@@ -145,7 +145,7 @@ Entry modification/rectification is achievable only on calendar-dates that hold 
   * encrypt all the data in the form object,
   * create a JSON object holding all the encrypted data,
   * and pull the calendar-date from this data object.
-* Using the calendar-date and UID (submitted by user on login), we can filter through our table of entries to find our target entry of modification, using a 1-way hashing method. Once found, we will transfer the data to the server using an SQL update method.
+* Using the calendar-date and UID (submitted by user on login), we can filter through our table of entries to find our target entry of modification, using a 1-way hashing method. [+ , by verifying the hashed UIDs against the UID and comparing decrypted dates with input date +] Once found, we will transfer the data to the server using an SQL update method.
 
 Entry deletion, like modification, is only available when an entry on a date exists.
 
