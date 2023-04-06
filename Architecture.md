@@ -21,6 +21,8 @@ Many architectural design decisions were discussed and concluded with the goal o
 
 Clients are given a unique and randomly generated 16-digit ID on account creation. Clients must use this 16-digit ID to log in and use our system under the corresponding account the client wishes to use. This unique ID is the primary key for user logging in the backend server.
 
+[+ Hashed using strong one-way hashing algorithm bcrypt which means cannot be retrieved by us +]
+
 The tradeoffs for this design decision affects the implementation and maintenance of the backend database and the client usability of our frontend product.
 
 * Inconvenience for user logging in every time login memory cookie expires.
@@ -36,20 +38,23 @@ Overall, our decision to apply this architectural design was for the following r
 * Minimize any links of user inputted data to corresponding user's identity, either directly or by proxy.
 * Circumvent user-created vulnerabilities to their accounts, such as simple passwords or repeated use of breached username and password combination.
 
+[+ Add proof of security with account IDs +]
+
 ### E2EE Based on Unique Identifier
 
-End-to-end encryption (E2EE) is a security protocol designed to protect communications by encrypting messages in a way that only the intended recipients can access the information. This means that the data is encrypted on the sender's device, and can only be decrypted by the intended recipient's device. In an end-to-end encryption system, the encryption keys used to encrypt and decrypt the messages are only known by the sender and the recipient. Our encryption system takes a different route and has it so the encryption key is only held by the user, in the form of their 16-digit identifier.
+End-to-end encryption (E2EE) is a security protocol designed to protect communications by encrypting messages in a way that only the intended recipients can access the information. This means that the data is encrypted on the sender's device, and can only be decrypted by the intended recipient's device. In an end-to-end encryption system, the encryption keys used to encrypt and decrypt the messages are only known by the sender and the recipient. Our encryption system takes a different route and has it so the encryption key is only held by the user, in the form of their 16-digit identifier. [+ Emphasis on fact that we cannot get their data +]
 
-We use traditional E2EE on a separate database for users who opt-in to providing an email for future account recovery purposes, ensuring that we will be able to decrypt their identifier on our separate database and provide it for our users who have lost it.
+[+ New section for master database? It's an entire different subject +]
+We use traditional E2EE on a separate database for users who opt-in to providing an email for future account recovery purposes, ensuring that we will be able to decrypt their identifier on our separate database and provide it for our users who have lost it. [+ no more email, we still cannot decrypt the identifiers in the master database, it's there for our algorithm. The ids are converted into a blind index for us to be able to group users in our database without being able to know what their id is, using sodium_crypto_pwhash algorithm +]
 
 The tradeoffs for this architectural design decision affects user convenience.
 
-* No possibility of data retrieval in the case of a user losing their identification code and have not opted in for account recovery.
+* No possibility of data retrieval in the case of a user losing their identification code and have not opted in for account recovery. 
 * No username to identify users in database means that everything is encrypted using AES, leading to less efficient data pulls.
 
 One alternative to this encryption method is the traditional end-to-end encryption where both the sender (data subject) and receiver (OvaView) both hold the encryption key. This alternative was rejected because of one main disadvantage.
 
-* No fail-safe preventing server from decrypting data subjects' information.
+* No fail-safe preventing server from decrypting data subjects' information. [+ hmm we have that disadvantage with the master table, no? +]
 * More vulnerabilities revealed by one more entity holding the encryption key.
 
 Our decision to create a dichotomy where the server is unable to decrypt data creates less flexibility, but increased security. The privacy benefits include the following aspects.
@@ -94,7 +99,7 @@ This scenario is occurred when the user interacts with the onboarding page. Upon
   * If randomly generated identifier already exists, generate a new one and retry
 * Encrypt unique identifier and transfer to server for instantiation in our system.
 
-After the new account is legitimized on our app, the user is displayed their UID to take note and keep safe. Then, the front-end is redirected to our landing page so the user can log in to their new account (which in parallel, ensures the user took note of their UID).
+After the new account is legitimized on our app, the user is displayed their UID to take note and keep safe. Then, the front-end is redirected to our landing page so the user can log in to their new account (which in parallel, ensures the user took note of their UID). 
 
 ### User login
 
