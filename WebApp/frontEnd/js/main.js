@@ -248,6 +248,7 @@ function new_event_json(mood, symptoms, note, date, day) {
 
     // Sending the data to the php file to store in the back end
     $.ajax({
+        
         url: "dashboard.php",
         method: "POST",
         data: {myData:dataString},

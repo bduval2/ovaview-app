@@ -5,6 +5,7 @@
     $user_id = $_SESSION['userid'];
 
     include_once('../backEnd/dashboard.php');
+    include_once('../backEnd/master_logs.php');
 
     $dashboardEntries = '{"events": ' . getDashboard($user_id) . '}';
 
@@ -12,6 +13,7 @@
 
     // PHP code for adding entry to back end
     if(!empty($_POST) && $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['myData'])){
+
 
 
         $data = $_POST["myData"];
@@ -28,6 +30,13 @@
 
                 
             addLog($user_id, $mood, $symptoms, $note, $year, $month, $date);
+
+
+            if(getConsent($user_id)){
+                addMasterLog($user_id, $mood, $symptoms, $note, $year, $month, $date);
+            }
+
+            
         }
 
         unset($data);
@@ -48,6 +57,8 @@
             $date = $obj->day;
 
             deleteLog($user_id, $year, $month, $date);
+
+            deleteMasterLog($user_id, $year, $month, $date);
         }
 
         unset($data);
@@ -71,6 +82,10 @@
             $date = $obj->day;
 
             updateLog($user_id, $mood, $symptoms, $note, $year, $month, $date);
+
+            if(getConsent($user_id)){
+                updateMasterLog($user_id, $mood, $symptoms, $note, $year, $month, $date);
+            }
         }
 
         unset($data);
@@ -82,6 +97,7 @@
         include_once('../backEnd/erasure.php');
   
         eraseAllLogs($user_id);
+        deleteAllMasterLogs($user_id);
 
         echo "<script> window.location.href = 'dashboard.php'; </script>";
     }
@@ -124,6 +140,7 @@
 
     if(getConsent($user_id)){
         echo "<script>var consent = true;</script>";
+        echo "<script> console.log('User consented!!!!'); </script>";
     }
     else{
         echo "<script>var consent = false;</script>";
