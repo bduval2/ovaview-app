@@ -263,8 +263,6 @@ function new_event_json(mood, symptoms, note, date, day) {
 
         }
     });
-
-    predict_period(date, day);
 }
 
 // Display all events of the selected date in card views
@@ -503,6 +501,7 @@ function check_events(day, month, year) {
                 events.push(event);
             }
     }
+    predict_period();
     return events;
 }
 
@@ -513,9 +512,10 @@ function check_period(day, month, year) {
 
 // This is where the real period tracking algorithm would go but we are not in a Machine Learning class, and as such
 // our algo is dumb and for demo purposes only.
-function predict_period(date, day) {
+function predict_period() {
     console.log("In predict period");
 
+    var date = new Date();
     var month = date.getMonth()+1;
     var year = date.getFullYear();
 
@@ -525,7 +525,7 @@ function predict_period(date, day) {
 
         // get the events for that month.
         var filtered = event_data["events"].filter(obj => {
-            return obj.month === month
+            return (obj.month === month && obj.year == year)
         })
 
         // Sort the resulting array and get the first element
@@ -539,7 +539,7 @@ function predict_period(date, day) {
         console.log(firstEntry);
 
         // Get the day on which it occured and predict the next period
-        var date = firstEntry.day
+        var day = firstEntry.day
 
         // Update the next predicted period date
         var updatedPeriod = {
