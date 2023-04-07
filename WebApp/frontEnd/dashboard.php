@@ -35,7 +35,7 @@
 
             if(getConsent($user_id)){
 
-                addMasterLog($user_id, $mood, $symptoms, $note, $year, $month, $date);
+                addMasterLog($user_id, $mood, $symptoms, $year, $month, $date);
             }
 
             
@@ -86,7 +86,7 @@
             updateLog($user_id, $mood, $symptoms, $note, $year, $month, $date);
 
             if(getConsent($user_id)){
-                updateMasterLog($user_id, $mood, $symptoms, $note, $year, $month, $date);
+                updateMasterLog($user_id, $mood, $symptoms, $year, $month, $date);
             }
         }
 
