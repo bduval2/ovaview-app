@@ -2,9 +2,9 @@
 
 ## 1. Stakeholders
 
-The direct stakeholders consists of:
+The direct stakeholders ~~consists of~~ {-include-}:
 
-* Client
+* Client{-s-}
   * These are the players conversing with the interactive frontend of our architecture. Their boundaries start and end in the tangible product shown on display to the world.
 * Designing Engineers
   * These are the players who maintain and develop the interactable product the clients engage with. They work with feedback obtained from the client to preserve the quality of the frontend and converse with the backend engineers to coordinate further development limitations and freedom.
@@ -25,27 +25,28 @@ Clients are given a unique and randomly generated 16-digit ID on account creatio
 
 The tradeoffs for this design decision affects the implementation and maintenance of the backend database and the client usability of our frontend product.
 
-* Inconvenience for user logging in every time login memory cookie expires.
+* Inconvenience for user logging in every time login memory cookie expires. {-I'm a bit confused about this. In the requirements template it said we didn't have any cookies at all. And in our website we really don't have any cookies, but here it says we have login cookies. I think we also talk about the login cookie on our privacy policy on the site. So in the end, not sure should we mention the cookie here or no?-}
 * Efficiency decline on data fetching for frontend display.
+{-I think we concluded that in a finalized product we wouldn't use sqlite and instead use another database which would allow better querrying so we don't have to go through all logs to find what we need -}
 
-An alternative method was to have a traditional username and password system where the user has autonomy in choosing the two. We rejected this option because of the following tradeoffs we deemed too detrimental to overall privacy.
+An alternative method was to have a traditional username and password system where the user has autonomy in choosing the two. We rejected this option because of the following tradeoffs we deemed too detrimental to overall privacy{-:-}
 
 * Existence of pseudonymized data poses vulnerabilities to identification.
 * User account vulnerabilities from external breaches providing username and/or password combination existing on our database (as many people use similar usernames and/or passwords for all their services).
 
-Overall, our decision to apply this architectural design was for the following reasons.
+Overall, our decision to apply this architectural design was for the following reasons{-:-}
 
 * Minimize any links of user inputted data to corresponding user's identity, either directly or by proxy.
 * Circumvent user-created vulnerabilities to their accounts, such as simple passwords or repeated use of breached username and password combination.
 
-[+ Add proof of security with account IDs +]
+[+ Add proof of security with account IDs +] {-Good idea! Like the one we have on the Privacy Policy wiki-}
 
 ### E2EE Based on Unique Identifier
 
 End-to-end encryption (E2EE) is a security protocol designed to protect communications by encrypting messages in a way that only the intended recipients can access the information. This means that the data is encrypted on the sender's device, and can only be decrypted by the intended recipient's device. In an end-to-end encryption system, the encryption keys used to encrypt and decrypt the messages are only known by the sender and the recipient. Our encryption system takes a different route and has it so the encryption key is only held by the user, in the form of their 16-digit identifier. [+ Emphasis on fact that we cannot get their data +]
 
 [+ New section for master database? It's an entire different subject +]
-We use traditional E2EE on a separate database for users who opt-in to providing an email for future account recovery purposes, ensuring that we will be able to decrypt their identifier on our separate database and provide it for our users who have lost it. [+ no more email, we still cannot decrypt the identifiers in the master database, it's there for our algorithm. The ids are converted into a blind index for us to be able to group users in our database without being able to know what their id is, using sodium_crypto_pwhash algorithm +]
+We use traditional E2EE on a separate database for users who opt-in to providing an email for future account recovery purposes, ensuring that we will be able to decrypt their identifier on our separate database and provide it for our users who have lost it. [+ no more email, we still cannot decrypt the identifiers in the master database, it's there for our algorithm. The ids are converted into a blind index for us to be able to group users in our database without being able to know what their id is, using sodium_crypto_pwhash algorithm +] {-This name sounds like you made it up ahahahah -}
 
 The tradeoffs for this architectural design decision affects user convenience.
 
@@ -54,7 +55,7 @@ The tradeoffs for this architectural design decision affects user convenience.
 
 One alternative to this encryption method is the traditional end-to-end encryption where both the sender (data subject) and receiver (OvaView) both hold the encryption key. This alternative was rejected because of one main disadvantage.
 
-* No fail-safe preventing server from decrypting data subjects' information. [+ hmm we have that disadvantage with the master table, no? +]
+* No fail-safe preventing server from decrypting data subjects' information. [+ hmm we have that disadvantage with the master table, no? +] {-I think you're right but the master table is also randomized. Like we don't have user's actual IDs right? -}
 * More vulnerabilities revealed by one more entity holding the encryption key.
 
 Our decision to create a dichotomy where the server is unable to decrypt data creates less flexibility, but increased security. The privacy benefits include the following aspects.
@@ -64,12 +65,12 @@ Our decision to create a dichotomy where the server is unable to decrypt data cr
 
 ### Exclusion of Cookies
 
-We exclude the usage of third party cookies in our webapp. This means that there our system does not create any cookies on the user's device that communicates with any domain outside of ours. Moreover, we also ensure the lack of cookies mean that even we are not collecting any data on the user while they use our service.
+We exclude the usage of third party cookies in our webapp. This means that ~~there~~ our system does not create any cookies on the user's device that communicates with any domain outside of ours. Moreover, we also ensure the lack of cookies mean that even we are not collecting any data on the user while they use our service.
 
 This architectural design policy offers no tradeoffs with respect to user privacy. One could argue this implementation negatively impacts user convenience.
 
 * Users will not have the option of receiving advertisements outside our domain specifically enhanced from the data they submitted to our system.
-* Users will be required to log in every time they start a new session.
+* Users will be required to log in every time they start a new session. {- So confirmed no cookies at all?? -}
 
 An alternative decision we could have made would have been to make use of third-party cookies to communicate information with other domains. To put bluntly, we rejected this option swiftly for the following disadvantage.
 
@@ -90,7 +91,7 @@ UML BABY
 
 ### User registration
 
-This scenario is occurred when the user interacts with the onboarding page. Upon initiation, the back-end of our app on the local device will do the following:
+This scenario ~~is occurred~~ {-occurs-} when the user interacts with the onboarding page. Upon initiation, the back-end of our app on the local device will do the following:
 
 * Generate a random 16-digit identifier.
 * Verify uniqueness of identifier.
@@ -99,20 +100,22 @@ This scenario is occurred when the user interacts with the onboarding page. Upon
   * If randomly generated identifier already exists, generate a new one and retry
 * Encrypt unique identifier and transfer to server for instantiation in our system.
 
-After the new account is legitimized on our app, the user is displayed their UID to take note and keep safe. Then, the front-end is redirected to our landing page so the user can log in to their new account (which in parallel, ensures the user took note of their UID). 
+After the new account is legitimized {-created?-} on our app, the user is displayed their UID to take note and keep safe. Then, the front-end is redirected to our landing page so the user can log in to their new account (which in parallel, ensures the user took note of their UID). 
 
 ### User login
 
-Prior to login, the front-end does not have a dashboard page, as there is no user stored in the browser session. User's are required to input their only their UID to log in to our system. Our back-end verifies every user log in attempt with the following protocol:
+Prior to login, the front-end does not have a dashboard page, as there is no user stored in the browser session. Users are required to input their ~~only their~~ UID to log in to our system. Our back-end verifies every user log in attempt with the following protocol:
 
 * Retrieve hashed existing UID table from server
 * Verify existence of inputted UID via hashing for efficiency
 * If existence of inputted UID is verified, return success
 * If inputted UID does not exist, return failure
 
-Upon failure, the user will be prompted to retry with another UID. Success will successfully log in the user, and store their verified status in the browser session.
+Upon failure, the user will be prompted to retry with another UID. ~~Success will successfully log in the user,  and store their verified status in the browser session.~~ {-Upon a successful login, the user will be re-directed, and their verified UID will be stored in the browser session.-}
 
 Upon success, the user's 16-digit identifier is stored on the local device's back-end code in a browser session array object. Moreover, logged in status will create two new options in the website header the user will be able to see and interact with.
+
+{-Don't want to be mean but I think this whole section could use a fresh re-write. The information is great, but it kind of feels rushed and incohesive.-}
 
 * Access to personal dashboard
 * Access to personal account settings
@@ -124,7 +127,7 @@ No information about user logins is stored in our database.
 Upon entering the personal dashboard, users will be able to interact with the calendar user-interface, allowing for 4 different actions per calendar-date.
 
 * Entry viewing
-* Entry submission
+* Entry ~~submission~~ {-creation-}
 * Entry modification/rectification
 * Entry deletion
 
@@ -159,7 +162,7 @@ One of the features the user can initiate in the settings tab is data deletion: 
 * deletion of all date entries linked to their account
 * deletion of account
 
-Request for the deletion of all date entries will, following the its name, delete all logs tied to the UID of the user logged in all at once. This will be done by the following protocol:
+Request for the deletion of all date entries will, following ~~the~~ its name, delete all logs tied to the UID of the user ~~logged in~~ {-making this request-} all at once. This will be done by the following protocol:
 
 * Retrieve table of all entries from the server
 * Scan entries by hashing UID stored in session
@@ -183,11 +186,13 @@ The other feature available to users in the settings tab is to opt-in or opt-out
 
 Due to complications with encryption, the database does not hold Booleans, but rather integers corresponding to on or off statuses.
 
-Once a user is opted in to this feature, the user will receive more accurate predictions on their calendar UI.
+Once a user is opted in to this feature, the user will receive more accurate predictions on their calendar UI. {-More accurate, or just predictions in general?-}
 
-On the server, a few more changes occur. Firstly, there is a separate table in our database that is functionally the same as the initial table holding all user entries; this table differs in the way rows are encrypted, where now the server also holds the encryption key. This allows us to read the rows of this table for further R&D and processing for the stated reasons the user has consented to.
+On the server, a few more changes occur. Firstly, there is a separate table in our database that is functionally the same as the initial table holding all user entries; this table differs in the way rows are encrypted, where now the server also holds the encryption key. This allows us to read the rows of this table for further R&D and processing for the stated reasons the user has consented to. 
 
 Opted in users have their entry submission/deletion/modification mirrored to this table; instead of just one protocol for data manipulation by the user, there are two running in parallel. The new protocol looks similar to the initial one with one major change, where the data is encrypted using a shared key, that the user and server have possession of.
+
+{-Add the fact that we no longer store notes, just dates, moods and symptoms. We then use this data, which is associated to an anoynymous user, and we run it through an algorithm which combines this data with data from other anonymous users to do some black magic to figure out a formula for finding the next period for anyone who consents.-}
 
 Opted out users are exempt from this extra data flow.
 
