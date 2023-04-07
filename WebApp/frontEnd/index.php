@@ -205,6 +205,9 @@
             <!-- Intro Part -->
             <div class="px-4 text-center">
                 <h1 class="display-5 fw-bold">What We Do Differently</h1>
+                <div class="container px-5">
+                    <img src="./images/what-we-do.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="500" height="500" loading="lazy">
+                </div>
                 <div class="col-lg-8 mx-auto">
                     <p class="lead mb-4">Unlike all the other apps out there, we let you join our community with no strings attached! We offer an open door policy with no barrier to entry in terms of what you need to hand over to us; no fuss and concerns like asking for your name, birthday, phone number, and like some apps out there ask, your address!</p>
                     <p class="lead mb-4">We recognize the goal of our app: build a comfortable and convenient platform for you to better your menstrual health! No need to ask our users for personally identifiable information, or even worse, force them to hand such over to even have the basic functionalities of our app.</p>
@@ -219,6 +222,9 @@
                 <div class="col-12 col-sm-12 col-lg-6">
                     <div style=" background-color: #ECFFE9; box-shadow: rgba(0,0,0,.04) 0 1px 0,rgba(0,0,0,.05) 0 2px 7px,rgba(0,0,0,.06) 0 12px 22px; border-radius: 15px; padding: 3%; height: 100%;">
                         <h1 class="display-5 fw-bold lh-1 mb-3">What We Do:</h1>
+                        <div class="col-12">
+                            <img src="./images/us.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+                        </div>
                         <ul>
                             <li>Allow users to join with no strings attached; we don't want your information, just your willingness to join!</li>
                             <li>Default to the bare minimum of data submission; we offer cool features and such, but only with your consent and knowledge you are fully aware of the terms!</li>
@@ -233,13 +239,16 @@
                 <div class="col-lg-6">
                     <div style=" background-color: #FFF6FE; box-shadow: rgba(0,0,0,.04) 0 1px 0,rgba(0,0,0,.05) 0 2px 7px,rgba(0,0,0,.06) 0 12px 22px; border-radius: 15px; padding: 3%; height: 100%;">
                         <h1 class="display-5 fw-bold lh-1 mb-3">What Other Apps Do:</h1>
+                        <div class="col-12">
+                            <img src="./images/them.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+                        </div>    
                         <ul>
                             <li>Force users to hand over personally identifiable information like name, birth, place of residence, phone number, and much more.</li>
                             <li>Trick users into consenting to unfair data conditions by distracting users or shoving long legal jargon in their faces.</li>
                             <li>Constantly monitor and track users using their app to profile them.</li>
                             <li>Sell all acquired data of users to third parties for profit.</li>
                             <li>Often have their databases breached due to employee negligence and allowing social engineering or other various forms of preventable attacks.</li>
-                        </ul>                   
+                        </ul>               
                      </div>
                 </div>
             </div>
