@@ -55,16 +55,17 @@ While at our company, we aim to do the following:
 
 Our system's functional requirements are isolated to the website frontend and can be partitioned into the following fields:
 
-* Customized daily notes that are visually eloquent.
+* Customized daily notes {-I would say entries, not notes since you mention in the sub-bullet that the user can add notes, symptoms, etc.-} that are visually eloquent.
   * Users add notes, symptoms, moods, and more on a calendar GUI and have easy navigation, organization, and customization of each day of the month.
-  * Notes are partitioned to days of the month for easy organization.
+  * Notes {-(Entries)-} are partitioned to days of the month for easy organization.
 * Option to receive additional feature of menstrual cycle prediction.
   * Based on user logging on our service, anyone willing to opt in will receive an accurate prediction of their next period using our community driven learning algorithm that uses consented user data to learn to predict menstrual activity and ovulation based on symptoms.
 * Comprehensive settings page users can practice full data autonomy on. Full access to:
   * Opt-in or opt-out options for additional features.
-  * View full data set company has collected on user.
-  * Rectify wrong information.
+  * View full data set company has collected on user. {-We don't actually have this though... do we?-}
+  * Rectify wrong information. {-This actually occurs on a entry-by-entry basis. You have to actually go to the entry you wish to update in order to update it-}
   * Request erasure of all personal data of user.
+  * {-Delete your entire account and all data associated with it.-}
 
 ## Privacy Requirements
 
@@ -81,7 +82,7 @@ Our system's privacy requirements can be partitioned into various fields:
     * Third party cookies create irreparable distrust in the consumer/producer symbiotic relationship, essentially leaving the door open for the producer to freely share data about the consumer, as well as actively tracking users on the platform 
     * First-party cookies are acknowledged to be safer, but our system wishes to be completely devoid of any privacy intrusion. Although all information in first-party cookies would be bound to our domain, we want to ensure and give confidence to our users that absolutely no tracking is done when interacting with our website.
 * Employee Internet Privacy Education
-  * Many companies with the most bolstered security architecture are done in by breachers by either employees being social engineered or operating company connected devices carelessly and allowing for example, session hijacking attacks. With how good security technology has gotten, our company wants to have every potential vulnerability taken care of, down to the human aspect of things.
+  * Many companies with the most bolstered security architecture are done in by breachers by either employees being social engineered or operating company connected devices carelessly and allowing for example, session hijacking attacks. {-This is probs nitpicky, but do you have a source for this? No worries if you don't I just feel it could be a cool thing to quote.-} With how good security technology has gotten, our company wants to have every potential vulnerability taken care of, down to the human aspect of things.
   * Education can consist of basic internet protocols and safety measures, looks into many prolific companies breached by employees carelessly downloading files from emails or exposing too much data on public platforms, and general good practices when they are working on company devices and off company devices.
 
 ## Privacy by Design
@@ -91,7 +92,7 @@ Following the 7 Foundational Principles published by privacybydesign [^4].
 1. **Proactive** not Reactive; **Preventative** not Remedial
    * Our system's privacy requirements reinforce the idea of preventative features over remedial features. We make sure our data flow is fully encrypted at all sources, endpoints, and everything in between. We also take initiative in requiring employees to become educated in privacy and security, making sure we prevent any creative attacks on us, such as social engineering or session hijacking attacks. Our anonymous account system allows all our collected data to have no possible trail or link back to any personal information on our users; all because we never store any personally identifiable information.
 2. Privacy as the **Default** Setting
-   * Upon registration, we want users to be fully aware they are defaulted out of any and all data collection, processing, and disclosure deemed additional to the major functions of our app. We would offer opportunities to opt-in to many various options of information handling, from more accurate (and frequent) collection, more intensive processing, and disclosure to third-parties. We intend for each action to be an option for users, to allow them to be informed of what exactly happens with each box they are checking to opt-in to. We feel this is imperative in gaining user trust and respect, while making sure we do the same for them.
+   * Upon registration, we want users to be fully aware they are defaulted out of any and all data collection, processing, and disclosure deemed additional to the major functions of our app. We would offer opportunities to opt-in to many various options of information handling, from more accurate (and frequent) collection, more intensive processing, and disclosure to third-parties. We intend for each action to be an option for users, to allow them to be informed of what exactly happens with each box they are checking to opt-in to. We feel this is imperative in gaining user trust and respect, while making sure we do the same for them. {-You mean in the future right? Cuz right now we just have 1 consent box and that's it.-}
 3. Privacy **Embedded** into Design
    * Our architecture uses end-to-end encryption for the very specific reason of covering all bases. We recognize the traditional method of server-side encryption has certain vulnerabilities, such as unintended users being able to access supposedly secure data.
 4. Full Functionality — **Positive-Sum**, not Zero-Sum
