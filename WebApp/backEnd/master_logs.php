@@ -6,7 +6,7 @@
     include_once('class.database.php');
     include_once('crypt.php');
     
-    function addMasterLog($user_id, $mood, $symptoms, $note, $year, $month, $date) {
+    function addMasterLog($user_id, $mood, $symptoms, $year, $month, $date) {
         global $private_key;
         global $index_key;
        
@@ -17,15 +17,14 @@
         $user_crypt = getIDBlindIndex($user_id, $index_key);
         $mood_crypt = encrypt($mood, $private_key);
         $symptoms_crypt = encrypt($symptoms, $private_key);
-        $note_crypt = encrypt($note, $private_key);
         $year_crypt = encrypt($year, $private_key);
         $month_crypt = encrypt($month, $private_key);
         $date_crypt = encrypt($date, $private_key);
         
-        $conn->query("insert into master_logs (id_crypt, mood, symptoms, note, year, month, day) values ('$user_crypt', '$mood_crypt', '$symptoms_crypt', '$note_crypt', '$year_crypt', '$month_crypt', '$date_crypt');");
+        $conn->query("insert into master_logs (id_crypt, mood, symptoms, year, month, day) values ('$user_crypt', '$mood_crypt', '$symptoms_crypt', '$year_crypt', '$month_crypt', '$date_crypt');");
     }
 
-    function updateMasterLog($user_id, $mood, $symptoms, $note, $year, $month, $date) {
+    function updateMasterLog($user_id, $mood, $symptoms, $year, $month, $date) {
         global $private_key;
         global $index_key;
         
@@ -47,11 +46,9 @@
                 // Update the log
                 $mood_crypt = encrypt($mood, $private_key);
                 $symptoms_crypt = encrypt($symptoms, $private_key);
-                $note_crypt = encrypt($note, $private_key);
 
                 $conn->query("UPDATE master_logs SET mood = '$mood_crypt',
-                                                     symptoms = '$symptoms_crypt',
-                                                     note = '$note_crypt'
+                                                     symptoms = '$symptoms_crypt'
                                            WHERE id_crypt = '$id_crypt'
                                                  and year = '$old_year_crypt' 
                                                  and month = '$old_month_crypt'
@@ -123,43 +120,41 @@
             $day = decrypt($log['day'], $private_key);
             $mood = decrypt($log['mood'], $private_key);
             $symptoms = decrypt($log['symptoms'], $private_key);
-            $note = decrypt($log['note'], $private_key);
-            echo '{' . $year . ', ' . $month . ', ' . $day . ', ' . $mood . ', ' . $symptoms . ', ' . $note . '}';
+            echo '{' . $year . ', ' . $month . ', ' . $day . ', ' . $mood . ', ' . $symptoms . '}';
             echo '<br>';
         }
     }
 
     function testAddMasterLog() {
-        addMasterLog(6022449822463324, "Happy", "Hunger Acne Bloated", "I won TWO contests today.", 2023, 3, 20);
-        addMasterLog(6022449822463324, "Sad", "Gas Diarrhea", "Hi hello what is up loser.", 2023, 3, 14);
-        addMasterLog(6022449822463324, "Angry", "Bloated Spotting", "Bim Bap.", 2023, 3, 27);
-        addMasterLog(6022449822463324, "Anxious", "Ovu Pain Gas Irritability", "he maximum value depends on the system", 2023, 3, 6);                         
-        addMasterLog(6022449822463324, "Anxious", "Ovu Pain Gas Irritability", "he maximum value depends on the system", 2023, 3, 6);                        
-        addMasterLog(423524213214, "Anxious", "Ovu Pain Gas Irritability", "another user", 2023, 3, 6);                        
+        addMasterLog(6022449822463324, "Happy", "Hunger Acne Bloated", 2023, 3, 20);
+        addMasterLog(6022449822463324, "Sad", "Gas Diarrhea", 2023, 3, 14);
+        addMasterLog(6022449822463324, "Angry", "Bloated Spotting", 2023, 3, 27);
+        addMasterLog(6022449822463324, "Anxious", "Ovu Pain Gas Irritability", 2023, 3, 6);                         
+        addMasterLog(6022449822463324, "Anxious", "Ovu Pain Gas Irritability", 2023, 3, 6);                        
+        addMasterLog(423524213214, "Anxious", "Ovu Pain Gas Irritability", 2023, 3, 6);                        
         printMasterLogs(6022449822463324);
         printMasterLogs(423524213214);
     }
 
     function testUpdateMasterLog() {
-        addMasterLog(6022449822463324, "Happy", "Hunger Acne Bloated", "I won TWO contests today.", 2023, 3, 20);
-        addMasterLog(6022449822463324, "Sad", "Gas Diarrhea", "Hi hello what is up loser.", 2023, 3, 14);
-        addMasterLog(6022449822463324, "Angry", "Bloated Spotting", "Bim Bap.", 2023, 3, 27);
-        addMasterLog(6022449822463324, "Anxious", "Ovu Pain Gas Irritability", "he maximum value depends on the system", 2023, 3, 6);                          
+        addMasterLog(6022449822463324, "Happy", "Hunger Acne Bloated", 2023, 3, 20);
+        addMasterLog(6022449822463324, "Sad", "Gas Diarrhea", 2023, 3, 14);
+        addMasterLog(6022449822463324, "Angry", "Bloated Spotting", 2023, 3, 27);
+        addMasterLog(6022449822463324, "Anxious", "Ovu Pain Gas Irritability", 2023, 3, 6);                          
         printMasterLogs(6022449822463324);
-        updateMasterLog(6022449822463324, "Sad", "Hunger Spotting", "Nevermind", 2023, 3, 27);
+        updateMasterLog(6022449822463324, "Sad", "Hunger Spotting",  2023, 3, 27);
         printMasterLogs(6022449822463324);
     }
 
     function testDeleteMasterLog() {
-        addMasterLog(6022449822463324, "Happy", "Hunger Acne Bloated", "I won TWO contests today.", 2023, 3, 20);
-        addMasterLog(6022449822463324, "Sad", "Gas Diarrhea", "Hi hello what is up loser.", 2023, 3, 14);
-        addMasterLog(6022449822463324, "Angry", "Bloated Spotting", "Bim Bap.", 2023, 3, 27);
-        addMasterLog(6022449822463324, "Anxious", "Ovu Pain Gas Irritability", "he maximum value depends on the system", 2023, 3, 6);                          
+        addMasterLog(6022449822463324, "Happy", "Hunger Acne Bloated",2023, 3, 20);
+        addMasterLog(6022449822463324, "Sad", "Gas Diarrhea",2023, 3, 14);
+        addMasterLog(6022449822463324, "Angry", "Bloated Spotting",  2023, 3, 27);
+        addMasterLog(6022449822463324, "Anxious", "Ovu Pain Gas Irritability", 2023, 3, 6);                          
         printMasterLogs(6022449822463324);
         deleteMasterLog(6022449822463324, 2023, 3, 27);
         printMasterLogs(6022449822463324);
 
     }
-
 ?>
 
