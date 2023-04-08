@@ -18,7 +18,7 @@ Our goal of putting privacy as the top priority galvanized us to uphold specific
 2. Responsible data retention
 3. Responsible data storage and security
 
-These privacy etiquettes synergize to incorporate the best privacy by design policies together with strong architectural design decisions to provide users with the best protection of their privacy, all the while maintaining minimal tradeoffs to the overall user experience. 
+These privacy etiquettes synergize to incorporate the best privacy by design policies together with strong architectural design decisions to provide users with the best protection of their privacy, all the while maintaining minimal tradeoffs to the overall user experience.
 
 It is our mission at OvaView to provide everyone an anonymous, secure, and effective way to stay on top of your menstrual health.
 
@@ -40,22 +40,17 @@ The current landscape of period trackers is not an anomaly; the trend of every s
 
 OvaView has precise, unique design decisions that are worth highlighting and describing their benefits to user privacy.
 
-* Our website uses no cookies.
-  * Despite some inconveniences to users, such as no persistent logins or, debatably, personalized ads on other platforms based on user activity on our domain, we maintain a strict policy to never track our users on our site. We aim for full confidence from our users that we never look at what they do on our system, and the existence of any cookies would prove as a threat to that promise.
-* Our anonymous account system.
-  * User accounts are identified by a generated 16-digit string, nothing else.
-  * By refusing to accept any sort of username/password combination from users, and appointing 16-digit UIDs, we take advantage of the increased anonymity in our system. This would require more responsibility from the user to remember an artificial identifier, but it stamps out the possibility of users being identified from any of the data they submit to our database.
-* No data submission required to join.
-  * OvaView recognizes our app has no need for standard account registration details. Name, date of birth, email, phone number, etc. are useless to us and our mission, which is why none of them are needed, nor wanted, when a person wishes to sign up. This absolute anonymity has its downfalls to convenience: account recovery is impossible as we have no way to verify account ownership other than knowledge of UID, and data manipulation of lost accounts is impossible, as the "owner" of the data disappears once knowledge of the UID is gone. Fortunately, our system ensures identification with data left in our system to be impossible, as no personally identifiable information is tied to any of our data points.
-* Encryption via unique UID.
-  * Our default database (for users not opted in for additional features) have their data encrypted uniquely: by their 16-digit UIDs. This implementation makes sure that nobody, not even us at OvaView, other than the data owner can decrypt their sensitive information.
-* Your data is never our data.
-  * OvaView maintains unconditional compliance to any requests regarding data associated with an authorized user.
-  * This means users are guaranteed full mutability of their information in our database: viewership, rectification, and deletion are all functions available to the user at all times.
-  * We never touch your data without your permission. Users can be assured that with our encryption system, we cannot even read your data.
-  * And when you do give us permission, you still own it. We will never do any processing we do not disclose, and will still unconditionally follow any user requests for modification of data used in our additional opt-in feature.
-* Focus on employee safe practice.
-  * Many studies show the vast majority of data breaches are the symptom of awful employee practice; human error, social engineering of workers, phishing attacks, etc., the human aspect of systems proves to be the most volatile aspect. To cover that vulnerability, as well as keep users at peace of mind, we have strict policies of rigorously training our employees in safe privacy practices.
+**Our website uses no cookies.** Despite some inconveniences to users, such as no persistent logins or, debatably, personalized ads on other platforms based on user activity on our domain, we maintain a strict policy to never track our users on our site. We aim for full confidence from our users that we never look at what they do on our system, and the existence of any cookies would prove as a threat to that promise.
+
+**Our anonymous account system.** User accounts are identified by a generated 16-digit string, nothing else. By refusing to accept any sort of username/password combination from users, and appointing 16-digit UIDs, we take advantage of the increased anonymity in our system. This would require more responsibility from the user to remember an artificial identifier, but it stamps out the possibility of users being identified from any of the data they submit to our database.
+
+**No data submission required to join.** OvaView recognizes our app has no need for standard account registration details. Name, date of birth, email, phone number, etc. are useless to us and our mission, which is why none of them are needed, nor wanted, when a person wishes to sign up. This absolute anonymity has its downfalls to convenience: account recovery is impossible as we have no way to verify account ownership other than knowledge of UID, and data manipulation of lost accounts is impossible, as the "owner" of the data disappears once knowledge of the UID is gone. Fortunately, our system ensures identification with data left in our system to be impossible, as no personally identifiable information is tied to any of our data points.
+
+**Encryption via unique UID.** Our default database (for users not opted in for additional features) have their data encrypted uniquely: by their 16-digit UIDs. This implementation makes sure that nobody, not even us at OvaView, other than the data owner can decrypt their sensitive information.
+
+**Your data is never our data.** OvaView maintains unconditional compliance to any requests regarding data associated with an authorized user. This means users are guaranteed full mutability of their information in our database: viewership, rectification, and deletion are all functions available to the user at all times. We never touch your data without your permission. Users can be assured that with our encryption system, we cannot even read your data. And when you do give us permission, you still own it. We will never do any processing we do not disclose, and will still unconditionally follow any user requests for modification of data used in our additional opt-in feature.
+
+**Focus on employee safe practice.** Many studies show the vast majority of data breaches are the symptom of awful employee practice; human error, social engineering of workers, phishing attacks, etc., the human aspect of systems proves to be the most volatile aspect. To cover that vulnerability, as well as keep users at peace of mind, we have strict policies of rigorously training our employees in safe privacy practices.
 
 ### How We Manage Our Privacy Requirements
 
