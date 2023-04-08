@@ -1,7 +1,7 @@
 <?php
     // generate values using ./generate_key.php script
-    $private_key = "q2wLpF1k+UMNmSzrbGUuAQ=="; // INSERT PRIVATE KEY HERE
-    $index_key = "u885cb0FBSy1Im/LooSMMg=="; // INSERT BLIND INDEX KEY HERE
+    $private_key = ""; // INSERT PRIVATE KEY HERE
+    $index_key = ""; // INSERT BLIND INDEX KEY HERE
     
     include_once('class.database.php');
     include_once('crypt.php');
