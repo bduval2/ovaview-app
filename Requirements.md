@@ -82,7 +82,7 @@ Our system's privacy requirements can be partitioned into various fields:
   * This privacy requirement helps prevent many types of attacks and vulnerabilities
     * Man-in-the-middle attacks are more common from users who often use unsecured connections, which encryption will ensure any malicious party intercepting data between our servers and the user will be useless to them.
     * Database breaches either by social engineering, session extraction attacks, or any new breaching technology developed will be futile as intruders would access fully encrypted datasets without a key.
-    * {+End-to-end encryption for company-accessible data (master keys)+}
+  * E2EE is used for research data users have consented to giving for period prediction analysis. This means that the server holds the secure encryption master key, rather than the user. Data stored in such ways are isolated from our UID dependent E2EE protocol, so as to ensure opted-out users are not affected. 
 * Cookies
   * We strictly exclude cookies, both first and third party cookies.
     * Third party cookies create irreparable distrust in the consumer/producer symbiotic relationship, essentially leaving the door open for the producer to freely share data about the consumer, as well as actively tracking users on the platform
@@ -109,8 +109,6 @@ Following the 7 Foundational Principles published by privacybydesign [^6].
    * Every step before and during a user's commitment to our product will be clear on what exactly our system intends to do with user data, how exactly we obtain said data, the details of how we process, and most importantly, what the user rights are and what users are consenting to with each request for permission. We aim to make every statement from us clear, concise, and unambiguous to show users everything that goes on behind the scenes in the user's data flow in and out of our system.
 7. **Respect** for User Privacy — Keep it **User-Centric**
    * A different approach from our competitors is our doctrine regarding user autonomy. We want our users to feel in control of what the app sees and does with the information they present to our product. We want them to pick and choose what kinds of data they value to keep secret, how much they want secret, and who the players are when dealing with their data. We understand it can get overwhelming to configure a balance between extra features and privacy, so we plan to default users to the bare minimum data exposure while maintaining a standard of app functionality we can be proud of, so timid users will not miss out on the key aspects of our product while the privacy-minded can have full autonomy while using our app.
-
-{+For data erasure, should we mention somewhere there is no way for us to erase data if you lose your account?+}
 
 ## Links
 
