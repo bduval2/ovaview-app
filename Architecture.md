@@ -106,8 +106,8 @@ After the new account is legitimized {-created?-} on our app, the user is displa
 
 Prior to login, the front-end does not have a dashboard page, as there is no user stored in the browser session. Users are required to input their ~~only their~~ UID to log in to our system. Our back-end verifies every user log in attempt with the following protocol:
 
-* Retrieve hashed existing UID table from server
-* Verify existence of inputted UID via hashing for efficiency
+* Retrieve hashed existing UID table from server [+ remove 'existing' to make it more readable +]
+* Verify existence of inputted UID via hashing for efficiency [+ Verify hashed UIDs against the input UID (hashing=creating the UID hash, we're not hashing anything here but rather comparing a hash and a UID) +]
 * If existence of inputted UID is verified, return success
 * If inputted UID does not exist, return failure
 
@@ -148,7 +148,7 @@ Entry modification/rectification is achievable only on calendar-dates that hold 
   * encrypt all the data in the form object,
   * create a JSON object holding all the encrypted data,
   * and pull the calendar-date from this data object.
-* Using the calendar-date and UID (submitted by user on login), we can filter through our table of entries to find our target entry of modification, using a 1-way hashing method. [+ , by verifying the hashed UIDs against the UID and comparing decrypted dates with input date +] Once found, we will transfer the data to the server using an SQL update method.
+* Using the calendar-date and UID (submitted by user on login), we can filter through our table of entries to find our target entry of modification, using a 1-way hashing method. [+ , by verifying the hashed UIDs against the UID and comparing decrypted dates with input date +] Once found, we will transfer the data to the server using an SQL[+SQLite+] update method.
 
 Entry deletion, like modification, is only available when an entry on a date exists.
 
@@ -160,18 +160,18 @@ Entry deletion, like modification, is only available when an entry on a date exi
 One of the features the user can initiate in the settings tab is data deletion: the user can choose to request
 
 * deletion of all date entries linked to their account
-* deletion of account
+* deletion of account [+ which include deletion of all entries +]
 
 Request for the deletion of all date entries will, following ~~the~~ its name, delete all logs tied to the UID of the user ~~logged in~~ {-making this request-} all at once. This will be done by the following protocol:
 
 * Retrieve table of all entries from the server
-* Scan entries by hashing UID stored in session
+* Scan entries by hashing UID stored in session [+ by verifying UID against hashed UIDs +]
 * Call SQL delete row on every hit
 
 Request for the deletion of user account will first do the same protocol as above for deletion of all entries. Then, it will do the following:
 
 * Retrieve table of all users from the server
-* Scan users by hashing UID stored in session
+* Scan users by hashing UID stored in session [+ by verifying UID against hashed UIDs +]
 * Call SQL delete row on user row
 
 After this is done, the user will be logged out of their (now non-existent account) and be sent to the landing page of our website.
@@ -180,19 +180,21 @@ After this is done, the user will be logged out of their (now non-existent accou
 
 The other feature available to users in the settings tab is to opt-in or opt-out (depending on the current user state) of our advanced period prediction algorithm. Switching consent (because this option is essentially a Boolean flip) will enact the following protocol:
 
-* Retrieve current consent status in the form of a Boolean from table of users in database using UID (submitted by user on login)
+[+ Should we have a figure that shows what attributes our tables have? I feel like it would make everything more easy to understand +]
+
+* Retrieve current consent status in the form of a Boolean from table of users in database using UID (submitted by user on login) 
 * Flip status of consent and encrypt parameter
 * Update consent parameter of corresponding user to flipped status using SQL update command
 
-Due to complications with encryption, the database does not hold Booleans, but rather integers corresponding to on or off statuses.
+Due to complications with encryption, the database does not hold Booleans, but rather integers corresponding to on or off statuses. [+ No that's not right: instead we can say something like 'The users table stores hashed consents.' If you decrypt consent in the database it could be an integer, a boolean, or smtg else.. Anyways that's an implementation detail, and integers are often used to represent booleans anyways +]
 
-Once a user is opted in to this feature, the user will receive more accurate predictions on their calendar UI. {-More accurate, or just predictions in general?-}
+Once a user is opted in to this feature, the user will receive more accurate predictions on their calendar UI. {-More accurate, or just predictions in general?-} 
 
 On the server, a few more changes occur. Firstly, there is a separate table in our database that is functionally the same as the initial table holding all user entries; this table differs in the way rows are encrypted, where now the server also holds the encryption key. This allows us to read the rows of this table for further R&D and processing for the stated reasons the user has consented to. 
 
-Opted in users have their entry submission/deletion/modification mirrored to this table; instead of just one protocol for data manipulation by the user, there are two running in parallel. The new protocol looks similar to the initial one with one major change, where the data is encrypted using a shared key, that the user and server have possession of.
+Opted in users have their entry submission/deletion/modification mirrored to this table; instead of just one protocol for data manipulation by the user, there are two running in parallel. The new protocol looks similar to the initial one with one major change, where the data is encrypted using a shared key, that the user and server have possession of. [+ The user should not hold the key, but I don't know how to make it happen. Maybe it could be stored in the database server. But the users really should not have access to that master key because then they could decrypt the whole table! Also, in the database, we create blind indexes for each user so that we can group entries by users, without us knowing what the associated UID is. To increase user's entries fetching in this master database, we store these blind indexes directly in the table without further encrypting them. +]
 
-{-Add the fact that we no longer store notes, just dates, moods and symptoms. We then use this data, which is associated to an anoynymous user, and we run it through an algorithm which combines this data with data from other anonymous users to do some black magic to figure out a formula for finding the next period for anyone who consents.-}
+{-Add the fact that we no longer store notes, just dates, moods and symptoms. We then use this data, which is associated to an anoynymous user, and we run it through an algorithm which combines this data with data from other anonymous users to do some black magic to figure out a formula for finding the next period for anyone who consents.-} [+ We should also include what data is mirrored - everything or just the new data added after consent was given? +]
 
 Opted out users are exempt from this extra data flow.
 
