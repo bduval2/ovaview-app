@@ -178,7 +178,11 @@ On the server, a few more changes occur. Firstly, there is a separate table in o
 * Rows are encrypted with a master key the server holds.
   * This allows us to read the rows of this table for further R&D and processing for the stated reasons the user has consented to.
 
-Opted-in users have all entry actions mirrored to the research table. Data manipulation the user commits (entry addition/deletion/modification) happens to both tables: the secure storage table encrypted using UIDs and the research table encrypted using a master key the company holds. This behavior is not retroactive, ~~meaning previously inserted entries the user does not modify will not be independently transferred to the research table.~~ {-meaning entries are only copied over to the master database when users are actively consenting to data collection. The moment a user revokes consent, any changes made to any of their entries will not be reflected in the master database. The only exception to this is when users delete entries. If they submitted an entry while consenting, then turned off their consent, and deleted that entry, that entry will also be deleted on the master database as well. This is also the case for the "delete all entries" operation.-}
+Opted-in users have all entry actions mirrored to the research table. Data manipulation the user commits (entry addition/deletion/modification) happens to both tables: the secure storage table encrypted using UIDs and the research table encrypted using a master key the company holds. This behavior is not retroactive, meaning that data user has submitted before consenting will not be subject to extra processing. 
+
+Moreover, consented users who rescind consent will automatically have all data that has been previously collected while the user gave consent wiped.
+
+Consented users will also have the option of clearing all data collected for analysis purposes without having to rescind consent.
 
 Opted out users are exempt from this extra data flow.
 
