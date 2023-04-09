@@ -78,11 +78,11 @@ Our system's privacy requirements can be partitioned into various fields:
 
 * Encryption
   * We use **end-to-end encryption technology** to keep all our data safe, secure, and away from unwanted eyes. We pivot away from traditional server-side "in transit" encryption to make sure our data flow is secure from all points of contact; end-to-end ensures that <span dir="">encrypted data is only viewable by those with decryption keys</span>, in other words, it <span dir="">prevents both third parties and unintended app users from reading or modifying data when only the intended readers should have this access and ability, blocking out as many sources of information leakage or breach.</span>
-  * Our encryption method revolves around using each user's 16-digit identifier as the key, rather than a centralized master key. This means that one user being compromised does not risk any other accounts in the database. Moreover, this implementation implies that if an attacker breaches our database, there is no existence of a master key to access our userbase's information. Our encryption protocol also ensures that even us, the data holders, are unable to encrypt {-or decrypt-} any of the information; only the users are able to provide a method to read their data.
+  * Our encryption method revolves around using each user's 16-digit identifier as the key, rather than a centralized master key. This means that one user being compromised does not risk any other accounts in the database. Moreover, this implementation implies that if an attacker breaches our database, there is no existence of a master key to access our userbase's information. Our encryption protocol also ensures that even us, the data holders, are unable to encrypt any of the information; only the users are able to provide a method to read their data.
   * This privacy requirement helps prevent many types of attacks and vulnerabilities
     * Man-in-the-middle attacks are more common from users who often use unsecured connections, which encryption will ensure any malicious party intercepting data between our servers and the user will be useless to them.
     * Database breaches either by social engineering, session extraction attacks, or any new breaching technology developed will be futile as intruders would access fully encrypted datasets without a key.
-  * E2EE is used for research data users have consented to giving for period prediction analysis. This means that the server holds the secure encryption master key, rather than the user. Data stored in such ways are isolated from our UID dependent E2EE protocol, so as to ensure opted-out users are not affected. {-Further, the data that is collected from opted-in users only consists of dates, moods and symptoms. Notes are not collected as they could contain sensitive PII and they also have no use to our algorithm.-}
+  * E2EE is used for research data users have consented to giving for period prediction analysis. This means that the server holds the secure encryption master key, rather than the user. Data stored in such ways are isolated from our UID dependent E2EE protocol, so as to ensure opted-out users are not affected.
 * Cookies
   * We strictly exclude cookies, both first and third party cookies.
     * Third party cookies create irreparable distrust in the consumer/producer symbiotic relationship, essentially leaving the door open for the producer to freely share data about the consumer, as well as actively tracking users on the platform
@@ -98,7 +98,7 @@ Following the 7 Foundational Principles published by privacybydesign [^6].
 1. **Proactive** not Reactive; **Preventative** not Remedial
    * Our system's privacy requirements reinforce the idea of preventative features over remedial features. We make sure our data flow is fully encrypted at all sources, endpoints, and everything in between. We also take initiative in requiring employees to become educated in privacy and security, making sure we prevent any creative attacks on us, such as social engineering or session hijacking attacks. Our anonymous account system allows all our collected data to have no possible trail or link back to any personal information on our users; all because we never store any personally identifiable information.
 2. Privacy as the **Default** Setting
-   * Upon registration, we want users to be fully aware they are defaulted out of any and all data collection, processing, and disclosure deemed additional to the major functions of our app. We offer opportunities to opt-in to our additional feature of period prediction, but never encourage or persuade users against their will. We intend for users to be able to fully comprehend what we are offering, the consequences it has on their data, and if they are comfortable with said consequences. We feel this is imperative in gaining user trust and respect, while making sure we do the same for them.
+   * Upon registration, we want users to be fully aware they are defaulted out of any and all data collection, processing, and disclosure deemed additional to the major functions of our app. We would offer opportunities to opt-in to our additional feature of period prediction, but never encourage or persuade users against their will. We intend for users to be able to fully comprehend what we are offering, the consequences it has on their data, and if they are comfortable with said consequences. We feel this is imperative in gaining user trust and respect, while making sure we do the same for them.
 3. Privacy **Embedded** into Design
    * Our architecture uses end-to-end encryption for the very specific reason of covering all bases. We recognize the traditional method of server-side encryption has certain vulnerabilities, such as unintended users being able to access supposedly secure data.
 4. Full Functionality — **Positive-Sum**, not Zero-Sum
@@ -110,16 +110,16 @@ Following the 7 Foundational Principles published by privacybydesign [^6].
 7. **Respect** for User Privacy — Keep it **User-Centric**
    * A different approach from our competitors is our doctrine regarding user autonomy. We want our users to feel in control of what the app sees and does with the information they present to our product. We want them to pick and choose what kinds of data they value to keep secret, how much they want secret, and who the players are when dealing with their data. We understand it can get overwhelming to configure a balance between extra features and privacy, so we plan to default users to the bare minimum data exposure while maintaining a standard of app functionality we can be proud of, so timid users will not miss out on the key aspects of our product while the privacy-minded can have full autonomy while using our app.
 
-## Links
+## References
 
-[^1]: https://www.ftc.gov/news-events/news/press-releases/2021/06/ftc-finalizes-order-flo-health-fertility-tracking-app-shared-sensitive-health-data-facebook-google
+[^1]: [Federal Trade Commission, FTC Finalizes Order with Flo Health, a Fertility-Tracking App that Shared Sensitive Health Data with Facebook, Google, and Others. 2021.](https://www.ftc.gov/news-events/news/press-releases/2021/06/ftc-finalizes-order-flo-health-fertility-tracking-app-shared-sensitive-health-data-facebook-google)
 
-[^2]: https://techcrunch.com/2021/01/13/flo-gets-ftc-slap-for-sharing-user-data-when-it-promised-privacy
+[^2]: [TechCrunch, Flo gets FTC slap for sharing user data when it promised privacy. 2021.](https://techcrunch.com/2021/01/13/flo-gets-ftc-slap-for-sharing-user-data-when-it-promised-privacy)
 
-[^3]: https://www.reuters.com/legal/litigation/fertility-app-maker-flo-health-faces-consolidated-privacy-lawsuit-2021-09-03/
+[^3]: [Reuters, Fertility app maker Flo Health faces consolidated privacy lawsuit. 2021.](https://www.reuters.com/legal/litigation/fertility-app-maker-flo-health-faces-consolidated-privacy-lawsuit-2021-09-03/)
 
-[^4]: https://foundation.mozilla.org/en/privacynotincluded/clue-period-cycle-tracker/
+[^4]: [Privacy Not Included, Clue Period & Cycle Tracker. 2022.](https://foundation.mozilla.org/en/privacynotincluded/clue-period-cycle-tracker/)
 
-[^5]: Evans, M., Maglaras, L. A., He, Y., and Janicke, H. (2016) Human behaviour as an aspect of cybersecurity assurance. Security Comm. Networks, 9: 4667– 4679. doi: 10.1002/sec.1657.
+[^5]: [Evans, M., Maglaras, L. A., He, Y., and Janicke, H., Human behaviour as an aspect of cybersecurity assurance. 2016.](https://onlinelibrary.wiley.com/doi/epdf/10.1002/sec.1657)
 
-[^6]: https://www.ipc.on.ca/wp-content/uploads/Resources/7foundationalprinciples.pdf
+[^6]: [Cavoukian, Ann, Privacy by Design: The 7 Foundational Principles. 2009.](https://www.ipc.on.ca/wp-content/uploads/Resources/7foundationalprinciples.pdf)
