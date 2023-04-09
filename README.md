@@ -1,13 +1,4 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a name="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
-
 
 <!-- PROJECT LOGO -->
 <br />
@@ -20,6 +11,26 @@
 </div>
 
 
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    <li><a href="#contributors">Contributors</a></li>
+  </ol>
+</details>
+
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
@@ -29,12 +40,53 @@
   </a>
 </div>
 
-Probably just copypaste the directive of our system from either the website pitch or one of the documents. . .
+OvaView aims to simplify the monitoring and organizing of menstrual cycles for users. The period tracker provides a platform to eloquently track, organize, and predict your menstrual health all while keeping your privacy safe and secure. Our system aims to provide a stress-free and elegant way to stay on top of your body's health while ensuring no one else but you gets to track this intimate data.
 
-<!-- USAGE EXAMPLES -->
-## Usage
+Our app, in essence, is a simple calendar-style tracker. We offer a mutable calendar UI to each user that can be filled day by day with notes and symptoms related to their menstrual health. There exists one additional feature that users are given opportunities to opt-in to, where the personalized notes they submit are anonymously processed by our proprietary prediction algorithm to receive forecast of future menstrual activity.
 
-Fill this part with links to relevant pages for martin to view . . .
+### Built With
+
+* SQLite
+* Bootstrap
+* CSS
+* PHP
+
+
+## Documentation
+
+* [Report](https://gitlab.cs.mcgill.ca/bduval2/comp555-project-group-9/-/blob/main/Report.md)
+* [Requirements Document](https://gitlab.cs.mcgill.ca/bduval2/comp555-project-group-9/-/blob/main/Requirements.md)
+* [Achitectural Description](https://gitlab.cs.mcgill.ca/bduval2/comp555-project-group-9/-/blob/main/Architecture.md)
+* [Report](https://gitlab.cs.mcgill.ca/bduval2/comp555-project-group-9/-/blob/main/Report.md)
+* [Contributions](https://gitlab.cs.mcgill.ca/bduval2/comp555-project-group-9/-/tree/main/contributions)
+
+## Getting Started
+
+This website is currently hosted on the Mcgill CS mimi server (link [here](https://www.cs.mcgill.ca/~bduval2/WebApp/frontEnd/index.php)). However, it is not ready for distribution. For increased privacy and security you are encouraged to host the project locally by following the steps below. 
+
+### Prerequisites
+
+* php = 8.0.28 or 8.1.2 (not tested for other versions)
+* SQLite = 3.37.2 or 3.37.3 (not tested for other versions)
+
+### Installation
+
+To host the project locally:
+
+1. Clone the repo:
+
+ ```sh
+   git clone https://gitlab.cs.mcgill.ca/bduval2/comp555-project-group-9.
+```
+
+2. Generate a private key and index key by running [WebApp/backEnd/generate_key.php](https://gitlab.cs.mcgill.ca/bduval2/comp555-project-group-9/-/blob/main/WebApp/backEnd/generate_key.php). Add these keys where indicated in [WebApp/backEnd/master_logs.php](https://gitlab.cs.mcgill.ca/bduval2/comp555-project-group-9/-/blob/main/WebApp/backEnd/master_logs.php).
+
+3. Run [WebApp/frontEnd/index.php](https://gitlab.cs.mcgill.ca/bduval2/comp555-project-group-9/-/blob/main/WebApp/frontEnd/index.php) on your local host. 
+
+
+## Contributors
+
+@apopia @bduval2 @spark186
 
 
 
