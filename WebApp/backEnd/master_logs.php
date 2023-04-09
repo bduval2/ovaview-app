@@ -1,7 +1,7 @@
 <?php
     // generate values using ./generate_key.php script
-    $private_key = "q2wLpF1k+UMNmSzrbGUuAQ=="; // INSERT PRIVATE KEY HERE
-    $index_key = "u885cb0FBSy1Im/LooSMMg=="; // INSERT BLIND INDEX KEY HERE
+    $private_key = ""; // INSERT PRIVATE KEY HERE
+    $index_key = ""; // INSERT BLIND INDEX KEY HERE
     
     include_once('class.database.php');
     include_once('crypt.php');
@@ -81,7 +81,7 @@
                                                             and year = '$old_year_crypt' 
                                                             and month = '$old_month_crypt'
                                                             and day =  '$old_date_crypt';");
-                 break;
+                break;
             }
         }
     }
@@ -97,6 +97,44 @@
         // Find corresponding user logs for that day
         $id_crypt = getIDBlindIndex($user_id, $index_key);
         $conn->query("DELETE FROM master_logs WHERE id_crypt = '$id_crypt';");   
+    }
+
+    function predict($user_id) {
+        global $private_key;
+        global $index_key;
+        
+        // Get connection to database
+        $db = Database::getInstance();
+        $conn = $db->getConnection(); 
+
+        // Get all user logs
+        $id_crypt = getIDBlindIndex($user_id, $index_key);
+        $user_logs = $conn->query("SELECT * FROM master_logs WHERE id_crypt = '$id_crypt';");
+ 
+        // Find most recent entry
+        $most_recent_date = strtotime("0-0-0");
+
+        // Get all user entry dates and compare them to the most recent one
+        foreach ($user_logs as $log) {
+            $year = decrypt($log['year'], $private_key);
+            $month = decrypt($log['month'], $private_key);
+            $day = decrypt($log['day'], $private_key);
+            $curr_date = strtotime("$year-$month-$day");
+            
+            if ( $curr_date > $most_recent_date ) {  
+                $most_recent_date = $curr_date;
+            }
+        }
+
+        $most_recent_year = date("Y", $most_recent_date) ." "; 
+        $most_recent_month = date("m", $most_recent_date)." "; 
+        $most_recent_day = date("d", $most_recent_date); 
+        
+        return array(
+            "year" => $most_recent_year,
+            "month" => $most_recent_month,
+            "day" => $most_recent_day
+        );
     }
 
     // Test
@@ -124,6 +162,19 @@
             echo '<br>';
         }
     }
+
+    function testPredict() {
+        addMasterLog(6022449822463324, "Happy", "Hunger Acne Bloated", 2023, 5, 15);
+        addMasterLog(6022449822463324, "Sad", "Gas Diarrhea", 2023, 5, 14);
+        addMasterLog(6022449822463324, "Angry", "Bloated Spotting", 2023, 2, 27);
+        addMasterLog(6022449822463324, "Anxious", "Ovu Pain Gas Irritability", 2023, 6, 8);                         
+        addMasterLog(6022449822463324, "Anxious", "Ovu Pain Gas Irritability", 2023, 4, 7);                        
+        addMasterLog(423524213214, "Anxious", "Ovu Pain Gas Irritability", 2021, 3, 6);                        
+        $date = predict(6022449822463324);
+        echo $date["year"] . " " . $date["month"] . " " . $date["day"];
+    }
+
+    testPredict();
 
     function testAddMasterLog() {
         addMasterLog(6022449822463324, "Happy", "Hunger Acne Bloated", 2023, 3, 20);
