@@ -1,5 +1,10 @@
 # Main Contributions
 
+### Workflow
+
+* Helped organize gitlab by creating milestones, cleaning up issue boards
+* Suggested we include issue numbers in commit messages (i.e. git commit -m "#xx - Added ...")
+
 ### Initial Research
 
 * Research on importance of period tracking 
@@ -15,7 +20,6 @@
 * UML sequence diagrams
 * Account numbers math
 * I helped on the documentation in general to provide ideas, share my technical knowledge on planned and implemented technologies, and general language coherence review.
-
 
 ### General statement
 
