@@ -8,7 +8,7 @@
 
 OvaView aims to simplify the monitoring and organizing of menstrual cycles for users. The period tracker provides a platform to eloquently track, organize, and predict your menstrual health all while keeping your privacy safe and secure. Our system aims to provide a stress-free and elegant way to stay on top of your body's health while ensuring no one else but you gets to track this intimate data.
 
-Our app, in essence, is a simple calendar-style tracker. We offer a mutable calendar UI to each user that can be filled day by day with notes and symptoms related to their menstrual health. There exists one additional feature that users are given opportunities to opt-in to, where the personalized notes they submit are processed by our proprietary prediction algorithm to receive forecast of future menstrual activity.
+Our app, in essence, is a simple calendar-style tracker. We offer a mutable calendar UI to each user that can be filled day by day with notes and symptoms related to their menstrual health. There exists one additional feature that users are given opportunities to opt-in to, where the personalized notes they submit are [+ anonymously +] processed by our proprietary prediction algorithm to receive forecast of future menstrual activity.
 
 ### Our Mission
 
@@ -44,9 +44,9 @@ OvaView has precise, unique design decisions that are worth highlighting and des
 
 **Our anonymous account system.** User accounts are identified by a generated 16-digit string, nothing else. By refusing to accept any sort of username/password combination from users, and appointing 16-digit UIDs, we take advantage of the increased anonymity in our system. This would require more responsibility from the user to remember an artificial identifier, but it stamps out the possibility of users being identified from any of the data they submit to our database.
 
-**No data submission required to join.** OvaView recognizes our app has no need for standard account registration details. Name, date of birth, email, phone number, etc. are useless to us and our mission, which is why none of them are needed, nor wanted, when a person wishes to sign up. This absolute anonymity has its downfalls to convenience: account recovery is impossible as we have no way to verify account ownership other than knowledge of UID, and data manipulation of lost accounts is impossible, as the "owner" of the data disappears once knowledge of the UID is gone. Fortunately, our system ensures identification with data left in our system to be impossible, as no personally identifiable information is tied to any of our data points.
+**No data submission required to join.** OvaView recognizes our app has no need for standard account registration details. Name, date of birth, email, phone number, etc. are useless to us and our mission, which is why none of them are needed, nor wanted, when a person wishes to sign up. This absolute anonymity has its downfalls to convenience: account recovery is impossible as we have no way to verify account ownership other than knowledge of UID, and data manipulation of lost accounts is impossible, as the "owner" of the data disappears once knowledge of the UID is gone. Fortunately, our system ensures identification with data left in our system to be impossible, as no personally identifiable information is tied to any of our data points. [+ Some metrics, such as user age or weight, could contribute to our algorithm in making it more accurate, should we include that in our discussion? +]
 
-**Encryption via unique UID.** Our default database (for users not opted in for additional features) have their data encrypted uniquely: by their 16-digit UIDs. This implementation makes sure that nobody, not even us at OvaView, other than the data owner can decrypt their sensitive information.
+**Encryption via unique UID.** Our default database (for users not opted in for additional features) have their data encrypted uniquely: by their 16-digit UIDs. This implementation makes sure that [+ by default +] nobody, not even us at OvaView, other than the data owner can decrypt their sensitive information. [+ I wrote 'by default' because we have access to some of that data when consent is given +]
 
 **Your data is never our data.** OvaView maintains unconditional compliance to any requests regarding data associated with an authorized user. This means users are guaranteed full mutability of their information in our database: viewership, rectification, and deletion are all functions available to the user at all times. We never touch your data without your permission. Users can be assured that with our encryption system, we cannot even read your data. And when you do give us permission, you still own it. We will never do any processing we do not disclose, and will still unconditionally follow any user requests for modification of data used in our additional opt-in feature.
 
@@ -60,13 +60,13 @@ Our company achieves the privacy requirements we set for ourselves of
 2. Responsible data retention
 3. Responsible data storage
 
-by implementing precise design decisions to our infrastructure and architecture.
+by implementing precise design decisions to our infrastructure and architecture. [+ the list above is part of a sentence, should it be capitalized? You're the expert though +]
 
 We want users to see the entire lifetime of their information in full detail; it is imperative to keep no secrets to achieve mutual respect between the user and service, which is why we take full responsibility in ensuring the user are fully aware of _what_ we require from the users, _how long_ we keep the data we collect, and _inform_ users that they are in full control over their data at all steps of our product process. Furthermore, we felt found it crucial to default users to the minimum data collection to run our service. We wanted to provide accurate menstrual cycle prediction to users, but realized this would require more data processing. We want users to have this option, but have full awareness of what this is all about before opting in.
 
-Data retention can be scary for users: the modern-day fear being that anything posted online is etched into history forever. To combat this, we make sure to ensure users that they are in control of their data, that at any time they can request the viewing, rectification, and deletion of all data linked to their account, with no fickle statements from us trying to dissuade users. Our company chooses to maintain data until the user sees otherwise; because our account system requires no identifiable information whatsoever, none of the data in our servers are actually linked to the user in real life. Due to this, aggregation of data in our servers to identify our users is impossible, meaning the data users forget about and leave in our data to hibernate will never be a risk to their privacy; moreover, this means that users can always come back to our service after a break.
+Data retention can be scary for users: the modern-day fear being that anything posted online is etched into history forever. To combat this, we make sure to ensure users that they are in control of their data, that at any time they can request the viewing, rectification, and deletion of all data linked to their account, with no fickle statements from us trying to dissuade users. Our company chooses to maintain data until the user sees otherwise; because our account system requires no identifiable information whatsoever, none of the data in our servers are actually linked to the user in real life. Due to this, aggregation of data in our servers to identify our users is impossible, meaning the data users forget about and leave in our data to hibernate will never be a risk to their privacy; moreover, this means that users can always come back to our service after a break. [+ Should we include that we cannot delete data when an account is lost? +]
 
-Consumers also want to make sure that any data they do submit is not going to be easily accessed by malicious actors or randomly spilled by the data handler out in public. Our architecture uses modern E2EE with a slight modification to keep our databases safe; the slight alteration being instead of both the sender and receiver of encrypted data holding the key, our system has it so only the user holds the key: their 16-digit UID. This means that all user data is completely unreadable to everyone except the owner; even us, the company maintaining the infrastructure would be unable to decrypt user data. However, the situation is different for users who opt-in to our period prediction feature; their data is additionally stored in a secure database structure that uses traditional E2EE.
+Consumers also want to make sure that any data they do submit is not going to be easily accessed by malicious actors or randomly spilled by the data handler out in public. Our architecture uses modern [+ end-to-end encryption (E2EE) +]E2EE with a slight modification to keep our databases safe; the slight alteration being instead of both the sender and receiver of encrypted data holding the key, our system has it so only the user holds the key: their 16-digit UID. This means that all user data is completely unreadable to everyone except the owner; even us, the company maintaining the infrastructure would be unable to decrypt user data. However, the situation is different for users who opt-in to our period prediction feature; their data is additionally stored in a secure database structure that uses traditional E2EE.
 
 ### Our Period Prediction Feature
 
@@ -74,9 +74,9 @@ The more secure the system, the less features you will get. It is a fact that no
 
 Our company provides this feature, but behind a consent notice. We cannot defy logic and provide users accurate predictions without processing their data; and we want users to be aware of this before they opt-in. We make sure to default all users who register to be opted-out, as no one likes being snuck into extra procedures they were not fully aware of. Users are only able to opt-in after fully reading all the consequences of opting in. Implications of their data such as:
 
-* OvaView will extract from subsequent entries after opting in of the mood, period symptoms, and dates to store in a separate database.
+* OvaView will extract from subsequent entries after opting in of the mood, period symptoms, and dates to store in a separate database.[+ Specify the data is anonymized +]
 * OvaView has the ability to decrypt and read said information extracted.
-* OvaView will use the information to analyze your health status to provide accurate results.
+* OvaView will use the information to analyze your health status to provide accurate results. [+ The research table is there to train our algorithm, not really to process individual user's data.. that can be done in the default table whenever the user is logged in since we have their UID +]
 
 To remain transparent and consistent, we maintain the expected level of authority users have over their data. Users are able to opt-out at any time they choose, and request deletion of all data that are being stored and processed for our period prediction feature. We continue to ensure that we do not own any of the data they consent to give for prediction purposes, nor will we use them for reasons other than such.
 
@@ -86,7 +86,7 @@ The separate database that is encrypted with a master key OvaView possesses rath
 
 ### Purpose of a Period Tracker
 
-To meaningfully discuss and criticize our app, we must first define what its purpose is - what is the goal of a period tracker? I believe it is reasonable to conclude a period tracker's main purpose is to provide a platform for the user to manage their menstrual health; similar to journal or timetable apps, a period tracker is a more flexible, convenient, and eloquent alternative to using a pen and paper.
+To meaningfully discuss and criticize our app, we must first define what its purpose is - what is the goal of a period tracker? ~~I~~[+We+] believe it is reasonable to conclude a period tracker's main purpose is to provide a platform for the user to manage their menstrual health; similar to journal or timetable apps, a period tracker is a more flexible, convenient, and eloquent alternative to using a pen and paper.
 
 With technology advancing so much, the opportunities for complex and cutting-edge features emerge; advanced analytics, optimal sexual activity suggestions, personalized diets to avoid symptoms, and the list goes on. But there comes a catch to all this convenience: personalized analysis requires in-depth information on the individual.
 
@@ -94,7 +94,7 @@ So what does a period tracker need in terms of user information? Well, if we ign
 
 But what if we include modern technological features? Well, considering a lot of process behind these features are proprietary to each app, no one can really say other than the companies themselves; all we can do as users is trust what the companies ask for is what they need. Yet, we see a trend of every period tracker on the market demanding more and more intimate information from their users, all under the guise of enhancing the app's quality.
 
-Most alarmingly, every period tracker requires the user to submit their identity, so that all the information they hand over can be linked to a name, face, address, or phone number. Rationally speaking, most features intent on aiding a user's menstrual health should require these, yet it has become the norm over the years for period trackers to instate these terms to users.
+Most alarmingly, every period tracker requires the user to submit their identity, so that all the information they hand over can be linked to a name, face, address, or phone number. Rationally speaking, most features intent on aiding a user's menstrual health should require these, yet it has become the norm over the years for period trackers to instate these terms to users. [+ thought: some user information could help training our algorithm such as age and other health related metrics +]
 
 ### OvaView: Fit for Purpose?
 
@@ -104,7 +104,7 @@ Understanding the reality that less features means more security, we started off
 
 However, we recognize the advantages of state-of-the-art technology. Behind all the nefarious and fishy tactics period trackers on the market deploy to seize information from users, it can be agreed upon that a lot of the features such as advanced analytics, lifestyle guidance, and similar are convenient and frankly, fascinating. OvaView, after discussing the favors and tradeoffs of different modern technologies, launched an optional feature for period prediction **\[cite\]**. 
 
-Our dedication to protecting user privacy limits the depth of this feature, as users can receive predictions with no additional data submission. This compromise lowers the capabilities of our app in comparison to our competitors, but the lack of additional data collection is invaluable to our standards; our feature is still able to perform its function, albeit in a simple fashion, while the user is required no extra actions.
+Our dedication to protecting user privacy limits the depth of this feature, as users can receive predictions with no additional data submission. This compromise lowers the capabilities of our app in comparison to our competitors, but the lack of additional data collection is invaluable to our standards; our feature is still able to perform its function, albeit in a simple fashion, while the user is required no extra actions. [+ I see you answered my thought above regarding health data +]
 
 ### Why Us Over Them?
 
@@ -115,6 +115,9 @@ While we can toot our own horns about how we collect the bare minimum and nothin
 OvaView is and, for the foreseeable future, will not be a replacement of our competitors; we simply cannot provide what our competitors offer if we do not demand for the same PII price tag from our users. Rather, we intend to be an alternative; there will always be those who are willing to give up their identity for convenience, and those are not who OvaView is intended for. Our app is aimed towards those who want to manage their menstrual health, but are unwilling to expose themselves and their intimate details for suits and businesses to dissect.
 
 ### Intricacies as Developers
+
+* Tradeoffs for database management: implementing literal search for increased fetching speed means your data can be grouped
+* Not having access to the encryption key = cannot delete account data when a user deletes an account and cannot have erasure policy after X months. How large could the database get? Would we need to transfer user data every couple years to another table? There would be a 6-months time window where data is transferred from a table to another, whenever a user is active we can transfer the data, after that period the old table is erased?
 
 ## References
 
