@@ -78,11 +78,43 @@ Our company provides this feature, but behind a consent notice. We cannot defy l
 * OvaView has the ability to decrypt and read said information extracted.
 * OvaView will use the information to analyze your health status to provide accurate results.
 
-To remain transparent and consistent, we maintain the level of authority users have over their data. Users are able to opt-out at any time they choose, and request deletion of all data that are being stored and processed for our period prediction feature. We continue to ensure that we do not own any of the data they consent to give for prediction purposes, nor will we use them for reasons other than such.
+To remain transparent and consistent, we maintain the expected level of authority users have over their data. Users are able to opt-out at any time they choose, and request deletion of all data that are being stored and processed for our period prediction feature. We continue to ensure that we do not own any of the data they consent to give for prediction purposes, nor will we use them for reasons other than such.
 
 The separate database that is encrypted with a master key OvaView possesses rather than each user's UID is still secure; we use E2EE to communicate with that research database, ensuring protection from in-transit vulnerabilities. Moreover, the data contained in this database pertains no extra information which means, like the rest, provide no identifiable link to any of the people the information originated from.
 
 ## Discussion
+
+### Purpose of a Period Tracker
+
+To meaningfully discuss and criticize our app, we must first define what its purpose is - what is the goal of a period tracker? I believe it is reasonable to conclude a period tracker's main purpose is to provide a platform for the user to manage their menstrual health; similar to journal or timetable apps, a period tracker is a more flexible, convenient, and eloquent alternative to using a pen and paper.
+
+With technology advancing so much, the opportunities for complex and cutting-edge features emerge; advanced analytics, optimal sexual activity suggestions, personalized diets to avoid symptoms, and the list goes on. But there comes a catch to all this convenience: personalized analysis requires in-depth information on the individual.
+
+So what does a period tracker need in terms of user information? Well, if we ignore the state-of-the-art features that have risen to popularity in the past decade, and stick to the fundamentals: nothing. A period tracker is there to simply store a user's notes and details and mark when they perceive their menstrual cycle; it requires no personal information other than what the user wants the app to track for them.
+
+But what if we include modern technological features? Well, considering a lot of process behind these features are proprietary to each app, no one can really say other than the companies themselves; all we can do as users is trust what the companies ask for is what they need. Yet, we see a trend of every period tracker on the market demanding more and more intimate information from their users, all under the guise of enhancing the app's quality.
+
+Most alarmingly, every period tracker requires the user to submit their identity, so that all the information they hand over can be linked to a name, face, address, or phone number. Rationally speaking, most features intent on aiding a user's menstrual health should require these, yet it has become the norm over the years for period trackers to instate these terms to users.
+
+### OvaView: Fit for Purpose?
+
+For a system to be fit for purpose it requires suitable design, implementation, control, and maintenance. Namely, an app must not have glaring faults in its main function and have the ability to maintain full functionality without trouble.
+
+Understanding the reality that less features means more security, we started off with the bare minimums: to act as an eloquent and easy to use calendar. Most needs for better menstrual health are satisfied by this intention: offer organization and illustrate menstrual patterns. The concept is simple; and our app makes sure the requirements are the same. Requiring no additional information from the user other than what they want us to store provides quality functionalities for the mission stated previously, with assurance of longevity and durability.
+
+However, we recognize the advantages of state-of-the-art technology. Behind all the nefarious and fishy tactics period trackers on the market deploy to seize information from users, it can be agreed upon that a lot of the features such as advanced analytics, lifestyle guidance, and similar are convenient and frankly, fascinating. OvaView, after discussing the favors and tradeoffs of different modern technologies, launched an optional feature for period prediction **\[cite\]**. 
+
+Our dedication to protecting user privacy limits the depth of this feature, as users can receive predictions with no additional data submission. This compromise lowers the capabilities of our app in comparison to our competitors, but the lack of additional data collection is invaluable to our standards; our feature is still able to perform its function, albeit in a simple fashion, while the user is required no extra actions.
+
+### Why Us Over Them?
+
+As we learned already **\[cite\]**, the landscape for period trackers is grim if you want privacy; the sheer amount of information the biggest apps in the market demand from their users, on top of the requirement that said data must be attached to an identity, is a tragedy for modern society.
+
+While we can toot our own horns about how we collect the bare minimum and nothing we store is linked to _you_, it would be disingenuous to claim we offer everything our competitors do. The fact of the matter is, many of us have become accustomed to great technological feats; intricate and complex processes have become the norm, to the point where we all expect _everything to be done for us_. That is the main tradeoff of our system: OvaView lacks fancy analysis and personalized suggestions for users that our competitors can offer, and that can be a deal-breaker for many. The balancing act of privacy versus additional functionality is impossible to avoid, where favoring one side will inhibit the other; and we chose to tip the scales toward enhancing privacy.
+
+OvaView is and, for the foreseeable future, not be a replacement of our competitors; we simply cannot provide what our competitors offer if we do not demand for the same PII price tag from our users. Rather, we intend to be an alternative; there will always be those who are willing to give up their identity for convenience, and those are not who OvaView is intended for. Our app is aimed towards those who want to manage their menstrual health, but are unwilling to expose themselves and their intimate details for suits and businesses to dissect.
+
+### Intricacies as Developers
 
 ## References
 
