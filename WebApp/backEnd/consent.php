@@ -1,8 +1,14 @@
 <?php
+    // Helper methods to get and update consent
 
     include_once('class.database.php');
     include_once('crypt.php');
 
+    /*
+	* Get consent of a given user.
+    *
+    * @param string $user_id User for which we want to get consent
+	*/
     function getConsent($user_id) {
         // Get connection to database
         $db = Database::getInstance();
@@ -17,9 +23,15 @@
         }
 
         // Returns a boolean, true if user consents, false otherwise
-        return filter_var($consent, FILTER_VALIDATE_BOOLEAN);;
+        return filter_var($consent, FILTER_VALIDATE_BOOLEAN);
     }
 
+    /*
+	* Update consent for a given user.
+    *
+    * @param string $user_id User for which we want to update consent
+    * @param boolean $consent Updated consent
+	*/
     function updateConsent($user_id, $consent) {
         // Get connection to database
         $db = Database::getInstance();
@@ -30,6 +42,7 @@
         foreach ($users as $user) {
             $id_crypt = $user['id_crypt'];
             if (password_verify($user_id, $id_crypt)) {
+                // Update consent
                 $consent_crypt = encrypt($consent, $user_id);
                 $conn->query("UPDATE users SET consent = '$consent_crypt'
                                           WHERE id_crypt = '$id_crypt';");
@@ -38,8 +51,7 @@
         }
     }
 
-    // TESTS BELOW
-
+    // TESTS
     function unit_testGetConsent($expectedOutput, $consent) {
         include_once('entry.php');
         $user = register($consent);

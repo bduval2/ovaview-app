@@ -3,7 +3,7 @@
 
     $user_id = $_SESSION['userid'];
 
-    include_once('../backEnd/settings.php');
+    include_once('../backEnd/consent.php');
 
 
     // PHP code for deleting all logs

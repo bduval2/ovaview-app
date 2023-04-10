@@ -1,11 +1,30 @@
 <?php
-    // generate values using ./generate_key.php script
+    // Master logs table manipulation helpers
+
+    /*
+    * !!!
+	* We recognize this method of storing keys is not safe and users are able to 
+    * access them and therefore could read the master_logs table.
+    * !!!
+	*/
+    // Generate values using ./generate_key.php script
     $private_key = ""; // INSERT PRIVATE KEY HERE
     $index_key = ""; // INSERT BLIND INDEX KEY HERE
     
     include_once('class.database.php');
     include_once('crypt.php');
     
+    /*
+	* Add a log the the master logs table.
+    *
+    * @param string $user_id User for which we want to add an entry
+    * @param string $mood
+    * @param string $symptoms
+    * @param string $note
+    * @param string $year
+    * @param string $month
+    * @param string $date
+	*/
     function addMasterLog($user_id, $mood, $symptoms, $year, $month, $date) {
         global $private_key;
         global $index_key;
@@ -14,6 +33,7 @@
         $db = Database::getInstance();
         $conn = $db->getConnection(); 
 
+        // Encrypt and hash all data.
         $user_crypt = getIDBlindIndex($user_id, $index_key);
         $mood_crypt = encrypt($mood, $private_key);
         $symptoms_crypt = encrypt($symptoms, $private_key);
@@ -21,9 +41,21 @@
         $month_crypt = encrypt($month, $private_key);
         $date_crypt = encrypt($date, $private_key);
         
+        // Add entry to the database
         $conn->query("insert into master_logs (id_crypt, mood, symptoms, year, month, day) values ('$user_crypt', '$mood_crypt', '$symptoms_crypt', '$year_crypt', '$month_crypt', '$date_crypt');");
     }
 
+    /*
+	* Updates a log in the master logs table.
+    *
+    * @param string $user_id User for which we want to update an entry
+    * @param string $mood Updated mood
+    * @param string $symptoms Updated symtoms
+    * @param string $note Updates note
+    * @param string $year 
+    * @param string $month
+    * @param string $date
+	*/
     function updateMasterLog($user_id, $mood, $symptoms, $year, $month, $date) {
         global $private_key;
         global $index_key;
@@ -33,7 +65,7 @@
         $conn = $db->getConnection(); 
 
         // Find corresponding user logs for that day
-        $id_crypt = getIDBlindIndex($user_id, $index_key);
+        $idcrypt = getIDBlindIndex($user_id, $index_key);
         $user_logs = $conn->query("SELECT * FROM master_logs WHERE id_crypt = '$id_crypt';");
         foreach ($user_logs as $log) {
             $old_year_crypt = $log['year'];
@@ -58,6 +90,14 @@
         }
     }
 
+    /*
+	* Deletes a log from the master logs table for a given date.
+    *
+    * @param string $user_id User for which we want to delete an entry
+    * @param string $year 
+    * @param string $month
+    * @param string $date
+	*/
     function deleteMasterLog($user_id, $year, $month, $date) {
         global $private_key;
         global $index_key;
@@ -86,6 +126,11 @@
         }
     }
 
+    /*
+	* Deletes all logs from the logs table for a given user.
+    *
+    * @param string $user_id User for which we want to delete all logs
+	*/
     function deleteAllMasterLogs($user_id) {
         global $private_key;
         global $index_key;
@@ -94,11 +139,17 @@
         $db = Database::getInstance();
         $conn = $db->getConnection(); 
 
-        // Find corresponding user logs for that day
+        // Delete logs 
         $id_crypt = getIDBlindIndex($user_id, $index_key);
         $conn->query("DELETE FROM master_logs WHERE id_crypt = '$id_crypt';");   
     }
 
+    /*
+	* Predicts the next start date of menstruations using the master logs table
+    *
+    * @param string $user_id User for which we want to make a prediction
+    * @return array Array containing the year, month and day of the predicted next period.
+	*/
     function predict($user_id) {
         global $private_key;
         global $index_key;
@@ -137,7 +188,7 @@
         );
     }
 
-    // Test
+     // TESTS
     function printMasterLogs($user_id) {
         global $private_key;
         global $index_key;
@@ -163,6 +214,7 @@
         }
     }
 
+    
     function testPredict() {
         addMasterLog(6022449822463324, "Happy", "Hunger Acne Bloated", 2023, 5, 15);
         addMasterLog(6022449822463324, "Sad", "Gas Diarrhea", 2023, 5, 14);
@@ -173,8 +225,6 @@
         $date = predict(6022449822463324);
         echo $date["year"] . " " . $date["month"] . " " . $date["day"];
     }
-
-    testPredict();
 
     function testAddMasterLog() {
         addMasterLog(6022449822463324, "Happy", "Hunger Acne Bloated", 2023, 3, 20);

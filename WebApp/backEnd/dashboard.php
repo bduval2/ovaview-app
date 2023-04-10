@@ -1,8 +1,15 @@
 <?php
+    // Logs table manipulation helpers
 
     include_once('class.database.php');
     include_once('crypt.php');
 
+    /*
+	* Pull all data entries for the user associated to the user_id account.
+    *
+    * @param string $user_id This is the 16-digit user identifier
+    * @return string JSON representation of all user entries.
+	*/
     function getDashboard($user_id) {
         $events = array();
         
@@ -28,11 +35,23 @@
         return json_encode($events);
     }
 
+    /*
+	* Add a log the the logs table.
+    *
+    * @param string $user_id User for which we want to add an entry
+    * @param string $mood
+    * @param string $symptoms
+    * @param string $note
+    * @param string $year
+    * @param string $month
+    * @param string $date
+	*/
     function addLog($user_id, $mood, $symptoms, $note, $year, $month, $date) {
         // Get connection to database
         $db = Database::getInstance();
         $conn = $db->getConnection(); 
         
+        // Encrypt and hash all data
         $user_crypt = password_hash($user_id, PASSWORD_DEFAULT);
         $mood_crypt = encrypt($mood, $user_id);
         $symptoms_crypt = encrypt($symptoms, $user_id);
@@ -41,9 +60,21 @@
         $month_crypt = encrypt($month, $user_id);
         $date_crypt = encrypt($date, $user_id);
         
+        // Add entry to the database
         $conn->query("insert into logs (id_crypt, mood, symptoms, note, year, month, day) values ('$user_crypt', '$mood_crypt', '$symptoms_crypt', '$note_crypt', '$year_crypt', '$month_crypt', '$date_crypt');");
     }
 
+    /*
+	* Updates a log in the logs table.
+    *
+    * @param string $user_id User for which we want to update an entry
+    * @param string $mood Updated mood
+    * @param string $symptoms Updated symtoms
+    * @param string $note Updates note
+    * @param string $year 
+    * @param string $month
+    * @param string $date
+	*/
     function updateLog($user_id, $mood, $symptoms, $note, $year, $month, $date) {
         // Get connection to database
         $db = Database::getInstance();
@@ -66,7 +97,7 @@
                     $mood_crypt = encrypt($mood, $user_id);
                     $symptoms_crypt = encrypt($symptoms, $user_id);
                     $note_crypt = encrypt($note, $user_id);
-
+                    
                     $conn->query("UPDATE logs SET mood = '$mood_crypt',
                                                   symptoms = '$symptoms_crypt',
                                                   note = '$note_crypt'
@@ -81,6 +112,14 @@
         }
     }
 
+    /*
+	* Deletes a log from the logs table for a given date.
+    *
+    * @param string $user_id User for which we want to delete an entry
+    * @param string $year 
+    * @param string $month
+    * @param string $date
+	*/
     function deleteLog($user_id, $year, $month, $date) {
           // Get connection to database
         $db = Database::getInstance();
@@ -111,7 +150,7 @@
         }  
     }
 
-    // Test
+     // TESTS
     function testGetDashboard()
     {
         addLog(6022449822463324, "Happy", "Hunger Acne Bloated", "I won TWO contests today.", 2023, 3, 20);

@@ -6,7 +6,7 @@
 
     include_once('../backEnd/dashboard.php');
     include_once('../backEnd/master_logs.php');
-    include_once('../backEnd/settings.php');
+    include_once('../backEnd/consent.php');
 
     $dashboardEntries = '{"events": ' . getDashboard($user_id) . '}';
 
@@ -33,14 +33,11 @@
             // Adding the new entry to the database
             addLog($user_id, $mood, $symptoms, $note, $year, $month, $date);
 
-
+            echo "<script>console.log('About to go in getConsent' );</script>";
             if(getConsent($user_id)){
-
                 // Copying over to the master database if the user consented.
                 addMasterLog($user_id, $mood, $symptoms, $year, $month, $date);
             }
-
-            
         }
 
         unset($data);
@@ -88,7 +85,7 @@
 
             // Updating the user's entry in the databse
             updateLog($user_id, $mood, $symptoms, $note, $year, $month, $date);
-
+            echo "<script>console.log('About to get consent' );</script>";
             if(getConsent($user_id)){
 
                 // Also updating the entry in the master database if the user consented.
