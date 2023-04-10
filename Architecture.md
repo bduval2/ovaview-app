@@ -107,8 +107,8 @@ In Add Log, it is important to note that the front-end does not pass notes to th
 ### Delete Log Diagram
 ![delete log diagram](UMLDiagrams/COMP555-ArchitectureDiagrams_-_DeleteLog.jpeg)
 
-### Remove Consent Diagram
-![remove consent diagram](UMLDiagrams/COMP555-ArchitectureDiagrams_-_Remove_consent.jpeg)
+### Update Consent Diagram
+![remove consent diagram](UMLDiagrams/COMP555-ArchitectureDiagrams_-_Update_consent.jpeg)
 
 ### Erase Account Diagram
 ![erase account diagram](UMLDiagrams/COMP555-ArchitectureDiagrams_-_Erase_Account.jpeg)
