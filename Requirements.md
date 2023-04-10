@@ -60,7 +60,7 @@ Our system's functional requirements are isolated to the website frontend and ca
   * Users add notes, symptoms, moods, and more on a calendar GUI and have easy navigation, organization, and customization of each day of the month.
   * Entries are partitioned to days of the month for easy organization.
 * Option to receive additional feature of menstrual cycle prediction.
-  * Based on user logging on our service, anyone willing to opt in will receive an accurate prediction of their next period using our community driven learning algorithm that uses consented user data to learn to predict menstrual activity and ovulation based on symptoms.
+  * Based on user logging on our service, anyone willing to opt in will receive an accurate prediction of their next period using our community driven learning algorithm that uses consented user data to learn to predict menstrual activity based on symptoms.
 * Comprehensive settings page users can practice full data autonomy on. Full access to:
   * Change opt-in/opt-out status for additional features.
   * Request erasure of all personal data linked user.
