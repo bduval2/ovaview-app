@@ -1,4 +1,4 @@
-# Architecture Template
+# Architecture
 
 ## 1. Stakeholders
 
@@ -80,6 +80,14 @@ This architectural decision provides the following benefits to user privacy prot
 * Clear transparency for the user of the service/consumer dichotomy.
 
 ## 3. Architectural Models
+
+The following sequence diagrams capture the key aspects and processes of our system. They illustrate the main data flows between the user, the front-end, the back-end and the database.
+
+A number of key functionalities are not explicitly represented. This is because the key aspects of those functionalities are already shown as part of other sequence diagrams. For example, the functionality of erasing all logs comes down to the front-end calling `deleteAllLogs` to the back-end, as illustrated in the Erase Account diagram. In addition, the process of loading the dashboard is similar to Update Log as the back-end needs to go through the logs table, verify the UID against the hashed UIDs, then return the decrypted values of all matching entries to the front-end. The front-end then displays the populated calender.
+
+To simplify the diagrams, the Add Log, Update Log and Delete Log diagrams use simplified user inputs. Instead of passing a mood, entry and note as input, we pass a unique variable entry. In addition, instead of passing the year,  month and day of the entry as input, we pass a date. 
+
+In Add Log, it is important to note that the front-end does not pass notes to the back-end in addMasterLog. Similarly, in Update Log, the front-end does not pass notes to the back-end in updateMasterLog.
 
 ### Sign Up Diagram
 ![sign up diagram](UMLDiagrams/COMP555-ArchitectureDiagrams_-_SignUp.jpeg)
