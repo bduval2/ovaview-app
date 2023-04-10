@@ -1,4 +1,4 @@
-# Architecture
+# Architecture Document
 
 ## 1. Stakeholders
 
