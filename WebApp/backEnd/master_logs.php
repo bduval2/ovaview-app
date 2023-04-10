@@ -65,7 +65,7 @@
         $conn = $db->getConnection(); 
 
         // Find corresponding user logs for that day
-        $idcrypt = getIDBlindIndex($user_id, $index_key);
+        $id_crypt = getIDBlindIndex($user_id, $index_key);
         $user_logs = $conn->query("SELECT * FROM master_logs WHERE id_crypt = '$id_crypt';");
         foreach ($user_logs as $log) {
             $old_year_crypt = $log['year'];
@@ -177,6 +177,8 @@
             }
         }
 
+        $most_recent_date = strtotime("+1 month", $most_recent_date);
+
         $most_recent_year = date("Y", $most_recent_date) ." "; 
         $most_recent_month = date("m", $most_recent_date)." "; 
         $most_recent_day = date("d", $most_recent_date); 
@@ -217,9 +219,9 @@
     
     function testPredict() {
         addMasterLog(6022449822463324, "Happy", "Hunger Acne Bloated", 2023, 5, 15);
-        addMasterLog(6022449822463324, "Sad", "Gas Diarrhea", 2023, 5, 14);
+        addMasterLog(6022449822463324, "Sad", "Gas Diarrhea", 2023, 8, 14);
         addMasterLog(6022449822463324, "Angry", "Bloated Spotting", 2023, 2, 27);
-        addMasterLog(6022449822463324, "Anxious", "Ovu Pain Gas Irritability", 2023, 6, 8);                         
+        addMasterLog(6022449822463324, "Anxious", "Ovu Pain Gas Irritability", 2023, 6, 16);                         
         addMasterLog(6022449822463324, "Anxious", "Ovu Pain Gas Irritability", 2023, 4, 7);                        
         addMasterLog(423524213214, "Anxious", "Ovu Pain Gas Irritability", 2021, 3, 6);                        
         $date = predict(6022449822463324);
