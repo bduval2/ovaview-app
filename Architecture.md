@@ -81,7 +81,29 @@ This architectural decision provides the following benefits to user privacy prot
 
 ## 3. Architectural Models
 
-UML BABY
+### Sign Up Diagram
+![sign up diagram](UMLDiagrams/COMP555-ArchitectureDiagrams_-_SignUp.jpeg)
+
+### Log In Diagram
+![log in diagram](UMLDiagrams/COMP555-ArchitectureDiagrams_-_Login.jpeg)
+
+### Log Out Diagram
+![log out diagram](UMLDiagrams/COMP555-ArchitectureDiagrams_-_LogOut.jpeg)
+
+### Add Log Diagram
+![add log diagram](UMLDiagrams/COMP555-ArchitectureDiagrams_-_AddLog.jpeg)
+
+### Update Log Diagram
+![update log diagram](UMLDiagrams/COMP555-ArchitectureDiagrams_-_UpdateLog.jpeg)
+
+### Delete Log Diagram
+![delete log diagram](UMLDiagrams/COMP555-ArchitectureDiagrams_-_DeleteLog.jpeg)
+
+### Remove Consent Diagram
+![remove consent diagram](UMLDiagrams/COMP555-ArchitectureDiagrams_-_Remove_consent.jpeg)
+
+### Erase Account Diagram
+![erase account diagram](UMLDiagrams/COMP555-ArchitectureDiagrams_-_Erase_Account.jpeg)
 
 ## 4. Important Scenarios
 
