@@ -8,8 +8,8 @@
     * !!!
 	*/
     // Generate values using ./generate_key.php script
-    $private_key = "MNvK+Ut477b9KKAO9PMltQ=="; // INSERT PRIVATE KEY HERE
-    $index_key = "JwJowB37Hsnd/WOJYS+LnA=="; // INSERT BLIND INDEX KEY HERE
+    $private_key = ""; // INSERT PRIVATE KEY HERE
+    $index_key = ""; // INSERT BLIND INDEX KEY HERE
     
     include_once('class.database.php');
     include_once('crypt.php');
@@ -177,15 +177,19 @@
             }
         }
 
+        $most_recent_date = strtotime("+1 month", $most_recent_date);
+
         $most_recent_year = date("Y", $most_recent_date) ." "; 
         $most_recent_month = date("m", $most_recent_date)." "; 
         $most_recent_day = date("d", $most_recent_date); 
         
-        return array(
+        $periodDate = array(
             "year" => $most_recent_year,
             "month" => $most_recent_month,
             "day" => $most_recent_day
         );
+
+        return json_encode($periodDate);
     }
 
      // TESTS
