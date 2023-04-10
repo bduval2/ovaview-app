@@ -85,9 +85,7 @@
 
             // Updating the user's entry in the databse
             updateLog($user_id, $mood, $symptoms, $note, $year, $month, $date);
-            echo "<script>console.log('About to get consent' );</script>";
             if(getConsent($user_id)){
-
                 // Also updating the entry in the master database if the user consented.
                 updateMasterLog($user_id, $mood, $symptoms, $year, $month, $date);
             }
@@ -124,6 +122,13 @@
 
 
 
+    // PHP code for deleting all collected data from consenting users
+    if(isset($_POST['eraseConsentedData'])){
+        deleteAllMasterLogs($user_id);
+    }
+
+
+
     // PHP code for logging out
     if(isset($_POST['logout'])) {
         
@@ -145,6 +150,11 @@
             $updatedConsent = $obj->consent;
             
             updateConsent($user_id, $updatedConsent);
+
+            // If the user opted-out of sending us data (rescinded consent), delete the data we collected
+            if($updatedConsen == false){
+                deleteAllMasterLogs($user_id);
+            }
         }
 
         unset($data);
@@ -238,6 +248,14 @@
                         <div class="form-check form-switch" style="padding-top: 3%">
                             <input class="form-check-input" type="checkbox" role="switch" id="consentSwitch" style="background-color: #F53664; width: 45px !important; height: 21px !important;" onChange="this.form.submit()">
                             <label class="form-check-label" for="consentSwitch" style="padding-left: 3%">I consent</label>
+                        </div>
+                    </form>
+
+                    <!-- Consent-Related Data Management Section -->
+                    <form method="post">
+                        <div style="padding: 3%">
+                            <h5>Delete All The Data We've Collected (with your consent)</h5>
+                            <input type="submit" name="eraseConsentedData" class="btn btn-warning" value="Delete All Collected Data" />
                         </div>
                     </form>
                 </div>
