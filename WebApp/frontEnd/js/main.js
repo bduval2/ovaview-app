@@ -3,11 +3,12 @@
 	"use strict";
     var isEdit = false;
 
-    var nextPredictedPeriod = {
-        "year": 2016,
-        "month": 1,
-        "day": 20
-    };
+    // var nextPredictedPeriod = {
+    //     "year": 2016,
+    //     "month": 1,
+    //     "day": 20
+    // };
+
 
 
 	// Setup the calendar with the current date
@@ -86,13 +87,14 @@ function init_calendar(date) {
             }
 
             // If the user consented to data collection, check for periods
-            if(consent){
+            if(consent && event_data["events"].length >= 1){
 
                 var hasPeriod = check_period(day, month+1, year);
                 // If this date has a period, style it with .period-date
                 if(hasPeriod) {
                     console.log(month+1 + " " + day + " has period prediction!");
                     curr_date.addClass("period-date");
+                    console.log("added period-date class!");
                 }
             }
 
@@ -295,6 +297,8 @@ function new_event_json(mood, symptoms, note, date, day) {
         data: {myData:dataString},
         success: function(response) {
           // handle server response here
+
+         location.reload();
         },
         error: function(error) {
           // handle error here
@@ -545,8 +549,6 @@ function check_events(day, month, year) {
             }
     }
     
-    // Also checks if there is a period
-    predict_period();
     return events;
 }
 
@@ -554,57 +556,9 @@ function check_events(day, month, year) {
 
 // Checks if a specific date is predicted to have a period
 function check_period(day, month, year) {
+
+    console.log("next predicted period date: " + nextPredictedPeriod.year + nextPredictedPeriod.month + nextPredictedPeriod.day );
     return nextPredictedPeriod.day == day && nextPredictedPeriod.month == month && nextPredictedPeriod.year == year;
-}
-
-
-
-// This is where the real period tracking algorithm would go but we are not in a Machine Learning class, and as such our algo is dumb and for demo purposes only.
-function predict_period() {
-    console.log("In predict period");
-
-    var date = new Date();
-    var month = date.getMonth()+1;
-    var year = date.getFullYear();
-
-    // Check if consent is turned on
-    if(consent){
-        console.log("Consent check worked");
-        if (event_data["events"].length > 0){
-            // Get the events for that month.
-        var filtered = event_data["events"].filter(obj => {
-            return (obj.month === month && obj.year == year)
-        })
-
-        // Sort the resulting array and get the first element
-        if(filtered.length > 1){
-            var firstEntry = filtered.sort(({day:a}, {day:b}) => a-b)[0];
-        }
-        else {
-            var firstEntry = filtered[0];
-        }
-        
-        console.log(firstEntry);
-
-        // Get the day on which it occured and predict the next period
-        var day = firstEntry.day
-
-        // Update the next predicted period date
-        var updatedPeriod = {
-            "year": year,
-            "month": month+1,
-            "day": day
-        };
-
-        console.log(updatedPeriod);
-
-        nextPredictedPeriod = updatedPeriod;
-
-        console.log(nextPredictedPeriod);
-        }
-
-        
-    }
 }
 
 

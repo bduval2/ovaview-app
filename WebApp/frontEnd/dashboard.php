@@ -14,6 +14,24 @@
     echo "<script>var event_data = $dashboardEntries;</script>";
 
 
+
+
+    if(getConsent($user_id)){
+        
+        // Getting the predicted period
+        $next_Period = predict($user_id);
+
+        // Used to infuse the dashboard entries json into the javascript code.
+        echo "<script>var nextPredictedPeriod = $next_Period;</script>";
+    }
+
+    
+
+
+
+
+
+
     // PHP code for adding entry to back end
     if(!empty($_POST) && $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['myData'])){ 
 
@@ -37,6 +55,7 @@
             if(getConsent($user_id)){
                 // Copying over to the master database if the user consented.
                 addMasterLog($user_id, $mood, $symptoms, $year, $month, $date);
+                
             }
         }
 
@@ -168,6 +187,7 @@
     else{
         echo "<script>var consent = false;</script>";
     }
+
 ?>
 
 
