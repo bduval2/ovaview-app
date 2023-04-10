@@ -30,6 +30,13 @@
         echo "<script> window.location.href = 'index.php'; </script>";
     }
 
+    
+
+    // PHP code for deleting all collected data from consenting users
+    if(isset($_POST['eraseConsentedData'])){
+        deleteAllMasterLogs($user_id);
+    }
+
 
 
     // PHP code for logging out
@@ -132,6 +139,12 @@
                             <input class="form-check-input" type="checkbox" role="switch" id="consentSwitch" style="background-color: #F53664; width: 45px !important; height: 21px !important;" onChange="this.form.submit()">
                             <label class="form-check-label" for="consentSwitch" style="padding-left: 3%">I consent</label>
                         </div>
+                    </form>
+
+                    <!-- Consent-Related Data Management Section -->
+                    <form method="post">
+                        <h5>Delete All The Data We've Collected (with your consent)</h5>
+                        <input type="submit" name="eraseConsentedData" class="btn btn-warning" value="Delete All Collected Data" />
                     </form>
                 </div>
 

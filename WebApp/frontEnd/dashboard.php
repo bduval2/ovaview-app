@@ -253,10 +253,8 @@
 
                     <!-- Consent-Related Data Management Section -->
                     <form method="post">
-                        <div style="padding: 3%">
-                            <h5>Delete All The Data We've Collected (with your consent)</h5>
-                            <input type="submit" name="eraseConsentedData" class="btn btn-warning" value="Delete All Collected Data" />
-                        </div>
+                        <h5>Delete All The Data We've Collected (with your consent)</h5>
+                        <input type="submit" name="eraseConsentedData" class="btn btn-warning" value="Delete All Collected Data" />
                     </form>
                 </div>
 
