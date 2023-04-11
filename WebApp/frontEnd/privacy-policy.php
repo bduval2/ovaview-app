@@ -121,7 +121,6 @@
                         <div>
                             <h2 id="1-policy-overview">1. Policy Overview</h2>
                             <p>The OvaView app aims to keep as little identifying data as possible on the central server. We value user freedom and self-governance on their data, and hold a strong dogma regarding <strong>choice</strong>; users are defaulted to the barebones of data submission and encourage customization to fit each individual&#39;s unique preferences and needs.</p>
-                            <p>OvaView is designed to be used without requiring any personal data. However, if users choose to provide their email address, they are confirming that they are at least 16 years old or have obtained consent from their legal guardian in accordance with <strong>Article 8 of GDPR</strong>.</p>
                         </div>
                         <br>
 
@@ -163,11 +162,7 @@
                             <li>Unique user ID</li>
                             </ul>
                             <p>No other data is stored if a user creates an account and does not touch any settings. <strong>We never store data that is not unnecessary to the app function without explicit, clear, and consistent user consent.</strong> This choice is tied to our belief that everyone has a right to privacy and all consumers deserver full autonomy over their data.</p>
-                            <p>For easy account recovery purposes, users can link the following to be stored in our database:</p>
-                            <ul>
-                            <li>Email address</li>
-                            </ul>
-                            <p>For cross-device purposes, users can opt-in to storing information to be synced up in other devices: {+Is this too much work?+}</p>
+                            <p>For cross-device purposes, users can opt-in to storing information to be synced up in other devices:</p>
                             <ul>
                             <li>Information linked to day dates on the calendar<ul>
                             <li>Perceived period start</li>
@@ -200,10 +195,8 @@
                             <li>Unique user ID</li>
                             </ul>
                             <p>are exempt from rectification and erasure without compromising the user&#39;s account. Erasure of unique user ID <strong>implies</strong> the deletion of all linked data to that ID.</p>
-                            <p>The user may request to move their account to a new unique user ID, erase all data linked to the old ID and transfer them over to the new ID.</p>
                             <p>The following data are <strong>all subject to viewing, rectification, and erasure:</strong></p>
                             <ul>
-                            <li>Email Address</li>
                             <li>User inputted data<ul>
                             <li>Perceived period start</li>
                             <li>Perceived period end</li>
@@ -230,20 +223,11 @@
                         <!-- Consent -->
                         <div>
                             <h2 id="7-cookies">7. Cookies</h2>
-                            <p>OvaView’s web service makes use of the conveniences cookies offer. We aim to provide users quality of life when using our website, while ensuring <strong>no tracking nor interaction of any form</strong> from third-parties.</p>
-                            <h4 id="1-policy-overview">1. Policy Overview</h4>
-                            <p>Our culture is deeply rooted in the belief that everyone has the right to privacy. Therefore, we only store data that is absolutely necessary, and only when requested by the customer. Our web service uses minimal cookies, which are essential for providing certain services, and are used only when the user specifies so. This means that by default, our website make use of no cookies! We ask users if they wish to use cookies, but usage of them is purely opt-in.</p>
-                            <h4 id="2-first-party-vs-third-party-cookies">2. First-Party vs. Third-Party Cookies</h4>
-                            <p>As a company, we strive to be fair and respectful of our consumers&#39; trust. To ensure this, we ensure the practice of <strong>no third-party cookies usage</strong> on our website domain.</p>
-                            <p>Third-party cookies are cookies that are shared with other domains. All the contents in the cookies, may it be user preferences, behavior to ads, languages, and various other information about a user, are distributed and shared to various different companies and websites. We deem these kinds of cookies to be overly intrusive, and avoid using these on our webservice.</p>
-                            <p>First-party cookies limited to the specific service&#39;s domain; in our case, these cookies are created and then expired without ever leaving our domain&#39;s boundaries. First-party cookies give data subjects reassurance that any information collected while they visit a website never reaches the hands of anyone other than the website.</p>
-                            <h4 id="3-the-cookies-we-use">3. The Cookies We Use</h4>
-                            <p>Here is a list of all the cookies available to be enabled by our consumers</p>
+                            <p>OvaView does not use <strong> any cookies. </strong> </p>
+                            <h4 id="3-the-cookies-we-use">The Cookies We Use</h4>
                             <ul>
-                            <li><strong>[Autologin Cookie]</strong> is a first-party cookie that is created when you log into an account and remembers to keep you logged in for the next 30 days. This cookie remembers your unique ID and keeps your sessions continuous even after closing browsers.</li>
+                            <li><strong>NONE!</strong></li>
                             </ul>
-                            <p>Given our anonymous profile system, which you can read more about above, it would be an annoyance to keep your token at hand and copy it into our login system every time you wish to update your entries. So, we offer a solution where your browser remembers your login and keeps you logged in even after you close your browser!</p>
-                            <p>For security reasons, we strictly limit this feature to remembering users for only 30 days to avoid the risks of people you do not want to see your profile to have full access!</p>
                         </div>
                         <br>
 
