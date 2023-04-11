@@ -87,6 +87,7 @@
     }
 
 
+
     // PHP code for updating a specific entry from back end
     if(!empty($_POST) && $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['updateData'])){
 
@@ -178,6 +179,8 @@
 
         unset($data);
     }
+
+
 
     if(getConsent($user_id)){
         

@@ -3,14 +3,6 @@
 	"use strict";
     var isEdit = false;
 
-    // var nextPredictedPeriod = {
-    //     "year": 2016,
-    //     "month": 1,
-    //     "day": 20
-    // };
-
-
-
 	// Setup the calendar with the current date
 $(document).ready(function(){
 
@@ -92,9 +84,7 @@ function init_calendar(date) {
                 var hasPeriod = check_period(day, month+1, year);
                 // If this date has a period, style it with .period-date
                 if(hasPeriod) {
-                    console.log(month+1 + " " + day + " has period prediction!");
                     curr_date.addClass("period-date");
-                    console.log("added period-date class!");
                 }
             }
 
@@ -418,13 +408,10 @@ function show_events(events, month, day) {
                 // Fill in the form to hold what the current event has
                 $("#dialog input[value='" + events[0].mood.toLowerCase() + "']").prop('checked',true);
 
-                console.log("value='" + events[0].mood + "'")
-
                 const symptoms = events[0]["symptoms"].split(" ");
 
                 for(var j = 0, length = symptoms.length; j < length; j++){
                     if(symptoms[j]!= ""){
-                        console.log(symptoms[j]);
                         $("#dialog input[value='" + symptoms[j].toLowerCase() + "']").prop('checked',true);
                     }
                 }
@@ -527,7 +514,6 @@ function show_events(events, month, day) {
  
                     // Hide the form and set the isEdit value to false
                     $("#dialog").hide();
-                    console.log("updated event");
                     isEdit = false; 
                 }
             }
@@ -556,8 +542,6 @@ function check_events(day, month, year) {
 
 // Checks if a specific date is predicted to have a period
 function check_period(day, month, year) {
-
-    console.log("next predicted period date: " + nextPredictedPeriod.year + nextPredictedPeriod.month + nextPredictedPeriod.day );
     return nextPredictedPeriod.day == day && nextPredictedPeriod.month == month && nextPredictedPeriod.year == year;
 }
 
