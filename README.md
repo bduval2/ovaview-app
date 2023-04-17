@@ -84,9 +84,4 @@ To host the project locally:
 3. Run [WebApp/frontEnd/index.php](https://gitlab.cs.mcgill.ca/bduval2/comp555-project-group-9/-/blob/main/WebApp/frontEnd/index.php) on your local host. 
 
 
-## Contributors
-
-@apopia @bduval2 @spark186
-
-
 
