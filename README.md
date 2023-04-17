@@ -54,7 +54,6 @@ Our app, in essence, is a simple calendar-style tracker. We offer a mutable cale
 
 ## Documentation
 
-* [Report](https://gitlab.cs.mcgill.ca/bduval2/comp555-project-group-9/-/blob/main/Report.md)
 * [Requirements Document](https://gitlab.cs.mcgill.ca/bduval2/comp555-project-group-9/-/blob/main/Requirements.md)
 * [Achitectural Description](https://gitlab.cs.mcgill.ca/bduval2/comp555-project-group-9/-/blob/main/Architecture.md)
 * [Report](https://gitlab.cs.mcgill.ca/bduval2/comp555-project-group-9/-/blob/main/Report.md)
